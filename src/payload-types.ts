@@ -200,7 +200,462 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout?:
+    | (
+        | {
+            pillText?: string | null;
+            heading: string;
+            subheading?: string | null;
+            actions?:
+              | {
+                  label?: string | null;
+                  link?: string | null;
+                  type?: ('default' | 'outline' | 'ghost') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroGradient';
+          }
+        | {
+            title?: string | null;
+            cards?:
+              | {
+                  title?: string | null;
+                  content?: string | null;
+                  /**
+                   * Lucide icon name
+                   */
+                  icon?: string | null;
+                  span?: ('1' | '2' | 'row-2') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'bentoGrid';
+          }
+        | {
+            heading?: string | null;
+            tabs?:
+              | {
+                  label: string;
+                  title?: string | null;
+                  description?: string | null;
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureTabs';
+          }
+        | {
+            title: string;
+            description?: string | null;
+            actions?:
+              | {
+                  label?: string | null;
+                  variant?: ('default' | 'outline') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            sectionTitle?: string | null;
+            title?: string | null;
+            description?: string | null;
+            items: {
+              question: string;
+              answer: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            columns?: ('2' | '3' | '4') | null;
+            features?:
+              | {
+                  title?: string | null;
+                  description?: string | null;
+                  badge?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureGrid';
+          }
+        | {
+            imageSide?: ('left' | 'right') | null;
+            image: number | Media;
+            heading: string;
+            body?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            cta?: {
+              label?: string | null;
+              link?: string | null;
+              variant?: ('default' | 'outline' | 'secondary') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaContent';
+          }
+        | {
+            title?: string | null;
+            images?:
+              | {
+                  image: number | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGallery';
+          }
+        | {
+            title?: string | null;
+            reviews?:
+              | {
+                  quote: string;
+                  author: string;
+                  role?: string | null;
+                  avatar?: (number | null) | Media;
+                  rating?: number | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonialCarousel';
+          }
+        | {
+            heading?: string | null;
+            plans?:
+              | {
+                  name: string;
+                  price: string;
+                  description?: string | null;
+                  isPopular?: boolean | null;
+                  features?:
+                    | {
+                        feature?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  buttonText?: string | null;
+                  buttonLink?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pricingTable';
+          }
+        | {
+            logos?:
+              | {
+                  image?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logoMarquee';
+          }
+        | {
+            heading?: string | null;
+            events?:
+              | {
+                  year: string;
+                  title?: string | null;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
+        | {
+            stats?:
+              | {
+                  value: string;
+                  label: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'metrics';
+          }
+        | {
+            containerSettings?: {
+              layoutType?: ('flex' | 'grid') | null;
+              /**
+               * Gap in pixels (e.g. 16, 32)
+               */
+              gap?: number | null;
+              padding?: ('none' | 'small' | 'large') | null;
+            };
+            columns?:
+              | {
+                  width?: ('w-full' | 'w-1/2' | 'w-1/3') | null;
+                  content?:
+                    | (
+                        | {
+                            label: string;
+                            variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'buttonAtom';
+                          }
+                        | {
+                            content?: {
+                              root: {
+                                type: string;
+                                children: {
+                                  type: any;
+                                  version: number;
+                                  [k: string]: unknown;
+                                }[];
+                                direction: ('ltr' | 'rtl') | null;
+                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                indent: number;
+                                version: number;
+                              };
+                              [k: string]: unknown;
+                            } | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'textAtom';
+                          }
+                        | {
+                            label?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'badgeAtom';
+                          }
+                        | {
+                            type?: ('default' | 'destructive') | null;
+                            title: string;
+                            message?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'alertAtom';
+                          }
+                        | {
+                            spacing?: ('small' | 'medium' | 'large') | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'separatorAtom';
+                          }
+                        | {
+                            value: number;
+                            label?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'progressAtom';
+                          }
+                        | {
+                            image: number | Media;
+                            aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
+                            caption?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'imageAtom';
+                          }
+                        | {
+                            /**
+                             * Lucide icon name
+                             */
+                            iconName?: string | null;
+                            size?: number | null;
+                            /**
+                             * Tailwind class or Hex
+                             */
+                            color?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'iconAtom';
+                          }
+                        | {
+                            url: string;
+                            controls?: boolean | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'videoAtom';
+                          }
+                        | {
+                            triggerText: string;
+                            content: string;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'tooltipAtom';
+                          }
+                        | {
+                            users?:
+                              | {
+                                  image?: (number | null) | Media;
+                                  initials?: string | null;
+                                  id?: string | null;
+                                }[]
+                              | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'avatarGroupAtom';
+                          }
+                        | {
+                            items?:
+                              | {
+                                  trigger: string;
+                                  content: string;
+                                  id?: string | null;
+                                }[]
+                              | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'accordionAtom';
+                          }
+                        | {
+                            direction?: ('row' | 'column') | null;
+                            gap?: ('0' | '2' | '4' | '8' | '12') | null;
+                            align?: ('start' | 'center' | 'end' | 'between') | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'stackAtom';
+                          }
+                        | {
+                            padding?: ('none' | 'small' | 'medium' | 'large') | null;
+                            glassmorphism?: boolean | null;
+                            content?:
+                              | (
+                                  | {
+                                      label: string;
+                                      variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'buttonAtom';
+                                    }
+                                  | {
+                                      content?: {
+                                        root: {
+                                          type: string;
+                                          children: {
+                                            type: any;
+                                            version: number;
+                                            [k: string]: unknown;
+                                          }[];
+                                          direction: ('ltr' | 'rtl') | null;
+                                          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                          indent: number;
+                                          version: number;
+                                        };
+                                        [k: string]: unknown;
+                                      } | null;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'textAtom';
+                                    }
+                                  | {
+                                      label?: string | null;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'badgeAtom';
+                                    }
+                                  | {
+                                      image: number | Media;
+                                      aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
+                                      caption?: string | null;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'imageAtom';
+                                    }
+                                  | {
+                                      /**
+                                       * Lucide icon name
+                                       */
+                                      iconName?: string | null;
+                                      size?: number | null;
+                                      /**
+                                       * Tailwind class or Hex
+                                       */
+                                      color?: string | null;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'iconAtom';
+                                    }
+                                  | {
+                                      triggerText: string;
+                                      content: string;
+                                      id?: string | null;
+                                      blockName?: string | null;
+                                      blockType: 'tooltipAtom';
+                                    }
+                                )[]
+                              | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'cardAtom';
+                          }
+                        | {
+                            leftLabel?: string | null;
+                            rightLabel?: string | null;
+                            /**
+                             * Unique key to sync with other atoms
+                             */
+                            stateKey?: string | null;
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'stateToggle';
+                          }
+                      )[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'composableSection';
+          }
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -439,171 +894,29 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
+ * via the `definition` "redirects".
  */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
- */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
-  limit?: number | null;
-  selectedDocs?:
-    | {
-        relationTo: 'posts';
-        value: number | Post;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'archive';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock".
- */
-export interface FormBlock {
-  form: number | Form;
-  enableIntro?: boolean | null;
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'formBlock';
+export interface Redirect {
+  id: number;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -776,32 +1089,6 @@ export interface Form {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: number;
-  /**
-   * You will need to rebuild the website when changing this field.
-   */
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1082,11 +1369,422 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        cta?: T | CallToActionBlockSelect<T>;
-        content?: T | ContentBlockSelect<T>;
-        mediaBlock?: T | MediaBlockSelect<T>;
-        archive?: T | ArchiveBlockSelect<T>;
-        formBlock?: T | FormBlockSelect<T>;
+        heroGradient?:
+          | T
+          | {
+              pillText?: T;
+              heading?: T;
+              subheading?: T;
+              actions?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    type?: T;
+                    id?: T;
+                  };
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        bentoGrid?:
+          | T
+          | {
+              title?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    icon?: T;
+                    span?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featureTabs?:
+          | T
+          | {
+              heading?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              actions?:
+                | T
+                | {
+                    label?: T;
+                    variant?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              sectionTitle?: T;
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featureGrid?:
+          | T
+          | {
+              columns?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    badge?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaContent?:
+          | T
+          | {
+              imageSide?: T;
+              image?: T;
+              heading?: T;
+              body?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    link?: T;
+                    variant?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        imageGallery?:
+          | T
+          | {
+              title?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonialCarousel?:
+          | T
+          | {
+              title?: T;
+              reviews?:
+                | T
+                | {
+                    quote?: T;
+                    author?: T;
+                    role?: T;
+                    avatar?: T;
+                    rating?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingTable?:
+          | T
+          | {
+              heading?: T;
+              plans?:
+                | T
+                | {
+                    name?: T;
+                    price?: T;
+                    description?: T;
+                    isPopular?: T;
+                    features?:
+                      | T
+                      | {
+                          feature?: T;
+                          id?: T;
+                        };
+                    buttonText?: T;
+                    buttonLink?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoMarquee?:
+          | T
+          | {
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        timeline?:
+          | T
+          | {
+              heading?: T;
+              events?:
+                | T
+                | {
+                    year?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        metrics?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        composableSection?:
+          | T
+          | {
+              containerSettings?:
+                | T
+                | {
+                    layoutType?: T;
+                    gap?: T;
+                    padding?: T;
+                  };
+              columns?:
+                | T
+                | {
+                    width?: T;
+                    content?:
+                      | T
+                      | {
+                          buttonAtom?:
+                            | T
+                            | {
+                                label?: T;
+                                variant?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          textAtom?:
+                            | T
+                            | {
+                                content?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          badgeAtom?:
+                            | T
+                            | {
+                                label?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          alertAtom?:
+                            | T
+                            | {
+                                type?: T;
+                                title?: T;
+                                message?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          separatorAtom?:
+                            | T
+                            | {
+                                spacing?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          progressAtom?:
+                            | T
+                            | {
+                                value?: T;
+                                label?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          imageAtom?:
+                            | T
+                            | {
+                                image?: T;
+                                aspectRatio?: T;
+                                caption?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          iconAtom?:
+                            | T
+                            | {
+                                iconName?: T;
+                                size?: T;
+                                color?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          videoAtom?:
+                            | T
+                            | {
+                                url?: T;
+                                controls?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          tooltipAtom?:
+                            | T
+                            | {
+                                triggerText?: T;
+                                content?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          avatarGroupAtom?:
+                            | T
+                            | {
+                                users?:
+                                  | T
+                                  | {
+                                      image?: T;
+                                      initials?: T;
+                                      id?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                          accordionAtom?:
+                            | T
+                            | {
+                                items?:
+                                  | T
+                                  | {
+                                      trigger?: T;
+                                      content?: T;
+                                      id?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                          stackAtom?:
+                            | T
+                            | {
+                                direction?: T;
+                                gap?: T;
+                                align?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                          cardAtom?:
+                            | T
+                            | {
+                                padding?: T;
+                                glassmorphism?: T;
+                                content?:
+                                  | T
+                                  | {
+                                      buttonAtom?:
+                                        | T
+                                        | {
+                                            label?: T;
+                                            variant?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                      textAtom?:
+                                        | T
+                                        | {
+                                            content?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                      badgeAtom?:
+                                        | T
+                                        | {
+                                            label?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                      imageAtom?:
+                                        | T
+                                        | {
+                                            image?: T;
+                                            aspectRatio?: T;
+                                            caption?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                      iconAtom?:
+                                        | T
+                                        | {
+                                            iconName?: T;
+                                            size?: T;
+                                            color?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                      tooltipAtom?:
+                                        | T
+                                        | {
+                                            triggerText?: T;
+                                            content?: T;
+                                            id?: T;
+                                            blockName?: T;
+                                          };
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                          stateToggle?:
+                            | T
+                            | {
+                                leftLabel?: T;
+                                rightLabel?: T;
+                                stateKey?: T;
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1101,90 +1799,6 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock_select".
- */
-export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock_select".
- */
-export interface ContentBlockSelect<T extends boolean = true> {
-  columns?:
-    | T
-    | {
-        size?: T;
-        richText?: T;
-        enableLink?: T;
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock_select".
- */
-export interface MediaBlockSelect<T extends boolean = true> {
-  media?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock_select".
- */
-export interface ArchiveBlockSelect<T extends boolean = true> {
-  introContent?: T;
-  populateBy?: T;
-  relationTo?: T;
-  categories?: T;
-  limit?: T;
-  selectedDocs?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock_select".
- */
-export interface FormBlockSelect<T extends boolean = true> {
-  form?: T;
-  enableIntro?: T;
-  introContent?: T;
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1790,6 +2404,16 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

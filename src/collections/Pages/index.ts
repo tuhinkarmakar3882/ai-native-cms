@@ -1,14 +1,9 @@
 import type { CollectionConfig } from 'payload'
+import { slugField } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
-import { Content } from '../../blocks/Content/config'
-import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
-import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
@@ -20,6 +15,20 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { HeroBlock } from '@/blocks/Hero/config'
+import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
+import { FAQBlock } from '@/blocks/FAQ/config'
+import { ComposableSectionBlock } from '@/blocks/Composable/config'
+import { MediaContentBlock } from '@/blocks/MediaContent/config'
+import { ImageGalleryBlock } from '@/blocks/ImageGallery/config'
+import { PricingBlock } from '@/blocks/Pricing/config'
+import { TestimonialBlock } from '@/blocks/Testimonials/config'
+import { HeroGradientBlock } from '@/blocks/HeroGradient/config'
+import { BentoGridBlock } from '@/blocks/BentoGrid/config'
+import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
+import { LogoMarqueeBlock } from '@/blocks/LogoMarquee/config'
+import { TimelineBlock } from '@/blocks/Timeline/config'
+import { MetricsBlock } from '@/blocks/Metrics/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -72,11 +81,24 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
-              required: true,
-              admin: {
-                initCollapsed: true,
-              },
+              blocks: [
+                // TRACK 1: Premade
+                HeroGradientBlock,
+                BentoGridBlock,
+                FeatureTabsBlock,
+                HeroBlock,
+                FAQBlock,
+                FeatureGridBlock,
+                MediaContentBlock,
+                ImageGalleryBlock,
+                TestimonialBlock,
+                PricingBlock,
+                LogoMarqueeBlock,
+                TimelineBlock,
+                MetricsBlock,
+                // TRACK 2: Build Your Own
+                ComposableSectionBlock,
+              ],
             },
           ],
           label: 'Content',

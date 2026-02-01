@@ -1,0 +1,36 @@
+import { Block } from 'payload'
+import {
+  AccordianAtom,
+  AlertAtom,
+  AvatarGroupAtom,
+  BadgeAtom,
+  ButtonAtom,
+  CardAtom,
+  IconAtom,
+  ImageAtom,
+  ProgressAtom,
+  SeparatorAtom,
+  StackAtom,
+  StateToggleAtom,
+  TextAtom,
+  TooltipAtom,
+  VideoAtom,
+} from '@/blocks/Composable/Atoms/config'
+
+export const AtomBlocks: Block[] = [
+  ButtonAtom,
+  TextAtom,
+  BadgeAtom,
+  AlertAtom,
+  SeparatorAtom,
+  ProgressAtom,
+  ImageAtom,
+  IconAtom,
+  VideoAtom,
+  TooltipAtom,
+  AvatarGroupAtom,
+  AccordianAtom,
+  StackAtom,
+  CardAtom,
+  StateToggleAtom,
+]
