@@ -29,6 +29,8 @@ import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
 import { LogoMarqueeBlock } from '@/blocks/LogoMarquee/config'
 import { TimelineBlock } from '@/blocks/Timeline/config'
 import { MetricsBlock } from '@/blocks/Metrics/config'
+import { SplitBannerBlock } from '@/blocks/SplitBanner/config'
+import { TableBlock } from '@/blocks/Table/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -96,6 +98,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 LogoMarqueeBlock,
                 TimelineBlock,
                 MetricsBlock,
+                SplitBannerBlock,
+                TableBlock,
                 // TRACK 2: Build Your Own
                 ComposableSectionBlock,
               ],

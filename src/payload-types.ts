@@ -426,6 +426,63 @@ export interface Page {
             blockType: 'metrics';
           }
         | {
+            settings?: {
+              theme?: ('dark' | 'light' | 'accent') | null;
+              imagePosition?: ('left' | 'right') | null;
+            };
+            content: {
+              heading: string;
+              subtext?: string | null;
+              actions?:
+                | {
+                    label?: string | null;
+                    url?: string | null;
+                    style?: ('default' | 'outline' | 'secondary') | null;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            image: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'splitBanner';
+          }
+        | {
+            title?: string | null;
+            sourceType?: ('static' | 'api') | null;
+            headers?:
+              | {
+                  label?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            rows?:
+              | {
+                  cells?:
+                    | {
+                        value?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            apiUrl?: string | null;
+            /**
+             * Map JSON keys to Table Headers
+             */
+            columnMapping?:
+              | {
+                  header: string;
+                  dataKey: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'smartTable';
+          }
+        | {
             containerSettings?: {
               layoutType?: ('flex' | 'grid') | null;
               /**
@@ -1573,6 +1630,66 @@ export interface PagesSelect<T extends boolean = true> {
                     value?: T;
                     label?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        splitBanner?:
+          | T
+          | {
+              settings?:
+                | T
+                | {
+                    theme?: T;
+                    imagePosition?: T;
+                  };
+              content?:
+                | T
+                | {
+                    heading?: T;
+                    subtext?: T;
+                    actions?:
+                      | T
+                      | {
+                          label?: T;
+                          url?: T;
+                          style?: T;
+                          id?: T;
+                        };
+                  };
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        smartTable?:
+          | T
+          | {
+              title?: T;
+              sourceType?: T;
+              headers?:
+                | T
+                | {
+                    label?: T;
+                    id?: T;
+                  };
+              rows?:
+                | T
+                | {
+                    cells?:
+                      | T
+                      | {
+                          value?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              apiUrl?: T;
+              columnMapping?:
+                | T
+                | {
+                    header?: T;
+                    dataKey?: T;
                     id?: T;
                   };
               id?: T;

@@ -30,6 +30,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { SplitBannerComponent } from '@/components/Designs/SplitBanner/Component'
+import { TableComponent } from '@/components/Designs/Table/Component'
 
 const Icon = ({ name, ...props }: { name: string; [key: string]: any }) => {
   return <DynamicIcon name={name} {...props} />
@@ -51,6 +53,8 @@ const blockMap = {
   logoMarquee: LogoMarqueeComponent,
   timeline: TimelineComponent,
   metrics: MetricsComponent,
+  splitBanner: SplitBannerComponent,
+  smartTable: TableComponent,
 
   // Atoms (Used inside ComposableSection)
   buttonAtom: (props) => <Button variant={props.variant}>{props.label}</Button>,
