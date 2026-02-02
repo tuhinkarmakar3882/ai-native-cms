@@ -1,36 +1,32 @@
 import type { Block } from 'payload'
 
 import {
+  AlignFeature,
   BlockquoteFeature,
   BoldFeature,
   ChecklistFeature,
   FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
+  IndentFeature,
+  InlineCodeFeature,
   InlineToolbarFeature,
+  ItalicFeature,
   lexicalEditor,
   LinkFeature,
   OrderedListFeature,
   ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 
-export const Banner: Block = {
-  slug: 'banner',
+export const RichTextContentBlock: Block = {
+  slug: 'richtext-content',
+  dbName: 'richtext-content',
   fields: [
-    {
-      name: 'style',
-      type: 'select',
-      defaultValue: 'info',
-      options: [
-        { label: 'Info', value: 'info' },
-        { label: 'Warning', value: 'warning' },
-        { label: 'Error', value: 'error' },
-        { label: 'Success', value: 'success' },
-      ],
-      required: true,
-    },
     {
       name: 'content',
       type: 'richText',
@@ -39,17 +35,22 @@ export const Banner: Block = {
           return [
             ...rootFeatures,
             HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            InlineToolbarFeature(),
             LinkFeature(),
-            OrderedListFeature(),
-            UnderlineFeature(),
-            UnorderedListFeature(),
-            HorizontalRuleFeature(),
-            ParagraphFeature(),
-            ChecklistFeature(),
-
+            AlignFeature(),
             BlockquoteFeature(),
             BoldFeature(),
+            InlineCodeFeature(),
+            ItalicFeature(),
+            StrikethroughFeature(),
+            SubscriptFeature(),
+            SuperscriptFeature(),
+            UnderlineFeature(),
+            HorizontalRuleFeature(),
+            IndentFeature(),
+            ChecklistFeature(),
+            OrderedListFeature(),
+            UnorderedListFeature(),
+            ParagraphFeature(),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]

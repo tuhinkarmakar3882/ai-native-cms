@@ -31,6 +31,8 @@ import { TimelineBlock } from '@/blocks/Timeline/config'
 import { MetricsBlock } from '@/blocks/Metrics/config'
 import { SplitBannerBlock } from '@/blocks/SplitBanner/config'
 import { TableBlock } from '@/blocks/Table/config'
+import { Banner } from '@/blocks/Banner/config'
+import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -81,10 +83,22 @@ export const Pages: CollectionConfig<'pages'> = {
         {
           fields: [
             {
+              name: 'aiBuilder',
+              type: 'ui',
+              admin: {
+                components: {
+                  Field: '@/components/BuildWithAI/Component#BuildWithAI',
+                },
+              },
+            },
+            {
               name: 'layout',
               type: 'blocks',
               blocks: [
+                RichTextContentBlock,
+
                 // TRACK 1: Premade
+                Banner,
                 HeroGradientBlock,
                 BentoGridBlock,
                 FeatureTabsBlock,
