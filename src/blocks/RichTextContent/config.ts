@@ -30,6 +30,7 @@ export const RichTextContentBlock: Block = {
     {
       name: 'content',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
@@ -60,5 +61,5 @@ export const RichTextContentBlock: Block = {
       required: true,
     },
   ],
-  interfaceName: 'BannerBlock',
+  interfaceName: 'RichTextContentBlock',
 }

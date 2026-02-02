@@ -7,5 +7,5 @@ export interface IGenAIBlockGenerator {
 }
 
 export interface IGenAIBlockGeneratorProps {
-  blockType: BlockType
+  blockType: EnumValues<BlockType>
 }

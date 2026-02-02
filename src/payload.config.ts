@@ -53,6 +53,10 @@ export default buildConfig({
           height: 900,
         },
       ],
+      url: ({ data, locale }) => {
+        const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+        return `${serverURL}/${data.slug}${locale ? `?locale=${locale.code}` : ''}`
+      },
     },
   },
   // This config helps us configure global or default features that the other editors can inherit
@@ -88,5 +92,31 @@ export default buildConfig({
       },
     },
     tasks: [],
+  },
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Arabic',
+        code: 'ar',
+        rtl: true,
+      },
+      {
+        label: 'Bengali',
+        code: 'bn-IN',
+      },
+      {
+        label: 'Hindi',
+        code: 'hi-IN',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
+  experimental: {
+    localizeStatus: true, // Required to enable the feature globally
   },
 })

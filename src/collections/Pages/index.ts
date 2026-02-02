@@ -33,6 +33,8 @@ import { SplitBannerBlock } from '@/blocks/SplitBanner/config'
 import { TableBlock } from '@/blocks/Table/config'
 import { Banner } from '@/blocks/Banner/config'
 import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
+import { FormBlock } from '@/blocks/Form/config'
+import { Content } from '@/blocks/Content/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -96,6 +98,8 @@ export const Pages: CollectionConfig<'pages'> = {
               type: 'blocks',
               blocks: [
                 RichTextContentBlock,
+                FormBlock,
+                Content,
 
                 // TRACK 1: Premade
                 Banner,
@@ -166,8 +170,9 @@ export const Pages: CollectionConfig<'pages'> = {
   },
   versions: {
     drafts: {
+      localizeStatus: true,
       autosave: {
-        interval: 100, // We set this interval for optimal live preview
+        interval: 100,
       },
       schedulePublish: true,
     },

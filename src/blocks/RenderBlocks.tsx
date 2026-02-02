@@ -34,6 +34,8 @@ import { SplitBannerComponent } from '@/components/Designs/SplitBanner/Component
 import { TableComponent } from '@/components/Designs/Table/Component'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { RichTextComponent } from '@/blocks/RichTextContent/Component'
+import { FormBlock } from '@/blocks/Form/Component'
+import { ContentBlock } from '@/blocks/Content/Component'
 
 const Icon = ({ name, ...props }: { name: string; [key: string]: any }) => {
   return <DynamicIcon name={name} {...props} />
@@ -41,6 +43,8 @@ const Icon = ({ name, ...props }: { name: string; [key: string]: any }) => {
 const spacingMap = { small: 'my-4', medium: 'my-8', large: 'my-16' }
 const blockMap = {
   banner: BannerBlock,
+  formBlock: FormBlock,
+  content: ContentBlock,
   'richtext-content': RichTextComponent,
 
   // Premade

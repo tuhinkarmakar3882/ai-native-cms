@@ -40,11 +40,18 @@ type Args = {
   params: Promise<{
     slug?: string
   }>
+  searchParams: Promise<{
+    locale?: string
+  }>
 }
 
-export default async function Page({ params: paramsPromise }: Args) {
+export default async function Page({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
+}: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
+  const { locale } = await searchParamsPromise // 👈 Extract locale
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/' + decodedSlug
@@ -52,6 +59,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   page = await queryPageBySlug({
     slug: decodedSlug,
+    locale,
   })
 
   if (!page) {
@@ -62,13 +70,22 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   return (
     <article className="pb-24">
-      <PageClient />
+      {/* 1. Logic Switch: If draft, use the Live Listener client */}
+      {draft ? (
+        <PageClient initialData={page} />
+      ) : (
+        <>
+          <RenderHero {...page.hero} />
+          <RenderBlocks blocks={page.layout} />
+        </>
+      )}
+      {/*<PageClient />*/}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      {/*<RenderHero {...hero} />*/}
+      {/*<RenderBlocks blocks={layout} />*/}
     </article>
   )
 }
@@ -84,7 +101,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   return generateMeta({ doc: page })
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
@@ -95,6 +112,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     limit: 1,
     pagination: false,
     overrideAccess: draft,
+    locale: locale as any,
     where: {
       slug: {
         equals: slug,
