@@ -1,24 +1,60 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+
 import Image from 'next/image'
+import styled from 'styled-components'
 
+const StyledSection = styled.section`
+  isolation: isolate;
+
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .layer {
+    position: absolute;
+    background: hsla(0, 0%, 0%, 0.75);
+    z-index: -1;
+    inset: 0;
+    backdrop-filter: blur(4px);
+  }
+
+  .container {
+    z-index: 1;
+  }
+`
 export const HeroGradientComponent = ({ pillText, heading, subheading, actions, image }) => (
-  <section className="relative overflow-hidden py-24 lg:py-32 bg-background">
-    {/* Gradient Background Effect */}
-    <div className="absolute top-0 -z-10 h-full w-full bg-white dark:bg-black">
-      <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
-    </div>
+  <StyledSection className="relative overflow-hidden bg-background mb-8">
+    {image && (
+      <Image className="bg-image" src={image.url} width={1200} height={800} alt="Dashboard" />
+    )}
 
-    <div className="container flex flex-col items-center text-center gap-8">
+    {image && <div className="layer" />}
+
+    <div className="container flex flex-col items-center text-center gap-8 py-16">
       {pillText && (
         <Badge variant="secondary" className="px-4 py-1 rounded-full text-sm">
           {pillText}
         </Badge>
       )}
-      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight">
+      <h1
+        className={`text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight ${image ? 'text-white' : ''}`}
+      >
         {heading}
       </h1>
-      <p className="text-xl text-muted-foreground max-w-2xl">{subheading}</p>
+      <p
+        className={`text-lg max-w-2xl font-light ${image ? '' : 'text-muted-foreground'}`}
+        style={{
+          color: `${image ? 'hsla(0deg, 0%, 80%)' : 'var(--muted-foreground)'}`,
+        }}
+      >
+        {subheading}
+      </p>
 
       <div className="flex gap-4">
         {actions?.map((btn, i) => (
@@ -27,12 +63,6 @@ export const HeroGradientComponent = ({ pillText, heading, subheading, actions, 
           </Button>
         ))}
       </div>
-
-      {image && (
-        <div className="mt-12 rounded-xl border bg-muted/50 p-2 shadow-2xl">
-          <Image src={image.url} width={1200} height={800} alt="Dashboard" className="rounded-lg" />
-        </div>
-      )}
     </div>
-  </section>
+  </StyledSection>
 )
