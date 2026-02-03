@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { GenerateRichTextContent } from '@/components/BuildWithAI/GenerateRichTextContent'
 import { GenerateTranslatedContent } from '@/components/BuildWithAI/GenerateTranslatedContent'
+import { SuggestLayoutPlan } from '@/components/BuildWithAI/SuggestLayoutPlan'
 
 const StyledBuildWithAIContainer = styled.div`
   width: 100%;
@@ -27,6 +28,7 @@ export const BuildWithAI = () => {
     <StyledBuildWithAIContainer>
       <GenerateRichTextContent />
       <GenerateTranslatedContent />
+      <SuggestLayoutPlan />
     </StyledBuildWithAIContainer>
   )
 }

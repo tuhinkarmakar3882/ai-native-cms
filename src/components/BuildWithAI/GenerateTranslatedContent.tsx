@@ -73,7 +73,6 @@ export const GenerateTranslatedContent = () => {
   const { id, collectionSlug } = useDocumentInfo()
   const { getData } = useForm()
 
-  // 1. Get available locales from config
   const locales = config.localization ? config.localization.locales : []
   const [selectedLocales, setSelectedLocales] = useState<string[]>([])
 
@@ -114,7 +113,6 @@ export const GenerateTranslatedContent = () => {
 
       if (response.ok) {
         setModalVisibility(false)
-        // Optionally refresh or show success
       }
     } catch (e) {
       console.error('Translation Error', e)

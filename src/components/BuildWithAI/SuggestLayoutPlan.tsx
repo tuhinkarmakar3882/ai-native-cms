@@ -1,11 +1,12 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, useField, useForm } from '@payloadcms/ui'
+import { Button } from '@payloadcms/ui'
 import { LayoutDashboard, Wand2 } from 'lucide-react'
 import { BlockType } from '@/generator/config'
 import { GenAIBlockGenerator } from '@/generator'
 import { IGenAIBlockGenerator } from '@/generator/types'
 import styled from 'styled-components'
+import { PlannerOutput, PlannerVisualizer } from '@/components/BuildWithAI/PlannerVisualiser'
 
 const StyledSuggestLayoutPlan = styled.div`
   .trigger-button {
@@ -26,7 +27,7 @@ const StyledSuggestLayoutPlan = styled.div`
     background: hsla(0deg, 0%, 0%, 0.9);
 
     .container {
-      max-height: 500px;
+      max-height: 800px;
       overflow: auto;
       max-width: 768px;
       margin: 1rem;
@@ -38,7 +39,7 @@ const StyledSuggestLayoutPlan = styled.div`
       background: var(--theme-bg);
       box-shadow: 0 0 4px var(--color-success-150);
 
-      header {
+      header.modal-header {
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -58,9 +59,8 @@ const StyledSuggestLayoutPlan = styled.div`
 
 export const SuggestLayoutPlan = () => {
   const blockType = BlockType.RichTextContent
-  const { path } = useField({ path: 'layout' })
-  const { addFieldRow } = useForm()
   const [prompt, setPrompt] = useState('')
+  const [plannerData, setPlannerData] = useState<PlannerOutput>('')
   const [isModalVisible, setModalVisibility] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const generator = useRef<IGenAIBlockGenerator>(null)
@@ -69,28 +69,23 @@ export const SuggestLayoutPlan = () => {
     generator.current = new GenAIBlockGenerator({ blockType })
   }, [blockType])
 
-  const generateSuggestedLayout = async ({}) => {
-    if (!generator.current) {
-      console.error('No Generator Instance found')
-      return
-    }
-
+  const prepareLayoutPlan = async ({}) => {
     setIsLoading(true)
 
     try {
-      const output = await generator.current.generate({
-        prompt,
+      const { content } = await fetch('/api/ai/generate-plan', {
+        method: 'POST',
+        body: JSON.stringify({
+          prompt,
+        }),
+      }).then((res) => res.json())
+
+      console.log('BuildWithAI :: SuggestLayoutPlan Received :: GeneratorOutput', {
+        content: JSON.parse(content),
       })
 
-      console.log('BuildWithAI :: SuggestLayoutPlan Received :: GeneratorOutput', { output })
-
-      addFieldRow({
-        path,
-        blockType,
-        subFieldState: output,
-      })
+      setPlannerData(JSON.parse(content))
       setTimeout(() => {
-        setModalVisibility(false)
         setPrompt('')
       }, 3000)
     } catch (e) {
@@ -100,35 +95,51 @@ export const SuggestLayoutPlan = () => {
     }
   }
 
+  const closeModal = () => {
+    setIsLoading(false)
+    setModalVisibility(false)
+    setPrompt('')
+    setPlannerData('')
+  }
+
+  const renderForm = () => (
+    <>
+      <header className="modal-header">
+        <Wand2 size={28} />
+        <h1>AI Page Planner Wizard</h1>
+      </header>
+      <p>
+        Not sure what can be a suitable layout? Tell us what do you want to build and we'll suggest
+        a layout
+      </p>
+
+      <textarea
+        autoFocus
+        disabled={isLoading}
+        placeholder="US growth is solid as sticky inflation pressures the Fed"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+      />
+
+      <Button
+        className="trigger-button"
+        onClick={prepareLayoutPlan}
+        disabled={isLoading || prompt.trim().length < 5}
+      >
+        {isLoading ? 'Please wait...' : 'Build with AI'}
+      </Button>
+    </>
+  )
+
+  const renderPlan = () => {
+    return <PlannerVisualizer plannerOutput={plannerData} />
+  }
+
   const renderModal = () => {
     return (
-      <section className="overlay" onClick={() => setModalVisibility(false)}>
+      <section className="overlay" onClick={() => closeModal()}>
         <div className="container" onClick={(e) => e.stopPropagation()}>
-          <header>
-            <Wand2 size={28} />
-            <h1>Build with AI Wizard</h1>
-          </header>
-          <p>
-            Empower your creative workflow by instantly transforming raw ideas into polished,
-            structured, and SEO-optimized rich text—designed specifically for seamless integration
-            with Payload CMS.
-          </p>
-
-          <textarea
-            autoFocus
-            disabled={isLoading}
-            placeholder="Write an article on US growth is solid as sticky inflation pressures the Fed"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-          />
-
-          <Button
-            className="trigger-button"
-            onClick={generateSuggestedLayout}
-            disabled={isLoading || prompt.trim().length < 5}
-          >
-            {isLoading ? 'Please wait...' : 'Build with AI'}
-          </Button>
+          {plannerData ? renderPlan() : renderForm()}
         </div>
       </section>
     )
