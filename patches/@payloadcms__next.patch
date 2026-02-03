@@ -1,0 +1,37 @@
+diff --git a/dist/views/Version/VersionPillLabel/VersionPillLabel.js b/dist/views/Version/VersionPillLabel/VersionPillLabel.js
+index 3a2446e81e0ad59218461db235b8c05f43929dbc..ec27df1fd6c437ef5ffdc1f6d293005ac18cb1e4 100644
+--- a/dist/views/Version/VersionPillLabel/VersionPillLabel.js
++++ b/dist/views/Version/VersionPillLabel/VersionPillLabel.js
+@@ -52,7 +52,8 @@ export const VersionPillLabel = t0 => {
+       currentlyPublishedVersion,
+       latestDraftVersion,
+       t,
+-      version: doc
++      version: doc,
++      currentLocale: i18n.language,
+     });
+     const labelText = _jsxs("span", {
+       children: [labelOverride || label, labelSuffix]
+diff --git a/dist/views/Version/VersionPillLabel/getVersionLabel.js b/dist/views/Version/VersionPillLabel/getVersionLabel.js
+index ce4aef209f6f90d796806a0d8ba26de2424d6bac..738c6d3fcc4d77e8d1b4020be7480ed28b77f7f5 100644
+--- a/dist/views/Version/VersionPillLabel/getVersionLabel.js
++++ b/dist/views/Version/VersionPillLabel/getVersionLabel.js
+@@ -1,4 +1,3 @@
+-import { useLocale } from '@payloadcms/ui';
+ /**
+  * Gets the appropriate version label and version pill styling
+  * given existing versions and the current version status.
+@@ -7,11 +6,9 @@ export function getVersionLabel({
+   currentlyPublishedVersion,
+   latestDraftVersion,
+   t,
+-  version
++  version,
++  currentLocale
+ }) {
+-  const {
+-    code: currentLocale
+-  } = useLocale();
+   const status = version.version._status;
+   if (status === 'draft') {
+     const publishedNewerThanDraft = currentlyPublishedVersion?.updatedAt > latestDraftVersion?.updatedAt;

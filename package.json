@@ -126,6 +126,9 @@
       "sharp",
       "esbuild",
       "unrs-resolver"
-    ]
+    ],
+    "patchedDependencies": {
+      "@payloadcms/next": "patches/@payloadcms__next.patch"
+    }
   }
 }

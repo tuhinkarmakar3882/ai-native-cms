@@ -14,12 +14,10 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import styled from 'styled-components'
 
 export async function generateStaticParams() {
-  const { isEnabled: draft } = await draftMode()
-
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
     collection: 'pages',
-    draft,
+    draft: false,
     limit: 1000,
     overrideAccess: false,
     pagination: false,
