@@ -117,6 +117,6 @@ export default buildConfig({
     fallback: true,
   },
   experimental: {
-    localizeStatus: true, // Required to enable the feature globally
+    localizeStatus: true,
   },
 })

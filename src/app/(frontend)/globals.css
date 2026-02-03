@@ -264,3 +264,11 @@ html[data-theme='light'] {
     @apply bg-background text-foreground;
   }
 }
+
+html:has(.rtl-mode) {
+  direction: rtl;
+}
+
+html:has(.rtl-mode) * {
+  direction: rtl !important;
+}

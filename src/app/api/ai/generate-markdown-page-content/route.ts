@@ -6,7 +6,7 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!)
 export async function POST(req: Request) {
   const { prompt, config } = await req.json()
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' }) // Or Gemini 3 if available
+  const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' })
 
   const result = await model.generateContent({
     contents: [{ role: 'user', parts: [{ text: prompt }] }],

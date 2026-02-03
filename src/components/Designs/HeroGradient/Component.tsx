@@ -21,7 +21,7 @@ const StyledSection = styled.section`
     background: hsla(0, 0%, 0%, 0.75);
     z-index: -1;
     inset: 0;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px) sepia(0.2) contrast(0.9) brightness(0.9);
   }
 
   .container {
@@ -43,14 +43,18 @@ export const HeroGradientComponent = ({ pillText, heading, subheading, actions, 
         </Badge>
       )}
       <h1
-        className={`text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight ${image ? 'text-white' : ''}`}
+        className={`text-4xl md:text-6xl font-extrabold tracking-tight max-w-6xl leading-tight ${image ? 'text-white' : ''}`}
+        style={{
+          textShadow: image ? `0 0 4px black` : undefined,
+        }}
       >
         {heading}
       </h1>
       <p
-        className={`text-lg max-w-2xl font-light ${image ? '' : 'text-muted-foreground'}`}
+        className={`text-lg max-w-4xl font-light ${image ? '' : 'text-muted-foreground'}`}
         style={{
           color: `${image ? 'hsla(0deg, 0%, 80%)' : 'var(--muted-foreground)'}`,
+          textShadow: image ? `0 0 4px black` : undefined,
         }}
       >
         {subheading}

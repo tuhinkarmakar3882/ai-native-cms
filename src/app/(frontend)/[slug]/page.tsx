@@ -9,14 +9,17 @@ import React, { cache } from 'react'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
+import { PageClient } from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import styled from 'styled-components'
 
 export async function generateStaticParams() {
+  const { isEnabled: draft } = await draftMode()
+
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({
     collection: 'pages',
-    draft: false,
+    draft,
     limit: 1000,
     overrideAccess: false,
     pagination: false,
@@ -45,14 +48,28 @@ type Args = {
   }>
 }
 
+const StyledArticle = styled.article`
+  &.rtl-mode {
+    * {
+      direction: rtl !important;
+    }
+  }
+`
+
+const isRTL = (locale) => ['ar'].includes(locale)
+
 export default async function Page({
   params: paramsPromise,
   searchParams: searchParamsPromise,
 }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = 'home' } = await paramsPromise
-  const { locale } = await searchParamsPromise // 👈 Extract locale
-  // Decode to support slugs with special characters
+
+  const [params, searchParams] = await Promise.all([paramsPromise, searchParamsPromise])
+  const { slug = 'home' } = params
+  const { locale = 'en' } = searchParams
+
+  const enableRTL = isRTL(locale)
+
   const decodedSlug = decodeURIComponent(slug)
   const url = '/' + decodedSlug
   let page: RequiredDataFromCollectionSlug<'pages'> | null
@@ -60,33 +77,27 @@ export default async function Page({
   page = await queryPageBySlug({
     slug: decodedSlug,
     locale,
+    draft,
   })
 
   if (!page) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
-
   return (
-    <article className="pb-24">
-      {/* 1. Logic Switch: If draft, use the Live Listener client */}
+    <StyledArticle className={`pb-24 ${enableRTL ? 'rtl-mode' : ''}`}>
       {draft ? (
-        <PageClient initialData={page} />
+        <PageClient initialData={page} locale={locale} />
       ) : (
         <>
           <RenderHero {...page.hero} />
           <RenderBlocks blocks={page.layout} />
         </>
       )}
-      {/*<PageClient />*/}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
-
-      {/*<RenderHero {...hero} />*/}
-      {/*<RenderBlocks blocks={layout} />*/}
-    </article>
+    </StyledArticle>
   )
 }
 
@@ -96,29 +107,30 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const page = await queryPageBySlug({
     slug: decodedSlug,
+    draft: false,
   })
 
   return generateMeta({ doc: page })
 }
 
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
-  const { isEnabled: draft } = await draftMode()
+const queryPageBySlug = cache(
+  async ({ slug, locale, draft }: { slug: string; locale?: string; draft: boolean }) => {
+    const payload = await getPayload({ config: configPromise })
 
-  const payload = await getPayload({ config: configPromise })
-
-  const result = await payload.find({
-    collection: 'pages',
-    draft,
-    limit: 1,
-    pagination: false,
-    overrideAccess: draft,
-    locale: locale as any,
-    where: {
-      slug: {
-        equals: slug,
+    const result = await payload.find({
+      collection: 'pages',
+      draft,
+      limit: 1,
+      pagination: false,
+      overrideAccess: draft,
+      locale: locale as any,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  return result.docs?.[0] || null
-})
+    return result.docs?.[0] || null
+  },
+)

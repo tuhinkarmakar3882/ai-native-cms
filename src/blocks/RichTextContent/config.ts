@@ -3,8 +3,10 @@ import type { Block } from 'payload'
 import {
   AlignFeature,
   BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
   ChecklistFeature,
+  EXPERIMENTAL_TableFeature,
   FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
@@ -21,45 +23,52 @@ import {
   SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
+  UploadFeature,
 } from '@payloadcms/richtext-lexical'
+import { Code } from '@/blocks/Code/config'
 
 export const RichTextContentBlock: Block = {
-  slug: 'richtext-content',
   dbName: 'richtext-content',
   fields: [
     {
-      name: 'content',
-      type: 'richText',
-      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            LinkFeature(),
             AlignFeature(),
             BlockquoteFeature(),
             BoldFeature(),
+            ChecklistFeature(),
+            EXPERIMENTAL_TableFeature(),
+            FixedToolbarFeature(),
+            HeadingFeature(),
+            HorizontalRuleFeature(),
+            IndentFeature(),
             InlineCodeFeature(),
+            InlineToolbarFeature(),
             ItalicFeature(),
+            LinkFeature(),
+            OrderedListFeature(),
+            ParagraphFeature(),
             StrikethroughFeature(),
             SubscriptFeature(),
             SuperscriptFeature(),
             UnderlineFeature(),
-            HorizontalRuleFeature(),
-            IndentFeature(),
-            ChecklistFeature(),
-            OrderedListFeature(),
             UnorderedListFeature(),
-            ParagraphFeature(),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
+            UploadFeature(),
+            BlocksFeature({
+              blocks: [Code],
+            }),
           ]
         },
       }),
       label: false,
+      localized: true,
+      name: 'content',
       required: true,
+      type: 'richText',
     },
   ],
   interfaceName: 'RichTextContentBlock',
+  slug: 'richtext-content',
 }

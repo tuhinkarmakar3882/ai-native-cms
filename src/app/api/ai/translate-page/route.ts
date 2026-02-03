@@ -1,9 +1,29 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { NextResponse } from 'next/server'
 import {
+  AlignFeature,
+  BlockquoteFeature,
+  BoldFeature,
+  ChecklistFeature,
   convertLexicalToMarkdown,
   convertMarkdownToLexical,
-  editorConfigFactory,
+  defaultEditorFeatures,
+  EXPERIMENTAL_TableFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  IndentFeature,
+  InlineCodeFeature,
+  ItalicFeature,
+  LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  sanitizeServerEditorConfig,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  UploadFeature,
 } from '@payloadcms/richtext-lexical'
 import { getPayload } from 'payload'
 import config from '@payload-config'
@@ -11,7 +31,7 @@ import config from '@payload-config'
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!)
 
 export async function translateWithGemini(text: string, targetLocale: string) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
+  const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' })
 
   const prompt = `
     Translate the following Markdown content into the language code: ${targetLocale}.
@@ -37,7 +57,33 @@ export async function POST(req: Request) {
   })
   const payload = await getPayload({ config })
 
-  const editorConfig = await editorConfigFactory.default({ config: payload.config })
+  const editorConfig = await sanitizeServerEditorConfig(
+    {
+      features: [
+        ...defaultEditorFeatures,
+        AlignFeature(),
+        BlockquoteFeature(),
+        BoldFeature(),
+        ChecklistFeature(),
+        EXPERIMENTAL_TableFeature(),
+        HeadingFeature(),
+        HorizontalRuleFeature(),
+        IndentFeature(),
+        InlineCodeFeature(),
+        ItalicFeature(),
+        LinkFeature(),
+        OrderedListFeature(),
+        ParagraphFeature(),
+        StrikethroughFeature(),
+        SubscriptFeature(),
+        SuperscriptFeature(),
+        UnderlineFeature(),
+        UnorderedListFeature(),
+        UploadFeature(),
+      ],
+    },
+    payload.config,
+  )
 
   for (const locale of targets) {
     // 2. Map through the blocks provided by the frontend
