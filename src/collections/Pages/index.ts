@@ -15,7 +15,6 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { HeroBlock } from '@/blocks/Hero/config'
 import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
 import { FAQBlock } from '@/blocks/FAQ/config'
 import { ComposableSectionBlock } from '@/blocks/Composable/config'
@@ -106,7 +105,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 HeroGradientBlock,
                 BentoGridBlock,
                 FeatureTabsBlock,
-                HeroBlock,
                 FAQBlock,
                 FeatureGridBlock,
                 MediaContentBlock,

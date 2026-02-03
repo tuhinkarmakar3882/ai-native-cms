@@ -1,9 +1,17 @@
 import { Block } from 'payload'
+import { generateTrackingIdSafe } from '@/utilities/generateTrackId'
 
 export const BentoGridBlock: Block = {
   slug: 'bentoGrid',
   dbName: 'bg_bento',
   fields: [
+    {
+      name: 'trackId',
+      label: 'Tracking ID (Optional)',
+      type: 'text',
+      defaultValue: () => generateTrackingIdSafe('bento-grid-section'),
+      required: false,
+    },
     { name: 'title', type: 'text' },
     {
       name: 'cards',

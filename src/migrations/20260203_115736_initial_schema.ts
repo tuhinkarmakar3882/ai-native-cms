@@ -24,7 +24,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
-  	\`content\` text,
   	\`block_name\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`pages\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
@@ -36,6 +35,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
     sql`CREATE INDEX \`richtext-content_parent_id_idx\` ON \`richtext-content\` (\`_parent_id\`);`,
   )
   await db.run(sql`CREATE INDEX \`richtext-content_path_idx\` ON \`richtext-content\` (\`_path\`);`)
+  await db.run(sql`CREATE TABLE \`richtext-content_locales\` (
+  	\`content\` text,
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`_locale\` text NOT NULL,
+  	\`_parent_id\` text NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`richtext-content\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(
+    sql`CREATE UNIQUE INDEX \`richtext-content_locales_locale_parent_id_unique\` ON \`richtext-content_locales\` (\`_locale\`,\`_parent_id\`);`,
+  )
   await db.run(sql`CREATE TABLE \`pages_blocks_form_block\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -127,6 +137,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`label\` text,
   	\`link\` text,
   	\`type\` text,
+  	\`track_id\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`bg_hero_grad\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
   `)
@@ -176,6 +187,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
+  	\`track_id\` text,
   	\`title\` text,
   	\`block_name\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`pages\`(\`id\`) ON UPDATE no action ON DELETE cascade
@@ -214,45 +226,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`bg_tabs_order_idx\` ON \`bg_tabs\` (\`_order\`);`)
   await db.run(sql`CREATE INDEX \`bg_tabs_parent_id_idx\` ON \`bg_tabs\` (\`_parent_id\`);`)
   await db.run(sql`CREATE INDEX \`bg_tabs_path_idx\` ON \`bg_tabs\` (\`_path\`);`)
-  await db.run(sql`CREATE TABLE \`pages_blocks_hero_actions\` (
-  	\`_order\` integer NOT NULL,
-  	\`_parent_id\` text NOT NULL,
-  	\`id\` text PRIMARY KEY NOT NULL,
-  	\`label\` text,
-  	\`variant\` text,
-  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`pages_blocks_hero\`(\`id\`) ON UPDATE no action ON DELETE cascade
-  );
-  `)
-  await db.run(
-    sql`CREATE INDEX \`pages_blocks_hero_actions_order_idx\` ON \`pages_blocks_hero_actions\` (\`_order\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`pages_blocks_hero_actions_parent_id_idx\` ON \`pages_blocks_hero_actions\` (\`_parent_id\`);`,
-  )
-  await db.run(sql`CREATE TABLE \`pages_blocks_hero\` (
-  	\`_order\` integer NOT NULL,
-  	\`_parent_id\` integer NOT NULL,
-  	\`_path\` text NOT NULL,
-  	\`id\` text PRIMARY KEY NOT NULL,
-  	\`title\` text,
-  	\`description\` text,
-  	\`block_name\` text,
-  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`pages\`(\`id\`) ON UPDATE no action ON DELETE cascade
-  );
-  `)
-  await db.run(
-    sql`CREATE INDEX \`pages_blocks_hero_order_idx\` ON \`pages_blocks_hero\` (\`_order\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`pages_blocks_hero_parent_id_idx\` ON \`pages_blocks_hero\` (\`_parent_id\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`pages_blocks_hero_path_idx\` ON \`pages_blocks_hero\` (\`_path\`);`,
-  )
   await db.run(sql`CREATE TABLE \`faq_items\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` text NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
+  	\`track_id\` text,
   	\`question\` text,
   	\`answer\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`pages_blocks_faq\`(\`id\`) ON UPDATE no action ON DELETE cascade
@@ -1006,7 +984,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`content\` text,
   	\`_uuid\` text,
   	\`block_name\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`_pages_v\`(\`id\`) ON UPDATE no action ON DELETE cascade
@@ -1020,6 +997,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   )
   await db.run(
     sql`CREATE INDEX \`_richtext-content_v_path_idx\` ON \`_richtext-content_v\` (\`_path\`);`,
+  )
+  await db.run(sql`CREATE TABLE \`_richtext-content_v_locales\` (
+  	\`content\` text,
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`_locale\` text NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`_richtext-content_v\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(
+    sql`CREATE UNIQUE INDEX \`_richtext-content_v_locales_locale_parent_id_unique\` ON \`_richtext-content_v_locales\` (\`_locale\`,\`_parent_id\`);`,
   )
   await db.run(sql`CREATE TABLE \`_pages_v_blocks_form_block\` (
   	\`_order\` integer NOT NULL,
@@ -1116,6 +1104,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`label\` text,
   	\`link\` text,
   	\`type\` text,
+  	\`track_id\` text,
   	\`_uuid\` text,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`_bg_hero_grad_v\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
@@ -1172,6 +1161,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`track_id\` text,
   	\`title\` text,
   	\`_uuid\` text,
   	\`block_name\` text,
@@ -1215,47 +1205,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`_bg_tabs_v_order_idx\` ON \`_bg_tabs_v\` (\`_order\`);`)
   await db.run(sql`CREATE INDEX \`_bg_tabs_v_parent_id_idx\` ON \`_bg_tabs_v\` (\`_parent_id\`);`)
   await db.run(sql`CREATE INDEX \`_bg_tabs_v_path_idx\` ON \`_bg_tabs_v\` (\`_path\`);`)
-  await db.run(sql`CREATE TABLE \`_pages_v_blocks_hero_actions\` (
-  	\`_order\` integer NOT NULL,
-  	\`_parent_id\` integer NOT NULL,
-  	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`label\` text,
-  	\`variant\` text,
-  	\`_uuid\` text,
-  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`_pages_v_blocks_hero\`(\`id\`) ON UPDATE no action ON DELETE cascade
-  );
-  `)
-  await db.run(
-    sql`CREATE INDEX \`_pages_v_blocks_hero_actions_order_idx\` ON \`_pages_v_blocks_hero_actions\` (\`_order\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`_pages_v_blocks_hero_actions_parent_id_idx\` ON \`_pages_v_blocks_hero_actions\` (\`_parent_id\`);`,
-  )
-  await db.run(sql`CREATE TABLE \`_pages_v_blocks_hero\` (
-  	\`_order\` integer NOT NULL,
-  	\`_parent_id\` integer NOT NULL,
-  	\`_path\` text NOT NULL,
-  	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`title\` text,
-  	\`description\` text,
-  	\`_uuid\` text,
-  	\`block_name\` text,
-  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`_pages_v\`(\`id\`) ON UPDATE no action ON DELETE cascade
-  );
-  `)
-  await db.run(
-    sql`CREATE INDEX \`_pages_v_blocks_hero_order_idx\` ON \`_pages_v_blocks_hero\` (\`_order\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`_pages_v_blocks_hero_parent_id_idx\` ON \`_pages_v_blocks_hero\` (\`_parent_id\`);`,
-  )
-  await db.run(
-    sql`CREATE INDEX \`_pages_v_blocks_hero_path_idx\` ON \`_pages_v_blocks_hero\` (\`_path\`);`,
-  )
   await db.run(sql`CREATE TABLE \`_faq_items_v\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`track_id\` text,
   	\`question\` text,
   	\`answer\` text,
   	\`_uuid\` text,
@@ -3230,6 +3184,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.run(sql`DROP TABLE \`pages_hero_links\`;`)
   await db.run(sql`DROP TABLE \`richtext-content\`;`)
+  await db.run(sql`DROP TABLE \`richtext-content_locales\`;`)
   await db.run(sql`DROP TABLE \`pages_blocks_form_block\`;`)
   await db.run(sql`DROP TABLE \`pages_blocks_content_columns\`;`)
   await db.run(sql`DROP TABLE \`pages_blocks_content\`;`)
@@ -3240,8 +3195,6 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`bg_bento\`;`)
   await db.run(sql`DROP TABLE \`bg_tabs_tabs\`;`)
   await db.run(sql`DROP TABLE \`bg_tabs\`;`)
-  await db.run(sql`DROP TABLE \`pages_blocks_hero_actions\`;`)
-  await db.run(sql`DROP TABLE \`pages_blocks_hero\`;`)
   await db.run(sql`DROP TABLE \`faq_items\`;`)
   await db.run(sql`DROP TABLE \`pages_blocks_faq\`;`)
   await db.run(sql`DROP TABLE \`pages_blocks_feature_grid_features\`;`)
@@ -3291,6 +3244,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`pages_rels\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_version_hero_links\`;`)
   await db.run(sql`DROP TABLE \`_richtext-content_v\`;`)
+  await db.run(sql`DROP TABLE \`_richtext-content_v_locales\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_blocks_form_block\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_blocks_content_columns\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_blocks_content\`;`)
@@ -3301,8 +3255,6 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`_bg_bento_v\`;`)
   await db.run(sql`DROP TABLE \`_bg_tabs_v_tabs\`;`)
   await db.run(sql`DROP TABLE \`_bg_tabs_v\`;`)
-  await db.run(sql`DROP TABLE \`_pages_v_blocks_hero_actions\`;`)
-  await db.run(sql`DROP TABLE \`_pages_v_blocks_hero\`;`)
   await db.run(sql`DROP TABLE \`_faq_items_v\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_blocks_faq\`;`)
   await db.run(sql`DROP TABLE \`_pages_v_blocks_feature_grid_features\`;`)

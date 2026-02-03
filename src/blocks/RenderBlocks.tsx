@@ -1,7 +1,6 @@
 import { ComposableSectionComponent } from '@/blocks/Composable/Component'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { HeroComponent } from '@/components/Designs/Hero/Component'
 import { FeatureGridComponent } from '@/components/Designs/FeatureGrid/Component'
 import { FAQComponent } from '@/components/Designs/FAQ/Component'
 import { MediaContentComponent } from '@/components/Designs/MediaContent/Component'
@@ -51,7 +50,6 @@ const blockMap = {
   heroGradient: HeroGradientComponent,
   bentoGrid: BentoGridComponent,
   featureTabs: FeatureTabsComponent,
-  hero: HeroComponent,
   featureGrid: FeatureGridComponent,
   mediaContent: MediaContentComponent,
   faq: FAQComponent,

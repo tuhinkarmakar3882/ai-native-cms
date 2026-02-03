@@ -1,4 +1,5 @@
 import { Block } from 'payload'
+import { generateTrackingIdSafe } from '@/utilities/generateTrackId'
 
 export const HeroGradientBlock: Block = {
   slug: 'heroGradient',
@@ -16,6 +17,13 @@ export const HeroGradientBlock: Block = {
         { name: 'label', type: 'text' },
         { name: 'link', type: 'text' },
         { name: 'type', type: 'select', options: ['default', 'outline', 'ghost'] },
+        {
+          name: 'trackId',
+          label: 'Tracking ID (Optional)',
+          type: 'text',
+          defaultValue: () => generateTrackingIdSafe('hero-gradient-action'),
+          required: false,
+        },
       ],
     },
     { name: 'image', type: 'upload', relationTo: 'media' },

@@ -6,6 +6,7 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { getClientSideURL } from '@/utilities/getURL'
 import styled from 'styled-components'
+import { usePageAnalytics } from '@/hooks/usePageAnalytics'
 
 const StyledArticle = styled.article`
   &.rtl-mode {
@@ -29,6 +30,11 @@ export const PageClient: React.FC<{ initialData: any; locale?: string }> = ({
   useEffect(() => {
     setHeaderTheme('light')
   }, [setHeaderTheme])
+
+  usePageAnalytics({
+    scrollDepths: [20, 40, 60, 80, 100],
+    sectionSelector: '[data-track-section]',
+  })
 
   // Check RTL based on the live data or current locale
   const isRTL = locale === 'ar' || data?._locale === 'ar'

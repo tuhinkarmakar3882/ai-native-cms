@@ -8,6 +8,7 @@ import {
   lexicalEditor,
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
+import { generateTrackingIdSafe } from '@/utilities/generateTrackId'
 
 export const FAQBlock: Block = {
   slug: 'faq',
@@ -21,6 +22,13 @@ export const FAQBlock: Block = {
       dbName: 'faq_items',
       required: true,
       fields: [
+        {
+          name: 'trackId',
+          label: 'Tracking ID (Optional)',
+          type: 'text',
+          defaultValue: () => generateTrackingIdSafe('faq-item-click'),
+          required: false,
+        },
         { name: 'question', type: 'text', required: true },
         {
           name: 'answer',

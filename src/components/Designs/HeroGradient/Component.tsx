@@ -62,7 +62,7 @@ export const HeroGradientComponent = ({ pillText, heading, subheading, actions, 
 
       <div className="flex gap-4">
         {actions?.map((btn, i) => (
-          <Button key={i} variant={btn.type} size="lg" asChild>
+          <Button key={i} variant={btn.type} size="lg" asChild data-track-id={btn?.trackId}>
             <a href={btn.link}>{btn.label}</a>
           </Button>
         ))}

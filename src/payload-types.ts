@@ -220,6 +220,7 @@ export interface Page {
                   label?: string | null;
                   link?: string | null;
                   type?: ('default' | 'outline' | 'ghost') | null;
+                  trackId?: string | null;
                   id?: string | null;
                 }[]
               | null;
@@ -229,6 +230,7 @@ export interface Page {
             blockType: 'heroGradient';
           }
         | {
+            trackId?: string | null;
             title?: string | null;
             cards?:
               | {
@@ -262,24 +264,11 @@ export interface Page {
             blockType: 'featureTabs';
           }
         | {
-            title: string;
-            description?: string | null;
-            actions?:
-              | {
-                  label?: string | null;
-                  variant?: ('default' | 'outline') | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero';
-          }
-        | {
             sectionTitle?: string | null;
             title?: string | null;
             description?: string | null;
             items: {
+              trackId?: string | null;
               question: string;
               answer: {
                 root: {
@@ -1576,6 +1565,7 @@ export interface PagesSelect<T extends boolean = true> {
                     label?: T;
                     link?: T;
                     type?: T;
+                    trackId?: T;
                     id?: T;
                   };
               image?: T;
@@ -1585,6 +1575,7 @@ export interface PagesSelect<T extends boolean = true> {
         bentoGrid?:
           | T
           | {
+              trackId?: T;
               title?: T;
               cards?:
                 | T
@@ -1614,21 +1605,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        hero?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              actions?:
-                | T
-                | {
-                    label?: T;
-                    variant?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         faq?:
           | T
           | {
@@ -1638,6 +1614,7 @@ export interface PagesSelect<T extends boolean = true> {
               items?:
                 | T
                 | {
+                    trackId?: T;
                     question?: T;
                     answer?: T;
                     id?: T;

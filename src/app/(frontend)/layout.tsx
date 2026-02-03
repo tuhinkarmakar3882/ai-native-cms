@@ -4,6 +4,7 @@ import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -21,6 +22,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer />
         </Providers>
+        <GoogleAnalytics gaId="G-8BYQXW7HQF" />
       </body>
     </html>
   )
