@@ -5,6 +5,7 @@ import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/next'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Footer />
         </Providers>
         <GoogleAnalytics gaId="G-8BYQXW7HQF" />
+        <Analytics />
       </body>
     </html>
   )
