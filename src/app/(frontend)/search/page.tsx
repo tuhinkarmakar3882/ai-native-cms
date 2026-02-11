@@ -17,8 +17,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const { q: query } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
 
-  const posts = await payload.find({
-    collection: 'search',
+  const pages = await payload.find({
+    collection: 'pages',
     depth: 1,
     limit: 12,
     select: {
@@ -72,8 +72,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         </div>
       </div>
 
-      {posts.totalDocs > 0 ? (
-        <CollectionArchive posts={posts.docs as CardPostData[]} />
+      {pages.totalDocs > 0 ? (
+        <CollectionArchive posts={pages.docs as CardPostData[]} />
       ) : (
         <div className="container">No results found.</div>
       )}

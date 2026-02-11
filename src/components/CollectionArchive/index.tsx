@@ -10,6 +10,11 @@ export type Props = {
 export const CollectionArchive: React.FC<Props> = (props) => {
   const { posts } = props
 
+  console.log({
+    props,
+    posts,
+  })
+
   return (
     <div className={cn('container')}>
       <div>
