@@ -160,6 +160,16 @@ export const Pages: CollectionConfig<'pages'> = {
       },
     },
     slugField(),
+    {
+      name: 'isVariant',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+        description:
+          'If true, this page is a variant served only via an Experiment. Direct visits to this page will return 404.',
+      },
+      defaultValue: false,
+    },
   ],
   hooks: {
     afterChange: [revalidatePage],

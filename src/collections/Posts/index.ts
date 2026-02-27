@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { slugField } from 'payload'
 
 import {
   BlocksFeature,
@@ -25,7 +26,6 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { slugField } from 'payload'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',

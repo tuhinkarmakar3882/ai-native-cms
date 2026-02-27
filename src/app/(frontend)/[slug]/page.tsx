@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
-import { draftMode } from 'next/headers'
+import { getPayload } from 'payload'
+import { draftMode, headers } from 'next/headers'
 import React, { cache } from 'react'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
@@ -12,6 +12,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import { PageClient } from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import styled from 'styled-components'
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -61,29 +62,27 @@ export default async function Page({
   searchParams: searchParamsPromise,
 }: Args) {
   const { isEnabled: draft } = await draftMode()
+  const headerList = await headers()
+  const isExperimentRequest = headerList.get('x-is-experiment') === 'true'
 
   const [params, searchParams] = await Promise.all([paramsPromise, searchParamsPromise])
   const { slug = 'home' } = params
   const { locale = 'en' } = searchParams
 
-  const enableRTL = isRTL(locale)
-
   const decodedSlug = decodeURIComponent(slug)
-  const url = '/' + decodedSlug
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
-
-  page = await queryPageBySlug({
+  const page = await queryPageBySlug({
     slug: decodedSlug,
     locale,
     draft,
   })
 
-  if (!page) {
-    return <PayloadRedirects url={url} />
+  // Requirement 1: If isVariant and NOT accessed via experiment rewrite, 404.
+  if (!page || (page.isVariant && !isExperimentRequest && !draft)) {
+    return notFound()
   }
 
   return (
-    <StyledArticle className={`pb-24 ${enableRTL ? 'rtl-mode' : ''}`}>
+    <StyledArticle className={`pb-24 ${isRTL(locale) ? 'rtl-mode' : ''}`}>
       {draft ? (
         <PageClient initialData={page} locale={locale} />
       ) : (
@@ -92,13 +91,11 @@ export default async function Page({
           <RenderBlocks blocks={page.layout} />
         </>
       )}
-      <PayloadRedirects disableNotFound url={url} />
-
+      <PayloadRedirects disableNotFound url={'/' + decodedSlug} />
       {draft && <LivePreviewListener />}
     </StyledArticle>
   )
 }
-
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = 'home' } = await paramsPromise
   // Decode to support slugs with special characters
