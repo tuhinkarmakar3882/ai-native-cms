@@ -37,11 +37,8 @@ const nextConfig = {
 }
 
 export default withSentryConfig(withPayload(nextConfig, { devBundleServerPackages: false }), {
-  // For all available options, see:
-  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
-
-  org: 'test-p5a',
-  project: 'javascript-nextjs',
+  org: 'equiti-9i',
+  project: 'ai-native-cms',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -56,7 +53,7 @@ export default withSentryConfig(withPayload(nextConfig, { devBundleServerPackage
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
-  tunnelRoute: '/monitoring',
+  // tunnelRoute: '/monitoring',
 
   webpack: {
     // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)

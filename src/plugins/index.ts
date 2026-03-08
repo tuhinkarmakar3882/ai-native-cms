@@ -13,6 +13,7 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { mcpPlugin } from '@payloadcms/plugin-mcp'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
@@ -57,7 +58,18 @@ export const plugins: Plugin[] = [
   }),
   formBuilderPlugin({
     fields: {
-      payment: false,
+      text: true,
+      textarea: true,
+      select: true,
+      radio: true,
+      email: true,
+      state: true,
+      country: true,
+      checkbox: true,
+      number: true,
+      message: true,
+      date: true,
+      payment: true,
     },
     formOverrides: {
       fields: ({ defaultFields }) => {
@@ -80,9 +92,10 @@ export const plugins: Plugin[] = [
         })
       },
     },
+    redirectRelationships: ['pages'],
   }),
   searchPlugin({
-    collections: ['posts'],
+    collections: ['posts', 'pages'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
       fields: ({ defaultFields }) => {
@@ -96,5 +109,15 @@ export const plugins: Plugin[] = [
       media: true,
     },
     token: process.env.BLOB_READ_WRITE_TOKEN,
+  }),
+  mcpPlugin({
+    collections: {
+      posts: {
+        enabled: true,
+      },
+      pages: {
+        enabled: true,
+      },
+    },
   }),
 ]

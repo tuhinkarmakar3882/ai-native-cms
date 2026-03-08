@@ -45,6 +45,10 @@ import {
   FolderTableCell as FolderTableCell_f9c02e79a4aed9a3924487c0cd4cafb1,
 } from '@payloadcms/next/rsc'
 import {
+  DynamicFieldSelector as DynamicFieldSelector_fcc98597230ed7571a28f97c55b16e63,
+  DynamicPriceSelector as DynamicPriceSelector_fcc98597230ed7571a28f97c55b16e63,
+} from '@payloadcms/plugin-form-builder/client'
+import {
   LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
 } from '@payloadcms/plugin-search/client'
@@ -118,6 +122,10 @@ export const importMap = {
   '@payloadcms/next/client#SlugField': SlugField_2b8867833a34864a02ddf429b0728a40,
   '@payloadcms/next/rsc#FolderTableCell': FolderTableCell_f9c02e79a4aed9a3924487c0cd4cafb1,
   '@payloadcms/next/rsc#FolderField': FolderField_f9c02e79a4aed9a3924487c0cd4cafb1,
+  '@payloadcms/plugin-form-builder/client#DynamicFieldSelector':
+    DynamicFieldSelector_fcc98597230ed7571a28f97c55b16e63,
+  '@payloadcms/plugin-form-builder/client#DynamicPriceSelector':
+    DynamicPriceSelector_fcc98597230ed7571a28f97c55b16e63,
   '@payloadcms/plugin-search/client#LinkToDoc': LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   '@payloadcms/plugin-search/client#ReindexButton': ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   '@payloadcms/next/client#FolderTypeField': FolderTypeField_2b8867833a34864a02ddf429b0728a40,
