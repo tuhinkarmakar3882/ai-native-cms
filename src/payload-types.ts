@@ -470,6 +470,19 @@ export interface Page {
                                         blockName?: string | null;
                                         blockType: 'videoAtom';
                                       }
+                                    | {
+                                        /**
+                                         * Select a preset spacing value, or choose "None" to set custom values
+                                         */
+                                        spacing?: ('none' | '8' | '16' | '24') | null;
+                                        top?: number | null;
+                                        bottom?: number | null;
+                                        left?: number | null;
+                                        right?: number | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'spacerAtom';
+                                      }
                                   )[]
                                 | null;
                               id?: string | null;
@@ -1632,6 +1645,17 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | {
                                                               url?: T;
                                                               controls?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        spacerAtom?:
+                                                          | T
+                                                          | {
+                                                              spacing?: T;
+                                                              top?: T;
+                                                              bottom?: T;
+                                                              left?: T;
+                                                              right?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };

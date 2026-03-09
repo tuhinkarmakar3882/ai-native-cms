@@ -315,3 +315,61 @@ export const VideoAtom: Block = {
     { name: 'controls', type: 'checkbox', defaultValue: true },
   ],
 }
+
+export const SpacerAtom: Block = {
+  slug: 'spacerAtom',
+  dbName: 'at_spacer',
+  fields: [
+    {
+      name: 'spacing',
+      type: 'select',
+      label: 'Spacing Value',
+      options: [
+        { label: 'None (use custom values)', value: 'none' },
+        { label: 'small', value: '8' },
+        { label: 'medium', value: '16' },
+        { label: 'large', value: '24' },
+      ],
+      defaultValue: '16',
+      admin: {
+        description: 'Select a preset spacing value, or choose "None" to set custom values',
+      },
+    },
+    {
+      name: 'top',
+      type: 'number',
+      label: 'Top Margin (px)',
+      min: 0,
+      admin: {
+        condition: (_, siblingData) => siblingData?.spacing === 'none',
+      },
+    },
+    {
+      name: 'bottom',
+      type: 'number',
+      label: 'Bottom Margin (px)',
+      min: 0,
+      admin: {
+        condition: (_, siblingData) => siblingData?.spacing === 'none',
+      },
+    },
+    {
+      name: 'left',
+      type: 'number',
+      label: 'Left Margin (px)',
+      min: 0,
+      admin: {
+        condition: (_, siblingData) => siblingData?.spacing === 'none',
+      },
+    },
+    {
+      name: 'right',
+      type: 'number',
+      label: 'Right Margin (px)',
+      min: 0,
+      admin: {
+        condition: (_, siblingData) => siblingData?.spacing === 'none',
+      },
+    },
+  ],
+}

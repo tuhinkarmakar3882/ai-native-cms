@@ -11,6 +11,7 @@ import {
   ImageAtom,
   ProgressAtom,
   SeparatorAtom,
+  SpacerAtom,
   TableAtom,
   TabsAtom,
   TextAtom,
@@ -33,4 +34,5 @@ export const AtomBlocks: Block[] = [
   TableAtom,
   IconAtom,
   VideoAtom,
+  SpacerAtom,
 ]

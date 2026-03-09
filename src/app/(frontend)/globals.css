@@ -1,7 +1,15 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-
 @config '../../../tailwind.config.mjs';
+
+@source inline("col-span-{1..12}");
+@source inline("my-{1..24}");
+@source inline("py-{1..24}");
+@source inline("sm:col-span-{1..12}");
+@source inline("md:col-span-{1..12}");
+@source inline("lg:col-span-{1..12}");
+@source inline("xl:col-span-{1..12}");
+
 
 @custom-variant dark (&:is([data-theme='dark'] *));
 @custom-variant sm (@media (width >= theme(--breakpoint-sm)));

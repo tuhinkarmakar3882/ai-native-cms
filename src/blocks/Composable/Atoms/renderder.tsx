@@ -200,6 +200,20 @@ export const VideoAtomComponent = ({ url, controls }) => (
   </div>
 )
 
+export const SpacerAtomComponent = (props) => {
+  if (props?.spacing !== 'none') {
+    return <div className={`my-${props.spacing}`} />
+  }
+
+  return (
+    <div
+      style={{
+        margin: `${props?.top ?? 0}px  ${props?.right ?? 0}px ${props?.bottom ?? 0}px ${props?.left ?? 0}px`,
+      }}
+    />
+  )
+}
+
 export const AtomicRendererMap = {
   textAtom: TextAtomComponent,
   buttonAtom: ButtonAtomComponent,
@@ -217,4 +231,5 @@ export const AtomicRendererMap = {
 
   iconAtom: IconAtomComponent,
   videoAtom: VideoAtomComponent,
+  spacerAtom: SpacerAtomComponent,
 }
