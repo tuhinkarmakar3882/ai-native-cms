@@ -5,13 +5,16 @@ import { TestimonialComponent } from '@/components/Designs/Testimonials/Componen
 import { TableComponent } from '@/components/Designs/Table/Component'
 import { BuildYourOwnSectionComponent } from '@/blocks/Composable/Component'
 import { AtomicRendererMap } from '@/blocks/Composable/Atoms/renderder'
+import { MediaViewerComponent } from '@/blocks/MediaViewer/Component'
 
 const PremadeRendererMap = {
-  formBlock: FormBlock,
   'richtext-content': RichTextComponent,
-  faq: FAQComponent,
-  testimonialCarousel: TestimonialComponent,
+  formBlock: FormBlock,
   smartTable: TableComponent,
+  faq: FAQComponent,
+
+  testimonialCarousel: TestimonialComponent,
+  mediaViewer: MediaViewerComponent,
 }
 
 export const AvailableRenderBlocks = {

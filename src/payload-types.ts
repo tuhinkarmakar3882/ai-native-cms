@@ -219,34 +219,6 @@ export interface Page {
             blockType: 'faq';
           }
         | {
-            imageSide?: ('left' | 'right') | null;
-            image: string | Media;
-            heading: string;
-            body?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            cta?: {
-              label?: string | null;
-              link?: string | null;
-              variant?: ('default' | 'outline' | 'secondary') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'mediaContent';
-          }
-        | {
             title?: string | null;
             reviews?:
               | {
@@ -296,6 +268,26 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'smartTable';
+          }
+        | {
+            mediaType: 'image' | 'pdf' | 'video';
+            image?: (string | null) | Media;
+            pdf?: (string | null) | Media;
+            video?: (string | null) | Media;
+            caption?: string | null;
+            showCard?: boolean | null;
+            /**
+             * Select a preset aspect ratio, or choose "None" to set custom width/height.
+             */
+            ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+            width?: number | null;
+            height?: number | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaViewer';
           }
         | {
             container?:
@@ -1385,23 +1377,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        mediaContent?:
-          | T
-          | {
-              imageSide?: T;
-              image?: T;
-              heading?: T;
-              body?: T;
-              cta?:
-                | T
-                | {
-                    label?: T;
-                    link?: T;
-                    variant?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         testimonialCarousel?:
           | T
           | {
@@ -1448,6 +1423,26 @@ export interface PagesSelect<T extends boolean = true> {
                     header?: T;
                     dataKey?: T;
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        mediaViewer?:
+          | T
+          | {
+              mediaType?: T;
+              image?: T;
+              pdf?: T;
+              video?: T;
+              caption?: T;
+              showCard?: T;
+              ratio?: T;
+              width?: T;
+              height?: T;
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
                   };
               id?: T;
               blockName?: T;

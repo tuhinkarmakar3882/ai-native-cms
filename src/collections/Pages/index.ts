@@ -16,12 +16,12 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { FAQBlock } from '@/blocks/FAQ/config'
 import { BuildYourOwnSectionBlock } from '@/blocks/Composable/config'
-import { MediaContentBlock } from '@/blocks/MediaContent/config'
 import { TestimonialBlock } from '@/blocks/Testimonials/config'
 import { TableBlock } from '@/blocks/Table/config'
 import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { updateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
+import { MediaViewerBlock } from '@/blocks/MediaViewer/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -99,9 +99,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 RichTextContentBlock,
                 FormBlock,
                 FAQBlock,
-                MediaContentBlock,
                 TestimonialBlock,
                 TableBlock,
+                MediaViewerBlock,
 
                 BuildYourOwnSectionBlock,
               ],
