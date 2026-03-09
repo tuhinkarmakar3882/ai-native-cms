@@ -194,16 +194,28 @@ export interface Page {
             title?: string | null;
             cards?:
               | {
-                  title?: string | null;
+                  /**
+                   * Unique ID for click tracking on this card (if link provided)
+                   */
+                  trackId?: string | null;
+                  title: string;
                   content?: string | null;
                   /**
                    * Lucide icon name
                    */
                   icon?: string | null;
                   span?: ('1' | '2' | 'row-2') | null;
+                  link?: {
+                    url?: string | null;
+                    newTab?: boolean | null;
+                  };
                   id?: string | null;
                 }[]
               | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
             id?: string | null;
             blockName?: string | null;
             blockType: 'bentoGrid';
@@ -555,15 +567,30 @@ export interface Page {
             blockType: 'faq';
           }
         | {
+            trackId?: string | null;
+            title?: string | null;
             columns?: ('2' | '3' | '4') | null;
             features?:
               | {
-                  title?: string | null;
+                  trackId?: string | null;
+                  title: string;
                   description?: string | null;
                   badge?: string | null;
+                  /**
+                   * Lucide icon name
+                   */
+                  icon?: string | null;
+                  link?: {
+                    url?: string | null;
+                    newTab?: boolean | null;
+                  };
                   id?: string | null;
                 }[]
               | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
             id?: string | null;
             blockName?: string | null;
             blockType: 'featureGrid';
@@ -643,6 +670,7 @@ export interface Page {
             blockType: 'mediaViewer';
           }
         | {
+            trackId?: string | null;
             heading?: string | null;
             plans?:
               | {
@@ -653,14 +681,25 @@ export interface Page {
                   features?:
                     | {
                         feature?: string | null;
+                        /**
+                         * Optional Lucide icon name (defaults to Check)
+                         */
+                        icon?: string | null;
                         id?: string | null;
                       }[]
                     | null;
-                  buttonText?: string | null;
-                  buttonLink?: string | null;
+                  button?: {
+                    text?: string | null;
+                    link?: string | null;
+                    trackId?: string | null;
+                  };
                   id?: string | null;
                 }[]
               | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
             id?: string | null;
             blockName?: string | null;
             blockType: 'pricingTable';
@@ -760,6 +799,10 @@ export interface Page {
  * via the `definition` "BannerBlock".
  */
 export interface BannerBlock {
+  /**
+   * Unique identifier for this section (for analytics)
+   */
+  trackId?: string | null;
   style: 'info' | 'warning' | 'error' | 'success';
   content: {
     root: {
@@ -775,6 +818,10 @@ export interface BannerBlock {
       version: number;
     };
     [k: string]: unknown;
+  };
+  containerSettings?: {
+    useContainer?: boolean | null;
+    containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1633,11 +1680,24 @@ export interface PagesSelect<T extends boolean = true> {
               cards?:
                 | T
                 | {
+                    trackId?: T;
                     title?: T;
                     content?: T;
                     icon?: T;
                     span?: T;
+                    link?:
+                      | T
+                      | {
+                          url?: T;
+                          newTab?: T;
+                        };
                     id?: T;
+                  };
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
                   };
               id?: T;
               blockName?: T;
@@ -1928,14 +1988,30 @@ export interface PagesSelect<T extends boolean = true> {
         featureGrid?:
           | T
           | {
+              trackId?: T;
+              title?: T;
               columns?: T;
               features?:
                 | T
                 | {
+                    trackId?: T;
                     title?: T;
                     description?: T;
                     badge?: T;
+                    icon?: T;
+                    link?:
+                      | T
+                      | {
+                          url?: T;
+                          newTab?: T;
+                        };
                     id?: T;
+                  };
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
                   };
               id?: T;
               blockName?: T;
@@ -2014,6 +2090,7 @@ export interface PagesSelect<T extends boolean = true> {
         pricingTable?:
           | T
           | {
+              trackId?: T;
               heading?: T;
               plans?:
                 | T
@@ -2026,11 +2103,23 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           feature?: T;
+                          icon?: T;
                           id?: T;
                         };
-                    buttonText?: T;
-                    buttonLink?: T;
+                    button?:
+                      | T
+                      | {
+                          text?: T;
+                          link?: T;
+                          trackId?: T;
+                        };
                     id?: T;
+                  };
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
                   };
               id?: T;
               blockName?: T;
@@ -2122,8 +2211,15 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "BannerBlock_select".
  */
 export interface BannerBlockSelect<T extends boolean = true> {
+  trackId?: T;
   style?: T;
   content?: T;
+  containerSettings?:
+    | T
+    | {
+        useContainer?: T;
+        containerSize?: T;
+      };
   id?: T;
   blockName?: T;
 }

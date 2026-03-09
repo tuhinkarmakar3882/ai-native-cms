@@ -23,7 +23,7 @@ import { FormBlock } from '@/blocks/Form/config'
 import { updateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
 import { MediaViewerBlock } from '@/blocks/MediaViewer/config'
 import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
-import { Banner } from '@/blocks/Banner/config'
+import { BannerBlock } from '@/blocks/Banner/config'
 import { BentoGridBlock } from '@/blocks/BentoGrid/config'
 import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
 import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
@@ -103,7 +103,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [
-                Banner,
+                BannerBlock,
                 BentoGridBlock,
                 BuildYourOwnSectionBlock,
                 FAQBlock,

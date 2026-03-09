@@ -12,10 +12,10 @@ import { FeatureTabsComponent } from '@/components/Designs/FeatureTabs/Component
 import { FeatureGridComponent } from '@/components/Designs/FeatureGrid/Component'
 import { PricingComponent } from '@/components/Designs/Pricing/Component'
 import { TimelineComponent } from '@/components/Designs/Timeline/Component'
-import { BannerBlock } from '@/blocks/Banner/Component'
+import { BannerBlockComponent } from '@/blocks/Banner/Component'
 
 const PremadeRendererMap = {
-  banner: BannerBlock,
+  banner: BannerBlockComponent,
   bentoGrid: BentoGridComponent,
   faq: FAQComponent,
   featureGrid: FeatureGridComponent,

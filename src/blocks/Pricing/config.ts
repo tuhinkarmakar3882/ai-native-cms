@@ -4,6 +4,11 @@ export const PricingBlock: Block = {
   slug: 'pricingTable',
   dbName: 'prc_tbl',
   fields: [
+    {
+      name: 'trackId',
+      type: 'text',
+      label: 'Tracking ID (Optional)',
+    },
     { name: 'heading', type: 'text' },
     {
       name: 'plans',
@@ -18,10 +23,56 @@ export const PricingBlock: Block = {
         {
           name: 'features',
           type: 'array',
-          fields: [{ name: 'feature', type: 'text' }],
+          fields: [
+            {
+              name: 'feature',
+              type: 'text',
+            },
+            {
+              name: 'icon',
+              type: 'text',
+              admin: { description: 'Optional Lucide icon name (defaults to Check)' },
+            },
+          ],
         },
-        { name: 'buttonText', type: 'text', defaultValue: 'Get Started' },
-        { name: 'buttonLink', type: 'text' },
+        {
+          name: 'button',
+          type: 'group',
+          label: 'CTA Button',
+          fields: [
+            { name: 'text', type: 'text', defaultValue: 'Get Started' },
+            { name: 'link', type: 'text' },
+            { name: 'trackId', type: 'text', label: 'Button Tracking ID' },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'containerSettings',
+      type: 'group',
+      label: 'Container Settings',
+      fields: [
+        {
+          name: 'useContainer',
+          type: 'checkbox',
+          label: 'Wrap in container',
+          defaultValue: true,
+        },
+        {
+          name: 'containerSize',
+          type: 'select',
+          label: 'Container Size',
+          options: [
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Full width', value: 'full' },
+          ],
+          defaultValue: 'lg',
+          admin: {
+            condition: (_, siblingData) => siblingData?.useContainer === true,
+          },
+        },
       ],
     },
   ],

@@ -1,16 +1,24 @@
 import type { BannerBlock as BannerBlockProps } from 'src/payload-types'
-
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
+import { Container } from '@/components/Designs/Structural/Container'
 
 type Props = {
   className?: string
 } & BannerBlockProps
 
-export const BannerBlock: React.FC<Props> = ({ className, content, style }) => {
-  return (
-    <div className={cn('mx-auto my-8 w-full', className)}>
+export const BannerBlockComponent: React.FC<Props> = ({
+  className,
+  style,
+  content,
+  trackId,
+  containerSettings = { useContainer: false, containerSize: 'lg' },
+}) => {
+  const { useContainer, containerSize } = containerSettings
+
+  const bannerContent = (
+    <div className={cn('mx-auto my-8 w-full', className)} data-track-section={trackId}>
       <div
         className={cn('border py-3 px-6 flex items-center rounded', {
           'border-border bg-card': style === 'info',
@@ -23,4 +31,9 @@ export const BannerBlock: React.FC<Props> = ({ className, content, style }) => {
       </div>
     </div>
   )
+
+  if (useContainer) {
+    return <Container size={containerSize}>{bannerContent}</Container>
+  }
+  return bannerContent
 }

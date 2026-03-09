@@ -1,5 +1,4 @@
-import type { Block } from 'payload'
-
+import { Block } from 'payload'
 import {
   BlockquoteFeature,
   BoldFeature,
@@ -16,9 +15,17 @@ import {
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 
-export const Banner: Block = {
+export const BannerBlock: Block = {
   slug: 'banner',
   fields: [
+    {
+      name: 'trackId',
+      type: 'text',
+      label: 'Tracking ID (Optional)',
+      admin: {
+        description: 'Unique identifier for this section (for analytics)',
+      },
+    },
     {
       name: 'style',
       type: 'select',
@@ -47,7 +54,6 @@ export const Banner: Block = {
             HorizontalRuleFeature(),
             ParagraphFeature(),
             ChecklistFeature(),
-
             BlockquoteFeature(),
             BoldFeature(),
             FixedToolbarFeature(),
@@ -57,6 +63,34 @@ export const Banner: Block = {
       }),
       label: false,
       required: true,
+    },
+    {
+      name: 'containerSettings',
+      type: 'group',
+      label: 'Container Settings',
+      fields: [
+        {
+          name: 'useContainer',
+          type: 'checkbox',
+          label: 'Wrap in container',
+          defaultValue: false,
+        },
+        {
+          name: 'containerSize',
+          type: 'select',
+          label: 'Container Size',
+          options: [
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+            { label: 'Full width', value: 'full' },
+          ],
+          defaultValue: 'lg',
+          admin: {
+            condition: (_, siblingData) => siblingData?.useContainer === true,
+          },
+        },
+      ],
     },
   ],
   interfaceName: 'BannerBlock',
