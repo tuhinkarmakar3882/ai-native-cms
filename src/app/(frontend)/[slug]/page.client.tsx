@@ -3,7 +3,6 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import { useLivePreview } from '@payloadcms/live-preview-react'
 import React, { useEffect } from 'react'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { getClientSideURL } from '@/utilities/getURL'
 import styled from 'styled-components'
 import { usePageAnalytics } from '@/hooks/usePageAnalytics'
@@ -41,7 +40,6 @@ export const PageClient: React.FC<{ initialData: any; locale?: string }> = ({
 
   return (
     <StyledArticle className={`pb-24 ${isRTL ? 'rtl-mode' : ''}`}>
-      <RenderHero {...data.hero} />
       <RenderBlocks blocks={data.layout} />
     </StyledArticle>
   )

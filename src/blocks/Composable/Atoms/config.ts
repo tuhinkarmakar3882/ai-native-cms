@@ -1,4 +1,4 @@
-import { Block } from 'payload'
+import { Block, Field } from 'payload'
 import {
   BlockquoteFeature,
   BoldFeature,
@@ -8,6 +8,65 @@ import {
   lexicalEditor,
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
+
+export const widthTokens = [
+  { label: 'Auto', value: 'auto' },
+  { label: '1 Column', value: 1 },
+  { label: '2 Columns', value: 2 },
+  { label: '3 Columns', value: 3 },
+  { label: '4 Columns', value: 4 },
+  { label: '6 Columns (Half)', value: 6 },
+  { label: '8 Columns', value: 8 },
+  { label: '9 Columns', value: 9 },
+  { label: '12 Columns (Full)', value: 12 },
+]
+export const ResponsiveWidthField: Field = {
+  name: 'responsiveWidth',
+  label: 'Width',
+  type: 'group',
+
+  fields: [
+    {
+      name: 'base',
+      label: 'Default',
+      type: 'select',
+      defaultValue: '12',
+      options: widthTokens,
+    },
+
+    {
+      type: 'collapsible',
+      label: 'Responsive Overrides',
+
+      fields: [
+        {
+          name: 'sm',
+          label: 'Small',
+          type: 'select',
+          options: widthTokens,
+        },
+        {
+          name: 'md',
+          label: 'Medium',
+          type: 'select',
+          options: widthTokens,
+        },
+        {
+          name: 'lg',
+          label: 'Large',
+          type: 'select',
+          options: widthTokens,
+        },
+        {
+          name: 'xl',
+          label: 'XL',
+          type: 'select',
+          options: widthTokens,
+        },
+      ],
+    },
+  ],
+}
 
 export const ButtonAtom: Block = {
   slug: 'buttonAtom',
@@ -40,21 +99,6 @@ export const TextAtom: Block = {
   ],
 }
 
-export const BadgeAtom: Block = {
-  slug: 'badgeAtom',
-  fields: [{ name: 'label', type: 'text' }],
-}
-
-export const AlertAtom: Block = {
-  slug: 'alertAtom',
-  dbName: 'at_alrt',
-  fields: [
-    { name: 'type', type: 'select', options: ['default', 'destructive'], defaultValue: 'default' },
-    { name: 'title', type: 'text', required: true },
-    { name: 'message', type: 'textarea' },
-  ],
-}
-
 export const SeparatorAtom: Block = {
   slug: 'separatorAtom',
   dbName: 'at_sep',
@@ -68,16 +112,6 @@ export const SeparatorAtom: Block = {
   ],
 }
 
-export const ProgressAtom: Block = {
-  slug: 'progressAtom',
-  dbName: 'at_prog',
-  fields: [
-    { name: 'value', type: 'number', min: 0, max: 100, required: true },
-    { name: 'label', type: 'text' }, // "Project Completion", "React Skill", etc.
-  ],
-}
-
-// --- NEW: CONTENT PRIMITIVES ---
 export const ImageAtom: Block = {
   slug: 'imageAtom',
   dbName: 'at_img',
@@ -110,104 +144,4 @@ export const VideoAtom: Block = {
   ],
 }
 
-// --- NEW: INTERACTIVE PRIMITIVES ---
-export const TooltipAtom: Block = {
-  slug: 'tooltipAtom',
-  dbName: 'at_tip',
-  fields: [
-    { name: 'triggerText', type: 'text', required: true },
-    { name: 'content', type: 'text', required: true },
-  ],
-}
-export const AvatarGroupAtom: Block = {
-  slug: 'avatarGroupAtom',
-  dbName: 'at_avg',
-  fields: [
-    {
-      name: 'users',
-      type: 'array',
-      fields: [
-        { name: 'image', type: 'upload', relationTo: 'media' },
-        { name: 'initials', type: 'text' },
-      ],
-    },
-  ],
-}
-export const AccordianAtom: Block = {
-  slug: 'accordionAtom',
-  dbName: 'at_acc',
-  fields: [
-    {
-      name: 'items',
-      type: 'array',
-      fields: [
-        { name: 'trigger', type: 'text', required: true },
-        { name: 'content', type: 'textarea', required: true },
-      ],
-    },
-  ],
-}
-
-// --- NEW: LAYOUT BUILDER PRIMITIVES (The "Pro" Stuff) ---
-export const StackAtom: Block = {
-  slug: 'stackAtom',
-  dbName: 'at_stk',
-  labels: { singular: 'Flex Stack', plural: 'Flex Stacks' },
-  fields: [
-    {
-      name: 'direction',
-      type: 'select',
-      options: ['row', 'column'],
-      defaultValue: 'column',
-    },
-    { name: 'gap', type: 'select', options: ['0', '2', '4', '8', '12'], defaultValue: '4' },
-    { name: 'align', type: 'select', options: ['start', 'center', 'end', 'between'] },
-    // {
-    //   name: 'content',
-    //   type: 'blocks',
-    //   blocks: [], // We'll recursively link this below
-    // },
-  ],
-}
-
-const nestedAtoms = [
-  ButtonAtom,
-  TextAtom,
-  BadgeAtom,
-  ImageAtom, // see above
-  IconAtom,
-  TooltipAtom,
-]
-
-export const CardAtom: Block = {
-  slug: 'cardAtom',
-  dbName: 'at_crd',
-  fields: [
-    {
-      name: 'padding',
-      type: 'select',
-      options: ['none', 'small', 'medium', 'large'],
-      defaultValue: 'medium',
-    },
-    { name: 'glassmorphism', type: 'checkbox', label: 'Enable Glass Effect' },
-    {
-      name: 'content',
-      type: 'blocks',
-      blocks: nestedAtoms,
-    },
-  ],
-}
-
-export const StateToggleAtom: Block = {
-  slug: 'stateToggle',
-  dbName: 'at_tog',
-  fields: [
-    { name: 'leftLabel', type: 'text', defaultValue: 'Monthly' },
-    { name: 'rightLabel', type: 'text', defaultValue: 'Yearly' },
-    {
-      name: 'stateKey',
-      type: 'text',
-      admin: { description: 'Unique key to sync with other atoms' },
-    },
-  ],
-}
+const nestedAtoms = [ButtonAtom, TextAtom, ImageAtom, IconAtom]

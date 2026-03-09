@@ -1,11 +1,10 @@
 import type { CollectionConfig } from 'payload'
 import { slugField } from 'payload'
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { hero } from '@/heros/config'
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { authenticated } from '@/access/authenticated'
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
+import { populatePublishedAt } from '@/hooks/populatePublishedAt'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 
 import {
@@ -15,25 +14,14 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
 import { FAQBlock } from '@/blocks/FAQ/config'
-import { ComposableSectionBlock } from '@/blocks/Composable/config'
+import { BuildYourOwnSectionBlock } from '@/blocks/Composable/config'
 import { MediaContentBlock } from '@/blocks/MediaContent/config'
-import { ImageGalleryBlock } from '@/blocks/ImageGallery/config'
-import { PricingBlock } from '@/blocks/Pricing/config'
 import { TestimonialBlock } from '@/blocks/Testimonials/config'
-import { HeroGradientBlock } from '@/blocks/HeroGradient/config'
-import { BentoGridBlock } from '@/blocks/BentoGrid/config'
-import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
-import { LogoMarqueeBlock } from '@/blocks/LogoMarquee/config'
-import { TimelineBlock } from '@/blocks/Timeline/config'
-import { MetricsBlock } from '@/blocks/Metrics/config'
-import { SplitBannerBlock } from '@/blocks/SplitBanner/config'
 import { TableBlock } from '@/blocks/Table/config'
-import { Banner } from '@/blocks/Banner/config'
 import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
 import { FormBlock } from '@/blocks/Form/config'
-import { Content } from '@/blocks/Content/config'
+import { updateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -43,9 +31,6 @@ export const Pages: CollectionConfig<'pages'> = {
     read: authenticatedOrPublished,
     update: authenticated,
   },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {
     title: true,
     slug: true,
@@ -67,8 +52,27 @@ export const Pages: CollectionConfig<'pages'> = {
         req,
       }),
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['@/components/PageBreadcrumb.tsx'],
+      },
+    },
   },
   fields: [
+    {
+      name: 'parent',
+      type: 'relationship',
+      relationTo: 'pages',
+      admin: { position: 'sidebar' },
+    },
+    {
+      name: 'fullSlug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+      },
+    },
     {
       name: 'title',
       type: 'text',
@@ -77,10 +81,6 @@ export const Pages: CollectionConfig<'pages'> = {
     {
       type: 'tabs',
       tabs: [
-        {
-          fields: [hero],
-          label: 'Hero',
-        },
         {
           fields: [
             {
@@ -98,26 +98,12 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [
                 RichTextContentBlock,
                 FormBlock,
-                Content,
-
-                // TRACK 1: Premade
-                Banner,
-                HeroGradientBlock,
-                BentoGridBlock,
-                FeatureTabsBlock,
                 FAQBlock,
-                FeatureGridBlock,
                 MediaContentBlock,
-                ImageGalleryBlock,
                 TestimonialBlock,
-                PricingBlock,
-                LogoMarqueeBlock,
-                TimelineBlock,
-                MetricsBlock,
-                SplitBannerBlock,
                 TableBlock,
-                // TRACK 2: Build Your Own
-                ComposableSectionBlock,
+
+                BuildYourOwnSectionBlock,
               ],
             },
           ],
@@ -141,10 +127,7 @@ export const Pages: CollectionConfig<'pages'> = {
 
             MetaDescriptionField({}),
             PreviewField({
-              // if the `generateUrl` function is configured
               hasGenerateFn: true,
-
-              // field paths to match the target field for data
               titlePath: 'meta.title',
               descriptionPath: 'meta.description',
             }),
@@ -172,8 +155,8 @@ export const Pages: CollectionConfig<'pages'> = {
     },
   ],
   hooks: {
+    beforeChange: [populatePublishedAt, updateSlugPath],
     afterChange: [revalidatePage],
-    beforeChange: [populatePublishedAt],
     afterDelete: [revalidateDelete],
   },
   versions: {

@@ -7,7 +7,6 @@ import { draftMode, headers } from 'next/headers'
 import React, { cache } from 'react'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { PageClient } from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
@@ -87,7 +86,6 @@ export default async function Page({
         <PageClient initialData={page} locale={locale} />
       ) : (
         <>
-          <RenderHero {...page.hero} />
           <RenderBlocks blocks={page.layout} />
         </>
       )}

@@ -69,7 +69,6 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
     experiments: Experiment;
     media: Media;
     categories: Category;
@@ -93,7 +92,6 @@ export interface Config {
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
     experiments: ExperimentsSelect<false> | ExperimentsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -128,6 +126,9 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: 'en' | 'ar' | 'bn-IN' | 'hi-IN';
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User | PayloadMcpApiKey;
   jobs: {
     tasks: {
@@ -182,108 +183,13 @@ export interface PayloadMcpApiKeyAuthOperations {
  */
 export interface Page {
   id: string;
+  parent?: (string | null) | Page;
+  fullSlug?: string | null;
   title: string;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: string | Post;
-                } | null);
-            url?: string | null;
-            label: string;
-            /**
-             * Choose how the link should be rendered.
-             */
-            appearance?: ('default' | 'outline') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: (string | null) | Media;
-  };
   layout?:
     | (
         | RichTextContentBlock
         | FormBlock
-        | ContentBlock
-        | BannerBlock
-        | {
-            pillText?: string | null;
-            heading: string;
-            subheading?: string | null;
-            actions?:
-              | {
-                  label?: string | null;
-                  link?: string | null;
-                  type?: ('default' | 'outline' | 'ghost') | null;
-                  trackId?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            image?: (string | null) | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'heroGradient';
-          }
-        | {
-            trackId?: string | null;
-            title?: string | null;
-            cards?:
-              | {
-                  title?: string | null;
-                  content?: string | null;
-                  /**
-                   * Lucide icon name
-                   */
-                  icon?: string | null;
-                  span?: ('1' | '2' | 'row-2') | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'bentoGrid';
-          }
-        | {
-            heading?: string | null;
-            tabs?:
-              | {
-                  label: string;
-                  title?: string | null;
-                  description?: string | null;
-                  image?: (string | null) | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'featureTabs';
-          }
         | {
             sectionTitle?: string | null;
             title?: string | null;
@@ -311,20 +217,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'faq';
-          }
-        | {
-            columns?: ('2' | '3' | '4') | null;
-            features?:
-              | {
-                  title?: string | null;
-                  description?: string | null;
-                  badge?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'featureGrid';
           }
         | {
             imageSide?: ('left' | 'right') | null;
@@ -356,19 +248,6 @@ export interface Page {
           }
         | {
             title?: string | null;
-            images?:
-              | {
-                  image: string | Media;
-                  caption?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'imageGallery';
-          }
-        | {
-            title?: string | null;
             reviews?:
               | {
                   quote: string;
@@ -382,89 +261,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'testimonialCarousel';
-          }
-        | {
-            heading?: string | null;
-            plans?:
-              | {
-                  name: string;
-                  price: string;
-                  description?: string | null;
-                  isPopular?: boolean | null;
-                  features?:
-                    | {
-                        feature?: string | null;
-                        id?: string | null;
-                      }[]
-                    | null;
-                  buttonText?: string | null;
-                  buttonLink?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'pricingTable';
-          }
-        | {
-            logos?:
-              | {
-                  image?: (string | null) | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'logoMarquee';
-          }
-        | {
-            heading?: string | null;
-            events?:
-              | {
-                  year: string;
-                  title?: string | null;
-                  description?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'timeline';
-          }
-        | {
-            stats?:
-              | {
-                  value: string;
-                  label: string;
-                  description?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'metrics';
-          }
-        | {
-            settings?: {
-              theme?: ('dark' | 'light' | 'accent') | null;
-              imagePosition?: ('left' | 'right') | null;
-            };
-            content: {
-              heading: string;
-              subtext?: string | null;
-              actions?:
-                | {
-                    label?: string | null;
-                    url?: string | null;
-                    style?: ('default' | 'outline' | 'secondary') | null;
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-            image: string | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'splitBanner';
           }
         | {
             title?: string | null;
@@ -502,233 +298,112 @@ export interface Page {
             blockType: 'smartTable';
           }
         | {
-            containerSettings?: {
-              layoutType?: ('flex' | 'grid') | null;
-              /**
-               * Gap in pixels (e.g. 16, 32)
-               */
-              gap?: number | null;
-              padding?: ('none' | 'small' | 'large') | null;
-            };
-            columns?:
+            container?:
               | {
-                  width?: ('w-full' | 'w-1/2' | 'w-1/3') | null;
-                  content?:
-                    | (
-                        | {
-                            label: string;
-                            variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'buttonAtom';
-                          }
-                        | {
-                            content?: {
-                              root: {
-                                type: string;
-                                children: {
-                                  type: any;
-                                  version: number;
-                                  [k: string]: unknown;
-                                }[];
-                                direction: ('ltr' | 'rtl') | null;
-                                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                indent: number;
-                                version: number;
+                  width?: ('container' | 'wide' | 'full') | null;
+                  padding?: ('none' | 'small' | 'medium' | 'large') | null;
+                  areas?:
+                    | {
+                        direction?: ('row' | 'column') | null;
+                        justify?: ('start' | 'center' | 'end' | 'between' | 'around' | 'evenly') | null;
+                        align?: ('start' | 'center' | 'end' | 'stretch' | 'baseline') | null;
+                        /**
+                         * Gap in pixels
+                         */
+                        gap?: number | null;
+                        items?:
+                          | {
+                              responsiveWidth?: {
+                                base?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
+                                sm?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
+                                md?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
+                                lg?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
+                                xl?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
                               };
-                              [k: string]: unknown;
-                            } | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'textAtom';
-                          }
-                        | {
-                            label?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'badgeAtom';
-                          }
-                        | {
-                            type?: ('default' | 'destructive') | null;
-                            title: string;
-                            message?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'alertAtom';
-                          }
-                        | {
-                            spacing?: ('small' | 'medium' | 'large') | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'separatorAtom';
-                          }
-                        | {
-                            value: number;
-                            label?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'progressAtom';
-                          }
-                        | {
-                            image: string | Media;
-                            aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
-                            caption?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'imageAtom';
-                          }
-                        | {
-                            /**
-                             * Lucide icon name
-                             */
-                            iconName?: string | null;
-                            size?: number | null;
-                            /**
-                             * Tailwind class or Hex
-                             */
-                            color?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'iconAtom';
-                          }
-                        | {
-                            url: string;
-                            controls?: boolean | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'videoAtom';
-                          }
-                        | {
-                            triggerText: string;
-                            content: string;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'tooltipAtom';
-                          }
-                        | {
-                            users?:
-                              | {
-                                  image?: (string | null) | Media;
-                                  initials?: string | null;
-                                  id?: string | null;
-                                }[]
-                              | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'avatarGroupAtom';
-                          }
-                        | {
-                            items?:
-                              | {
-                                  trigger: string;
-                                  content: string;
-                                  id?: string | null;
-                                }[]
-                              | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'accordionAtom';
-                          }
-                        | {
-                            direction?: ('row' | 'column') | null;
-                            gap?: ('0' | '2' | '4' | '8' | '12') | null;
-                            align?: ('start' | 'center' | 'end' | 'between') | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'stackAtom';
-                          }
-                        | {
-                            padding?: ('none' | 'small' | 'medium' | 'large') | null;
-                            glassmorphism?: boolean | null;
-                            content?:
-                              | (
-                                  | {
-                                      label: string;
-                                      variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'buttonAtom';
-                                    }
-                                  | {
-                                      content?: {
-                                        root: {
-                                          type: string;
-                                          children: {
-                                            type: any;
+                              content?:
+                                | (
+                                    | {
+                                        label: string;
+                                        variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'buttonAtom';
+                                      }
+                                    | {
+                                        content?: {
+                                          root: {
+                                            type: string;
+                                            children: {
+                                              type: any;
+                                              version: number;
+                                              [k: string]: unknown;
+                                            }[];
+                                            direction: ('ltr' | 'rtl') | null;
+                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                            indent: number;
                                             version: number;
-                                            [k: string]: unknown;
-                                          }[];
-                                          direction: ('ltr' | 'rtl') | null;
-                                          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                                          indent: number;
-                                          version: number;
-                                        };
-                                        [k: string]: unknown;
-                                      } | null;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'textAtom';
-                                    }
-                                  | {
-                                      label?: string | null;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'badgeAtom';
-                                    }
-                                  | {
-                                      image: string | Media;
-                                      aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
-                                      caption?: string | null;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'imageAtom';
-                                    }
-                                  | {
-                                      /**
-                                       * Lucide icon name
-                                       */
-                                      iconName?: string | null;
-                                      size?: number | null;
-                                      /**
-                                       * Tailwind class or Hex
-                                       */
-                                      color?: string | null;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'iconAtom';
-                                    }
-                                  | {
-                                      triggerText: string;
-                                      content: string;
-                                      id?: string | null;
-                                      blockName?: string | null;
-                                      blockType: 'tooltipAtom';
-                                    }
-                                )[]
-                              | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'cardAtom';
-                          }
-                        | {
-                            leftLabel?: string | null;
-                            rightLabel?: string | null;
-                            /**
-                             * Unique key to sync with other atoms
-                             */
-                            stateKey?: string | null;
-                            id?: string | null;
-                            blockName?: string | null;
-                            blockType: 'stateToggle';
-                          }
-                      )[]
+                                          };
+                                          [k: string]: unknown;
+                                        } | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'textAtom';
+                                      }
+                                    | {
+                                        spacing?: ('small' | 'medium' | 'large') | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'separatorAtom';
+                                      }
+                                    | {
+                                        image: string | Media;
+                                        aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
+                                        caption?: string | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'imageAtom';
+                                      }
+                                    | {
+                                        /**
+                                         * Lucide icon name
+                                         */
+                                        iconName?: string | null;
+                                        size?: number | null;
+                                        /**
+                                         * Tailwind class or Hex
+                                         */
+                                        color?: string | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'iconAtom';
+                                      }
+                                    | {
+                                        url: string;
+                                        controls?: boolean | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'videoAtom';
+                                      }
+                                  )[]
+                                | null;
+                              id?: string | null;
+                              blockName?: string | null;
+                              blockType: 'gridItem';
+                            }[]
+                          | null;
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'gridArea';
+                      }[]
                     | null;
                   id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'container';
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'composableSection';
+            blockType: 'buildYourOwnSection';
           }
       )[]
     | null;
@@ -753,225 +428,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: string;
-  title: string;
-  heroImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | Category)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  authors?: (string | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt?: string | null;
-  caption?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  folder?: (string | null) | FolderInterface;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    square?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    small?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    large?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    xlarge?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders".
- */
-export interface FolderInterface {
-  id: string;
-  name: string;
-  folder?: (string | null) | FolderInterface;
-  documentsAndFolders?: {
-    docs?: (
-      | {
-          relationTo?: 'payload-folders';
-          value: string | FolderInterface;
-        }
-      | {
-          relationTo?: 'media';
-          value: string | Media;
-        }
-    )[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  folderType?: 'media'[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  parent?: (string | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1252,61 +708,12 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
+ * via the `definition` "media".
  */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BannerBlock".
- */
-export interface BannerBlock {
-  style: 'info' | 'warning' | 'error' | 'success';
-  content: {
+export interface Media {
+  id: string;
+  alt?: string | null;
+  caption?: {
     root: {
       type: string;
       children: {
@@ -1320,10 +727,103 @@ export interface BannerBlock {
       version: number;
     };
     [k: string]: unknown;
+  } | null;
+  folder?: (string | null) | FolderInterface;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    square?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    small?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xlarge?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
   };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-folders".
+ */
+export interface FolderInterface {
+  id: string;
+  name: string;
+  folder?: (string | null) | FolderInterface;
+  documentsAndFolders?: {
+    docs?: (
+      | {
+          relationTo?: 'payload-folders';
+          value: string | FolderInterface;
+        }
+      | {
+          relationTo?: 'media';
+          value: string | Media;
+        }
+    )[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  folderType?: 'media'[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1355,6 +855,56 @@ export interface Experiment {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  parent?: (string | null) | Category;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | Category;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  name?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1365,15 +915,10 @@ export interface Redirect {
   from: string;
   to?: {
     type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
+    reference?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
     url?: string | null;
   };
   updatedAt: string;
@@ -1420,15 +965,10 @@ export interface Search {
   id: string;
   title?: string | null;
   priority?: number | null;
-  doc:
-    | {
-        relationTo: 'posts';
-        value: string | Post;
-      }
-    | {
-        relationTo: 'pages';
-        value: string | Page;
-      };
+  doc: {
+    relationTo: 'pages';
+    value: string | Page;
+  };
   slug?: string | null;
   meta?: {
     title?: string | null;
@@ -1630,10 +1170,6 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
-      } | null)
-    | ({
         relationTo: 'experiments';
         value: string | Experiment;
       } | null)
@@ -1730,88 +1266,14 @@ export interface PayloadMigration {
  * via the `definition` "pages_select".
  */
 export interface PagesSelect<T extends boolean = true> {
+  parent?: T;
+  fullSlug?: T;
   title?: T;
-  hero?:
-    | T
-    | {
-        type?: T;
-        richText?: T;
-        links?:
-          | T
-          | {
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
-            };
-        media?: T;
-      };
   layout?:
     | T
     | {
         'richtext-content'?: T | RichTextContentBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
-        content?: T | ContentBlockSelect<T>;
-        banner?: T | BannerBlockSelect<T>;
-        heroGradient?:
-          | T
-          | {
-              pillText?: T;
-              heading?: T;
-              subheading?: T;
-              actions?:
-                | T
-                | {
-                    label?: T;
-                    link?: T;
-                    type?: T;
-                    trackId?: T;
-                    id?: T;
-                  };
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
-        bentoGrid?:
-          | T
-          | {
-              trackId?: T;
-              title?: T;
-              cards?:
-                | T
-                | {
-                    title?: T;
-                    content?: T;
-                    icon?: T;
-                    span?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        featureTabs?:
-          | T
-          | {
-              heading?: T;
-              tabs?:
-                | T
-                | {
-                    label?: T;
-                    title?: T;
-                    description?: T;
-                    image?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         faq?:
           | T
           | {
@@ -1824,21 +1286,6 @@ export interface PagesSelect<T extends boolean = true> {
                     trackId?: T;
                     question?: T;
                     answer?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        featureGrid?:
-          | T
-          | {
-              columns?: T;
-              features?:
-                | T
-                | {
-                    title?: T;
-                    description?: T;
-                    badge?: T;
                     id?: T;
                   };
               id?: T;
@@ -1861,20 +1308,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        imageGallery?:
-          | T
-          | {
-              title?: T;
-              images?:
-                | T
-                | {
-                    image?: T;
-                    caption?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         testimonialCarousel?:
           | T
           | {
@@ -1889,98 +1322,6 @@ export interface PagesSelect<T extends boolean = true> {
                     rating?: T;
                     id?: T;
                   };
-              id?: T;
-              blockName?: T;
-            };
-        pricingTable?:
-          | T
-          | {
-              heading?: T;
-              plans?:
-                | T
-                | {
-                    name?: T;
-                    price?: T;
-                    description?: T;
-                    isPopular?: T;
-                    features?:
-                      | T
-                      | {
-                          feature?: T;
-                          id?: T;
-                        };
-                    buttonText?: T;
-                    buttonLink?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        logoMarquee?:
-          | T
-          | {
-              logos?:
-                | T
-                | {
-                    image?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        timeline?:
-          | T
-          | {
-              heading?: T;
-              events?:
-                | T
-                | {
-                    year?: T;
-                    title?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        metrics?:
-          | T
-          | {
-              stats?:
-                | T
-                | {
-                    value?: T;
-                    label?: T;
-                    description?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        splitBanner?:
-          | T
-          | {
-              settings?:
-                | T
-                | {
-                    theme?: T;
-                    imagePosition?: T;
-                  };
-              content?:
-                | T
-                | {
-                    heading?: T;
-                    subtext?: T;
-                    actions?:
-                      | T
-                      | {
-                          label?: T;
-                          url?: T;
-                          style?: T;
-                          id?: T;
-                        };
-                  };
-              image?: T;
               id?: T;
               blockName?: T;
             };
@@ -2017,209 +1358,105 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        composableSection?:
+        buildYourOwnSection?:
           | T
           | {
-              containerSettings?:
+              container?:
                 | T
                 | {
-                    layoutType?: T;
-                    gap?: T;
-                    padding?: T;
-                  };
-              columns?:
-                | T
-                | {
-                    width?: T;
-                    content?:
+                    container?:
                       | T
                       | {
-                          buttonAtom?:
+                          width?: T;
+                          padding?: T;
+                          areas?:
                             | T
                             | {
-                                label?: T;
-                                variant?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          textAtom?:
-                            | T
-                            | {
-                                content?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          badgeAtom?:
-                            | T
-                            | {
-                                label?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          alertAtom?:
-                            | T
-                            | {
-                                type?: T;
-                                title?: T;
-                                message?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          separatorAtom?:
-                            | T
-                            | {
-                                spacing?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          progressAtom?:
-                            | T
-                            | {
-                                value?: T;
-                                label?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          imageAtom?:
-                            | T
-                            | {
-                                image?: T;
-                                aspectRatio?: T;
-                                caption?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          iconAtom?:
-                            | T
-                            | {
-                                iconName?: T;
-                                size?: T;
-                                color?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          videoAtom?:
-                            | T
-                            | {
-                                url?: T;
-                                controls?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          tooltipAtom?:
-                            | T
-                            | {
-                                triggerText?: T;
-                                content?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          avatarGroupAtom?:
-                            | T
-                            | {
-                                users?:
+                                gridArea?:
                                   | T
                                   | {
-                                      image?: T;
-                                      initials?: T;
+                                      direction?: T;
+                                      justify?: T;
+                                      align?: T;
+                                      gap?: T;
+                                      items?:
+                                        | T
+                                        | {
+                                            gridItem?:
+                                              | T
+                                              | {
+                                                  responsiveWidth?:
+                                                    | T
+                                                    | {
+                                                        base?: T;
+                                                        sm?: T;
+                                                        md?: T;
+                                                        lg?: T;
+                                                        xl?: T;
+                                                      };
+                                                  content?:
+                                                    | T
+                                                    | {
+                                                        buttonAtom?:
+                                                          | T
+                                                          | {
+                                                              label?: T;
+                                                              variant?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        textAtom?:
+                                                          | T
+                                                          | {
+                                                              content?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        separatorAtom?:
+                                                          | T
+                                                          | {
+                                                              spacing?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        imageAtom?:
+                                                          | T
+                                                          | {
+                                                              image?: T;
+                                                              aspectRatio?: T;
+                                                              caption?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        iconAtom?:
+                                                          | T
+                                                          | {
+                                                              iconName?: T;
+                                                              size?: T;
+                                                              color?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        videoAtom?:
+                                                          | T
+                                                          | {
+                                                              url?: T;
+                                                              controls?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                      };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                          };
                                       id?: T;
+                                      blockName?: T;
                                     };
-                                id?: T;
-                                blockName?: T;
                               };
-                          accordionAtom?:
-                            | T
-                            | {
-                                items?:
-                                  | T
-                                  | {
-                                      trigger?: T;
-                                      content?: T;
-                                      id?: T;
-                                    };
-                                id?: T;
-                                blockName?: T;
-                              };
-                          stackAtom?:
-                            | T
-                            | {
-                                direction?: T;
-                                gap?: T;
-                                align?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
-                          cardAtom?:
-                            | T
-                            | {
-                                padding?: T;
-                                glassmorphism?: T;
-                                content?:
-                                  | T
-                                  | {
-                                      buttonAtom?:
-                                        | T
-                                        | {
-                                            label?: T;
-                                            variant?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                      textAtom?:
-                                        | T
-                                        | {
-                                            content?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                      badgeAtom?:
-                                        | T
-                                        | {
-                                            label?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                      imageAtom?:
-                                        | T
-                                        | {
-                                            image?: T;
-                                            aspectRatio?: T;
-                                            caption?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                      iconAtom?:
-                                        | T
-                                        | {
-                                            iconName?: T;
-                                            size?: T;
-                                            color?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                      tooltipAtom?:
-                                        | T
-                                        | {
-                                            triggerText?: T;
-                                            content?: T;
-                                            id?: T;
-                                            blockName?: T;
-                                          };
-                                    };
-                                id?: T;
-                                blockName?: T;
-                              };
-                          stateToggle?:
-                            | T
-                            | {
-                                leftLabel?: T;
-                                rightLabel?: T;
-                                stateKey?: T;
-                                id?: T;
-                                blockName?: T;
-                              };
+                          id?: T;
+                          blockName?: T;
                         };
-                    id?: T;
                   };
               id?: T;
               blockName?: T;
@@ -2259,73 +1496,6 @@ export interface FormBlockSelect<T extends boolean = true> {
   introContent?: T;
   id?: T;
   blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock_select".
- */
-export interface ContentBlockSelect<T extends boolean = true> {
-  columns?:
-    | T
-    | {
-        size?: T;
-        richText?: T;
-        enableLink?: T;
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BannerBlock_select".
- */
-export interface BannerBlockSelect<T extends boolean = true> {
-  style?: T;
-  content?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  heroImage?: T;
-  content?: T;
-  relatedPosts?: T;
-  categories?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  authors?: T;
-  populatedAuthors?:
-    | T
-    | {
-        id?: T;
-        name?: T;
-      };
-  generateSlug?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2868,15 +2038,10 @@ export interface Header {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
           url?: string | null;
           label: string;
         };
@@ -2897,15 +2062,10 @@ export interface Footer {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
           url?: string | null;
           label: string;
         };
@@ -2963,21 +2123,26 @@ export interface FooterSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TaskSchedulePublish".
  */
 export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
+    doc?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
     global?: string | null;
     user?: (string | null) | User;
   };
@@ -2993,16 +2158,6 @@ export interface CodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'code';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

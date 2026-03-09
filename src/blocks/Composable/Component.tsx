@@ -1,39 +1,39 @@
-import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { cn } from '@/utilities/ui'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { getResponsiveGridClasses } from '@/utilities/responsiveWidth'
 
-export const ComposableSectionComponent = ({ containerSettings, columns }) => {
-  const { layoutType, gap, padding } = containerSettings
+export const BuildYourOwnSectionComponent = ({ container }) => {
+  return container?.map((block, i) => {
+    if (block.blockType === 'container') {
+      return <ContainerRenderer key={i} {...block} />
+    }
+  })
+}
 
-  const paddingClasses = {
-    none: 'py-0',
-    small: 'py-8',
-    large: 'py-24',
-  }[padding as string]
-
+export const GridAreaRenderer = ({ gap, items }) => {
   return (
-    <section className={cn('container', paddingClasses)}>
-      <div
-        className={cn({
-          'flex flex-wrap items-start': layoutType === 'flex',
-          'grid grid-cols-12': layoutType === 'grid',
-        })}
-        style={{ gap: `${gap}px` }}
-      >
-        {columns?.map((col, i) => {
-          // Map simple width names to Tailwind grid/flex classes
-          const colClasses = cn({
-            'w-full col-span-12': col.width === 'w-full',
-            'md:w-1/2 col-span-12 md:col-span-6': col.width === 'w-1/2',
-            'md:w-1/3 col-span-12 md:col-span-4': col.width === 'w-1/3',
-          })
+    <div className={cn('grid grid-cols-12')} style={{ gap: `${gap}px` }}>
+      {items?.map((item, i) => (
+        <GridItemRenderer key={i} {...item} />
+      ))}
+    </div>
+  )
+}
 
-          return (
-            <div key={i} className={colClasses}>
-              <RenderBlocks blocks={col.content} />
-            </div>
-          )
-        })}
-      </div>
+export const GridItemRenderer = ({ responsiveWidth, content }) => {
+  return (
+    <div className={cn(getResponsiveGridClasses(responsiveWidth))}>
+      <RenderBlocks blocks={content} />
+    </div>
+  )
+}
+
+export const ContainerRenderer = ({ width, padding, areas }) => {
+  return (
+    <section className={cn(width, padding)}>
+      {areas?.map((area, i) => (
+        <GridAreaRenderer key={i} {...area} />
+      ))}
     </section>
   )
 }
