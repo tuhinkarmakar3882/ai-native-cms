@@ -370,7 +370,7 @@ export interface Page {
                                       }
                                     | {
                                         image: string | Media;
-                                        aspect?: ('auto' | 'square' | 'video' | 'wide') | null;
+                                        aspect?: ('square' | 'video' | 'wide') | null;
                                         caption?: string | null;
                                         id?: string | null;
                                         blockName?: string | null;

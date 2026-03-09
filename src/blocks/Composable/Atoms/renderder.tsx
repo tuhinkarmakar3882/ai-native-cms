@@ -66,7 +66,9 @@ export const ImageAtomComponent = ({ image, caption, aspect }) => {
   return (
     <figure className="space-y-2">
       <div className={cn('relative overflow-hidden rounded-lg', aspectMap[aspect])}>
-        <Image src={image.url} alt={image.alt || ''} fill className="object-cover" />
+        {image && (
+          <Image src={image.url} alt={image.alt || ''} fill className="object-cover w-full" />
+        )}
       </div>
 
       {caption && <figcaption className="text-sm text-muted-foreground">{caption}</figcaption>}

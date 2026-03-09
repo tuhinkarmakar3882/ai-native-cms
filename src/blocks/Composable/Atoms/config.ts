@@ -185,8 +185,8 @@ export const ImageAtom: Block = {
     {
       name: 'aspect',
       type: 'select',
-      options: ['auto', 'square', 'video', 'wide'],
-      defaultValue: 'auto',
+      options: ['square', 'video', 'wide'],
+      defaultValue: 'video',
     },
     { name: 'caption', type: 'text' },
   ],

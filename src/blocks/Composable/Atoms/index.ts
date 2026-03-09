@@ -1,5 +1,4 @@
 import { Block } from 'payload'
-import { AtomicRendererMap } from './renderder'
 import {
   AccordionAtom,
   AlertAtom,
@@ -35,5 +34,3 @@ export const AtomBlocks: Block[] = [
   IconAtom,
   VideoAtom,
 ]
-
-export { AtomicRendererMap }

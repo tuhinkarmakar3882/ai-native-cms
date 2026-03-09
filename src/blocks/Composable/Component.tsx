@@ -22,7 +22,7 @@ export const GridAreaRenderer = ({ gap, items }) => {
 
 export const GridItemRenderer = ({ responsiveWidth, content }) => {
   return (
-    <div className={cn(getResponsiveGridClasses(responsiveWidth))}>
+    <div className={cn(getResponsiveGridClasses(responsiveWidth), 'w-full')}>
       <RenderBlocks blocks={content} />
     </div>
   )
