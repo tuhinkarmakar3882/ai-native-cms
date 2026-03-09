@@ -1,13 +1,30 @@
 import { Block, Field } from 'payload'
 import {
+  AlignFeature,
   BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
+  ChecklistFeature,
+  EXPERIMENTAL_TableFeature,
   FixedToolbarFeature,
   HeadingFeature,
+  HorizontalRuleFeature,
+  IndentFeature,
+  InlineCodeFeature,
   InlineToolbarFeature,
+  ItalicFeature,
   lexicalEditor,
   LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  UploadFeature,
 } from '@payloadcms/richtext-lexical'
+import { Code } from '@/blocks/Code/config'
 
 export const widthTokens = [
   { label: 'Auto', value: 'auto' },
@@ -30,7 +47,7 @@ export const ResponsiveWidthField: Field = {
       name: 'base',
       label: 'Default',
       type: 'select',
-      defaultValue: '12',
+      defaultValue: 12,
       options: widthTokens,
     },
 
@@ -68,14 +85,6 @@ export const ResponsiveWidthField: Field = {
   ],
 }
 
-export const ButtonAtom: Block = {
-  slug: 'buttonAtom',
-  fields: [
-    { name: 'label', type: 'text', required: true },
-    { name: 'variant', type: 'select', options: ['default', 'outline', 'destructive', 'ghost'] },
-  ],
-}
-
 export const TextAtom: Block = {
   slug: 'textAtom',
   fields: [
@@ -86,44 +95,207 @@ export const TextAtom: Block = {
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-            LinkFeature(),
+            AlignFeature(),
             BlockquoteFeature(),
             BoldFeature(),
+            ChecklistFeature(),
+            EXPERIMENTAL_TableFeature(),
+            FixedToolbarFeature(),
+            HeadingFeature(),
+            HorizontalRuleFeature(),
+            IndentFeature(),
+            InlineCodeFeature(),
+            InlineToolbarFeature(),
+            ItalicFeature(),
+            LinkFeature(),
+            OrderedListFeature(),
+            ParagraphFeature(),
+            StrikethroughFeature(),
+            SubscriptFeature(),
+            SuperscriptFeature(),
+            UnderlineFeature(),
+            UnorderedListFeature(),
+            UploadFeature(),
+            BlocksFeature({
+              blocks: [Code],
+            }),
           ]
         },
       }),
     },
+    {
+      name: 'align',
+      type: 'select',
+      options: ['left', 'center', 'right'],
+      defaultValue: 'left',
+    },
   ],
 }
 
-export const SeparatorAtom: Block = {
-  slug: 'separatorAtom',
-  dbName: 'at_sep',
+export const ButtonAtom: Block = {
+  slug: 'buttonAtom',
   fields: [
+    { name: 'label', type: 'text', required: true },
+    { name: 'url', type: 'text' },
     {
-      name: 'spacing',
+      name: 'variant',
       type: 'select',
-      options: ['small', 'medium', 'large'],
-      defaultValue: 'medium',
+      options: ['default', 'secondary', 'outline', 'ghost', 'destructive'],
+      defaultValue: 'default',
+    },
+  ],
+}
+
+export const BadgeAtom: Block = {
+  slug: 'badgeAtom',
+  fields: [
+    { name: 'label', type: 'text' },
+    {
+      name: 'variant',
+      type: 'select',
+      options: ['default', 'secondary', 'outline', 'destructive'],
+      defaultValue: 'default',
+    },
+  ],
+}
+
+export const AlertAtom: Block = {
+  slug: 'alertAtom',
+  fields: [
+    { name: 'title', type: 'text' },
+    { name: 'description', type: 'textarea' },
+    {
+      name: 'variant',
+      type: 'select',
+      options: ['default', 'destructive'],
+      defaultValue: 'default',
     },
   ],
 }
 
 export const ImageAtom: Block = {
   slug: 'imageAtom',
-  dbName: 'at_img',
   fields: [
-    { name: 'image', type: 'upload', relationTo: 'media', required: true },
     {
-      name: 'aspectRatio',
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'aspect',
       type: 'select',
-      options: ['auto', 'video', 'square', 'wide'],
+      options: ['auto', 'square', 'video', 'wide'],
       defaultValue: 'auto',
     },
     { name: 'caption', type: 'text' },
+  ],
+}
+
+export const CardAtom: Block = {
+  slug: 'cardAtom',
+  fields: [
+    { name: 'title', type: 'text' },
+    { name: 'description', type: 'textarea' },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    { name: 'link', type: 'text' },
+  ],
+}
+
+export const AccordionAtom: Block = {
+  slug: 'accordionAtom',
+  fields: [
+    {
+      name: 'items',
+      type: 'array',
+      fields: [
+        { name: 'title', type: 'text' },
+        { name: 'content', type: 'textarea' },
+      ],
+    },
+  ],
+}
+
+export const TabsAtom: Block = {
+  slug: 'tabsAtom',
+  fields: [
+    {
+      name: 'tabs',
+      type: 'array',
+      fields: [
+        { name: 'label', type: 'text' },
+        { name: 'content', type: 'textarea' },
+      ],
+    },
+  ],
+}
+
+export const CarouselAtom: Block = {
+  slug: 'carouselAtom',
+  fields: [
+    {
+      name: 'slides',
+      type: 'array',
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        { name: 'caption', type: 'text' },
+      ],
+    },
+  ],
+}
+
+export const AvatarAtom: Block = {
+  slug: 'avatarAtom',
+  fields: [
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    { name: 'name', type: 'text' },
+    { name: 'role', type: 'text' },
+  ],
+}
+
+export const SeparatorAtom: Block = {
+  slug: 'separatorAtom',
+  fields: [
+    {
+      name: 'spacing',
+      type: 'select',
+      options: ['sm', 'md', 'lg', 'xl'],
+      defaultValue: 'md',
+    },
+  ],
+}
+
+export const ProgressAtom: Block = {
+  slug: 'progressAtom',
+  fields: [{ name: 'value', type: 'number', defaultValue: 50 }],
+}
+
+export const TableAtom: Block = {
+  slug: 'tableAtom',
+  fields: [
+    {
+      name: 'rows',
+      type: 'array',
+      fields: [
+        {
+          name: 'cells',
+          type: 'array',
+          fields: [{ name: 'value', type: 'text' }],
+        },
+      ],
+    },
   ],
 }
 export const IconAtom: Block = {
@@ -143,5 +315,3 @@ export const VideoAtom: Block = {
     { name: 'controls', type: 'checkbox', defaultValue: true },
   ],
 }
-
-const nestedAtoms = [ButtonAtom, TextAtom, ImageAtom, IconAtom]

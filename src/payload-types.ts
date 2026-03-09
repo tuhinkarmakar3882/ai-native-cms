@@ -323,13 +323,6 @@ export interface Page {
                               content?:
                                 | (
                                     | {
-                                        label: string;
-                                        variant?: ('default' | 'outline' | 'destructive' | 'ghost') | null;
-                                        id?: string | null;
-                                        blockName?: string | null;
-                                        blockType: 'buttonAtom';
-                                      }
-                                    | {
                                         content?: {
                                           root: {
                                             type: string;
@@ -345,23 +338,124 @@ export interface Page {
                                           };
                                           [k: string]: unknown;
                                         } | null;
+                                        align?: ('left' | 'center' | 'right') | null;
                                         id?: string | null;
                                         blockName?: string | null;
                                         blockType: 'textAtom';
                                       }
                                     | {
-                                        spacing?: ('small' | 'medium' | 'large') | null;
+                                        label: string;
+                                        url?: string | null;
+                                        variant?:
+                                          | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'buttonAtom';
+                                      }
+                                    | {
+                                        label?: string | null;
+                                        variant?: ('default' | 'secondary' | 'outline' | 'destructive') | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'badgeAtom';
+                                      }
+                                    | {
+                                        title?: string | null;
+                                        description?: string | null;
+                                        variant?: ('default' | 'destructive') | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'alertAtom';
+                                      }
+                                    | {
+                                        image: string | Media;
+                                        aspect?: ('auto' | 'square' | 'video' | 'wide') | null;
+                                        caption?: string | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'imageAtom';
+                                      }
+                                    | {
+                                        title?: string | null;
+                                        description?: string | null;
+                                        image?: (string | null) | Media;
+                                        link?: string | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'cardAtom';
+                                      }
+                                    | {
+                                        items?:
+                                          | {
+                                              title?: string | null;
+                                              content?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'accordionAtom';
+                                      }
+                                    | {
+                                        tabs?:
+                                          | {
+                                              label?: string | null;
+                                              content?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'tabsAtom';
+                                      }
+                                    | {
+                                        slides?:
+                                          | {
+                                              image?: (string | null) | Media;
+                                              caption?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'carouselAtom';
+                                      }
+                                    | {
+                                        image?: (string | null) | Media;
+                                        name?: string | null;
+                                        role?: string | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'avatarAtom';
+                                      }
+                                    | {
+                                        spacing?: ('sm' | 'md' | 'lg' | 'xl') | null;
                                         id?: string | null;
                                         blockName?: string | null;
                                         blockType: 'separatorAtom';
                                       }
                                     | {
-                                        image: string | Media;
-                                        aspectRatio?: ('auto' | 'video' | 'square' | 'wide') | null;
-                                        caption?: string | null;
+                                        value?: number | null;
                                         id?: string | null;
                                         blockName?: string | null;
-                                        blockType: 'imageAtom';
+                                        blockType: 'progressAtom';
+                                      }
+                                    | {
+                                        rows?:
+                                          | {
+                                              cells?:
+                                                | {
+                                                    value?: string | null;
+                                                    id?: string | null;
+                                                  }[]
+                                                | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'tableAtom';
                                       }
                                     | {
                                         /**
@@ -1397,7 +1491,24 @@ export interface PagesSelect<T extends boolean = true> {
                                                   content?:
                                                     | T
                                                     | {
+                                                        textAtom?:
+                                                          | T
+                                                          | {
+                                                              content?: T;
+                                                              align?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         buttonAtom?:
+                                                          | T
+                                                          | {
+                                                              label?: T;
+                                                              url?: T;
+                                                              variant?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        badgeAtom?:
                                                           | T
                                                           | {
                                                               label?: T;
@@ -1405,10 +1516,79 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
-                                                        textAtom?:
+                                                        alertAtom?:
                                                           | T
                                                           | {
-                                                              content?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              variant?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        imageAtom?:
+                                                          | T
+                                                          | {
+                                                              image?: T;
+                                                              aspect?: T;
+                                                              caption?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        cardAtom?:
+                                                          | T
+                                                          | {
+                                                              title?: T;
+                                                              description?: T;
+                                                              image?: T;
+                                                              link?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        accordionAtom?:
+                                                          | T
+                                                          | {
+                                                              items?:
+                                                                | T
+                                                                | {
+                                                                    title?: T;
+                                                                    content?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        tabsAtom?:
+                                                          | T
+                                                          | {
+                                                              tabs?:
+                                                                | T
+                                                                | {
+                                                                    label?: T;
+                                                                    content?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        carouselAtom?:
+                                                          | T
+                                                          | {
+                                                              slides?:
+                                                                | T
+                                                                | {
+                                                                    image?: T;
+                                                                    caption?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        avatarAtom?:
+                                                          | T
+                                                          | {
+                                                              image?: T;
+                                                              name?: T;
+                                                              role?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -1419,12 +1599,27 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
-                                                        imageAtom?:
+                                                        progressAtom?:
                                                           | T
                                                           | {
-                                                              image?: T;
-                                                              aspectRatio?: T;
-                                                              caption?: T;
+                                                              value?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        tableAtom?:
+                                                          | T
+                                                          | {
+                                                              rows?:
+                                                                | T
+                                                                | {
+                                                                    cells?:
+                                                                      | T
+                                                                      | {
+                                                                          value?: T;
+                                                                          id?: T;
+                                                                        };
+                                                                    id?: T;
+                                                                  };
                                                               id?: T;
                                                               blockName?: T;
                                                             };

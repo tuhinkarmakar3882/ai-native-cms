@@ -1,18 +1,39 @@
 import { Block } from 'payload'
+import { AtomicRendererMap } from './renderder'
 import {
+  AccordionAtom,
+  AlertAtom,
+  AvatarAtom,
+  BadgeAtom,
   ButtonAtom,
+  CardAtom,
+  CarouselAtom,
   IconAtom,
   ImageAtom,
+  ProgressAtom,
   SeparatorAtom,
+  TableAtom,
+  TabsAtom,
   TextAtom,
   VideoAtom,
 } from '@/blocks/Composable/Atoms/config'
 
 export const AtomBlocks: Block[] = [
-  ButtonAtom,
   TextAtom,
-  SeparatorAtom,
+  ButtonAtom,
+  BadgeAtom,
+  AlertAtom,
   ImageAtom,
+  CardAtom,
+  AccordionAtom,
+  TabsAtom,
+  CarouselAtom,
+  AvatarAtom,
+  SeparatorAtom,
+  ProgressAtom,
+  TableAtom,
   IconAtom,
   VideoAtom,
 ]
+
+export { AtomicRendererMap }
