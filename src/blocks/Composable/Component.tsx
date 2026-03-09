@@ -10,9 +10,16 @@ export const BuildYourOwnSectionComponent = ({ container }) => {
   })
 }
 
-export const GridAreaRenderer = ({ gap, items }) => {
+export const GridAreaRenderer = ({ gap, items, justify, align }) => {
   return (
-    <div className={cn('grid grid-cols-12')} style={{ gap: `${gap}px` }}>
+    <div
+      className={cn('grid grid-cols-12')}
+      style={{
+        gap: `${gap}px`,
+        justifyContent: `${justify}`,
+        alignItems: `${align}`,
+      }}
+    >
       {items?.map((item, i) => (
         <GridItemRenderer key={i} {...item} />
       ))}

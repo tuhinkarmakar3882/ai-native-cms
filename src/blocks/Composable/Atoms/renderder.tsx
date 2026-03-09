@@ -33,6 +33,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 
 import { cn } from '@/utilities/ui'
 import { DynamicIcon } from 'lucide-react/dynamic'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 export const TextAtomComponent = ({ content }) => (
   <div className="prose max-w-none">
@@ -214,6 +215,30 @@ export const SpacerAtomComponent = (props) => {
   )
 }
 
+export const AlignerAtomComponent = ({ direction, gap, items, justify, align }) => {
+  console.log({
+    direction,
+    gap,
+    items,
+    justify,
+    align,
+  })
+  return (
+    <div
+      className={cn('flex', direction === 'column' ? 'flex-col' : 'flex-row')}
+      style={{
+        gap: `${gap}px`,
+        justifyContent: `${justify}`,
+        alignItems: `${align}`,
+      }}
+    >
+      {items?.map((item, i) => (
+        <RenderBlocks key={i} blocks={[item]} />
+      ))}
+    </div>
+  )
+}
+
 export const AtomicRendererMap = {
   textAtom: TextAtomComponent,
   buttonAtom: ButtonAtomComponent,
@@ -232,4 +257,5 @@ export const AtomicRendererMap = {
   iconAtom: IconAtomComponent,
   videoAtom: VideoAtomComponent,
   spacerAtom: SpacerAtomComponent,
+  alignerAtom: AlignerAtomComponent,
 }

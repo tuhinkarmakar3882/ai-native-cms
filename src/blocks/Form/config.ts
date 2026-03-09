@@ -40,6 +40,23 @@ export const FormBlock: Block = {
       }),
       label: 'Intro Content',
     },
+    {
+      name: 'useContainer',
+      defaultValue: 'true',
+      label: 'Should wrap under default container?',
+      type: 'radio',
+      defaultValue: true,
+      options: [
+        {
+          label: 'Yes',
+          value: 'yes',
+        },
+        {
+          label: 'No',
+          value: 'no',
+        },
+      ],
+    },
   ],
   graphQL: {
     singularName: 'FormBlock',

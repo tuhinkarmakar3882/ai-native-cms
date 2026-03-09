@@ -22,16 +22,6 @@ export const GridAreaBlock: Block = {
 
   fields: [
     {
-      name: 'direction',
-      type: 'radio',
-      defaultValue: 'row',
-      options: [
-        { label: 'Row', value: 'row' },
-        { label: 'Column', value: 'column' },
-      ],
-    },
-
-    {
       name: 'justify',
       type: 'select',
       defaultValue: 'start',
@@ -48,6 +38,7 @@ export const GridAreaBlock: Block = {
     {
       name: 'gap',
       type: 'number',
+      defaultValue: 16,
       admin: {
         description: 'Gap in pixels',
       },

@@ -1,4 +1,4 @@
-import { FormBlock } from '@/blocks/Form/Component'
+import { FormBlockComponent } from '@/blocks/Form/Component'
 import { RichTextComponent } from '@/blocks/RichTextContent/Component'
 import { FAQComponent } from '@/components/Designs/FAQ/Component'
 import { TestimonialComponent } from '@/components/Designs/Testimonials/Component'
@@ -9,7 +9,7 @@ import { MediaViewerComponent } from '@/blocks/MediaViewer/Component'
 
 const PremadeRendererMap = {
   'richtext-content': RichTextComponent,
-  formBlock: FormBlock,
+  formBlock: FormBlockComponent,
   smartTable: TableComponent,
   faq: FAQComponent,
 

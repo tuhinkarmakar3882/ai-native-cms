@@ -373,3 +373,48 @@ export const SpacerAtom: Block = {
     },
   ],
 }
+
+export const AlignerAtom: Block = {
+  slug: 'alignerAtom',
+  dbName: 'at_aligner',
+  fields: [
+    {
+      name: 'direction',
+      type: 'radio',
+      defaultValue: 'row',
+      options: [
+        { label: 'Row', value: 'row' },
+        { label: 'Column', value: 'column' },
+      ],
+    },
+
+    {
+      name: 'justify',
+      type: 'select',
+      defaultValue: 'start',
+      options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+    },
+
+    {
+      name: 'align',
+      type: 'select',
+      defaultValue: 'start',
+      options: ['start', 'center', 'end', 'stretch', 'baseline'],
+    },
+
+    {
+      name: 'gap',
+      type: 'number',
+      defaultValue: 16,
+      admin: {
+        description: 'Gap in pixels',
+      },
+    },
+
+    {
+      name: 'items',
+      type: 'blocks',
+      blocks: [ButtonAtom, IconAtom, SpacerAtom, TextAtom],
+    },
+  ],
+}

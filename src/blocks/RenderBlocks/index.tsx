@@ -4,7 +4,7 @@ export const RenderBlocks = ({ blocks }) => {
   if (!blocks?.length) return null
 
   return (
-    <div className="w-full">
+    <>
       {blocks.map((block, i) => {
         const Component = AvailableRenderBlocks[block.blockType]
 
@@ -14,6 +14,6 @@ export const RenderBlocks = ({ blocks }) => {
 
         return <Component key={i} {...block} />
       })}
-    </div>
+    </>
   )
 }
