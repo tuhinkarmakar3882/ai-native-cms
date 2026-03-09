@@ -22,6 +22,13 @@ import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { updateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
 import { MediaViewerBlock } from '@/blocks/MediaViewer/config'
+import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
+import { Banner } from '@/blocks/Banner/config'
+import { BentoGridBlock } from '@/blocks/BentoGrid/config'
+import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
+import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
+import { PricingBlock } from '@/blocks/Pricing/config'
+import { TimelineBlock } from '@/blocks/Timeline/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -96,14 +103,24 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [
-                RichTextContentBlock,
-                FormBlock,
-                FAQBlock,
-                TestimonialBlock,
-                TableBlock,
-                MediaViewerBlock,
-
+                Banner,
+                BentoGridBlock,
                 BuildYourOwnSectionBlock,
+                FAQBlock,
+                FeatureGridBlock,
+                FeatureTabsBlock,
+
+                // TRACK 1: Premade
+                FormBlock,
+                HeroBannerBlock,
+                MediaViewerBlock,
+                PricingBlock,
+                RichTextContentBlock,
+
+                TableBlock,
+                TestimonialBlock,
+
+                TimelineBlock,
               ],
             },
           ],

@@ -216,13 +216,6 @@ export const SpacerAtomComponent = (props) => {
 }
 
 export const AlignerAtomComponent = ({ direction, gap, items, justify, align }) => {
-  console.log({
-    direction,
-    gap,
-    items,
-    justify,
-    align,
-  })
   return (
     <div
       className={cn('flex', direction === 'column' ? 'flex-col' : 'flex-row')}

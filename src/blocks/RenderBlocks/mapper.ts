@@ -6,15 +6,28 @@ import { TableComponent } from '@/components/Designs/Table/Component'
 import { BuildYourOwnSectionComponent } from '@/blocks/Composable/Component'
 import { AtomicRendererMap } from '@/blocks/Composable/Atoms/renderder'
 import { MediaViewerComponent } from '@/blocks/MediaViewer/Component'
+import { HeroBannerComponent } from '@/components/Designs/HeroBanner/Component'
+import { BentoGridComponent } from '@/components/Designs/BentoGrid/Component'
+import { FeatureTabsComponent } from '@/components/Designs/FeatureTabs/Component'
+import { FeatureGridComponent } from '@/components/Designs/FeatureGrid/Component'
+import { PricingComponent } from '@/components/Designs/Pricing/Component'
+import { TimelineComponent } from '@/components/Designs/Timeline/Component'
+import { BannerBlock } from '@/blocks/Banner/Component'
 
 const PremadeRendererMap = {
-  'richtext-content': RichTextComponent,
-  formBlock: FormBlockComponent,
-  smartTable: TableComponent,
+  banner: BannerBlock,
+  bentoGrid: BentoGridComponent,
   faq: FAQComponent,
-
-  testimonialCarousel: TestimonialComponent,
+  featureGrid: FeatureGridComponent,
+  featureTabs: FeatureTabsComponent,
+  formBlock: FormBlockComponent,
+  heroBanner: HeroBannerComponent,
   mediaViewer: MediaViewerComponent,
+  pricingTable: PricingComponent,
+  'richtext-content': RichTextComponent,
+  smartTable: TableComponent,
+  testimonialCarousel: TestimonialComponent,
+  timeline: TimelineComponent,
 }
 
 export const AvailableRenderBlocks = {
