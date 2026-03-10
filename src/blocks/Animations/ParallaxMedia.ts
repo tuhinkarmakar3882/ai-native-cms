@@ -1,4 +1,30 @@
 import { Block } from 'payload'
+import {
+  AlignFeature,
+  BlockquoteFeature,
+  BlocksFeature,
+  BoldFeature,
+  ChecklistFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  IndentFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
+  lexicalEditor,
+  LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  UploadFeature,
+} from '@payloadcms/richtext-lexical'
+import { Code } from '@/blocks/Code/config'
 
 export const ParallaxMediaBlock: Block = {
   slug: 'parallaxMedia',
@@ -126,7 +152,38 @@ export const ParallaxMediaBlock: Block = {
         },
         {
           name: 'description',
-          type: 'textarea',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [
+                ...rootFeatures,
+                AlignFeature(),
+                BlockquoteFeature(),
+                BoldFeature(),
+                ChecklistFeature(),
+                EXPERIMENTAL_TableFeature(),
+                FixedToolbarFeature(),
+                HeadingFeature(),
+                HorizontalRuleFeature(),
+                IndentFeature(),
+                InlineCodeFeature(),
+                InlineToolbarFeature(),
+                ItalicFeature(),
+                LinkFeature(),
+                OrderedListFeature(),
+                ParagraphFeature(),
+                StrikethroughFeature(),
+                SubscriptFeature(),
+                SuperscriptFeature(),
+                UnderlineFeature(),
+                UnorderedListFeature(),
+                UploadFeature(),
+                BlocksFeature({
+                  blocks: [Code],
+                }),
+              ]
+            },
+          }),
         },
         {
           name: 'button',

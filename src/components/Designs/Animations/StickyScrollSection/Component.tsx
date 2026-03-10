@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Container } from '@/components/Designs/Structural/Container'
 import { cn } from '@/utilities/ui'
+import RichText from '@/components/RichText'
 
 interface Step {
   heading: string
@@ -145,7 +146,7 @@ export const StickyScrollSectionComponent: React.FC<Props> = ({
       <h3 className="text-3xl md:text-4xl font-bold mb-4">{steps[idx].heading}</h3>
 
       {steps[idx].description && (
-        <p className="text-lg text-muted-foreground">{steps[idx].description}</p>
+        <RichText enableProse={true} enableGutter={false} data={steps[idx].description} />
       )}
     </div>
   )

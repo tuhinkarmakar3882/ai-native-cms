@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/Designs/Structural/Container'
 import { cn } from '@/utilities/ui'
+import RichText from '@/components/RichText'
 
 interface Props {
   trackId?: string
@@ -145,7 +146,9 @@ export const ParallaxMediaComponent: React.FC<Props> = ({
         <div className="absolute inset-0 flex items-center justify-center text-white p-8 z-20">
           <div className="max-w-3xl text-center space-y-6">
             {text.heading && <h2 className="text-4xl md:text-6xl font-bold">{text.heading}</h2>}
-            {text.description && <p className="text-lg md:text-xl">{text.description}</p>}
+            {text.description && (
+              <RichText enableGutter={false} enableProse={true} data={text.description} />
+            )}
             {text.button?.label && text.button?.link && (
               <Button variant="default" size="lg" asChild data-track-id={text.button.trackId}>
                 <a href={text.button.link}>{text.button.label}</a>

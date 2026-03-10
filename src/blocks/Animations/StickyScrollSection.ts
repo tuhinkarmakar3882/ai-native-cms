@@ -1,4 +1,30 @@
 import { Block } from 'payload'
+import {
+  AlignFeature,
+  BlockquoteFeature,
+  BlocksFeature,
+  BoldFeature,
+  ChecklistFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  IndentFeature,
+  InlineCodeFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
+  lexicalEditor,
+  LinkFeature,
+  OrderedListFeature,
+  ParagraphFeature,
+  StrikethroughFeature,
+  SubscriptFeature,
+  SuperscriptFeature,
+  UnderlineFeature,
+  UnorderedListFeature,
+  UploadFeature,
+} from '@payloadcms/richtext-lexical'
+import { Code } from '@/blocks/Code/config'
 
 export const StickyScrollSectionBlock: Block = {
   slug: 'stickyScrollSection',
@@ -63,7 +89,41 @@ export const StickyScrollSectionBlock: Block = {
       maxRows: 10,
       fields: [
         { name: 'heading', type: 'text', required: true },
-        { name: 'description', type: 'textarea' },
+        {
+          name: 'description',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [
+                ...rootFeatures,
+                AlignFeature(),
+                BlockquoteFeature(),
+                BoldFeature(),
+                ChecklistFeature(),
+                EXPERIMENTAL_TableFeature(),
+                FixedToolbarFeature(),
+                HeadingFeature(),
+                HorizontalRuleFeature(),
+                IndentFeature(),
+                InlineCodeFeature(),
+                InlineToolbarFeature(),
+                ItalicFeature(),
+                LinkFeature(),
+                OrderedListFeature(),
+                ParagraphFeature(),
+                StrikethroughFeature(),
+                SubscriptFeature(),
+                SuperscriptFeature(),
+                UnderlineFeature(),
+                UnorderedListFeature(),
+                UploadFeature(),
+                BlocksFeature({
+                  blocks: [Code],
+                }),
+              ]
+            },
+          }),
+        },
         {
           name: 'mediaType',
           type: 'select',

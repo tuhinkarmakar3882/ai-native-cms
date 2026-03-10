@@ -512,7 +512,21 @@ export interface Page {
             steps?:
               | {
                   heading: string;
-                  description?: string | null;
+                  description?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   mediaType?: ('image' | 'video') | null;
                   image?: (string | null) | Media;
                   video?: (string | null) | Media;
@@ -545,7 +559,21 @@ export interface Page {
             };
             text?: {
               heading?: string | null;
-              description?: string | null;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
               button?: {
                 label?: string | null;
                 link?: string | null;
@@ -616,6 +644,37 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'staggerList';
+          }
+        | {
+            trackId?: string | null;
+            scenes?:
+              | {
+                  heading: string;
+                  subheading?: string | null;
+                  body?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  media: string | Media;
+                  mediaType?: ('image' | 'video') | null;
+                  textPosition?: ('center' | 'bottom-left' | 'bottom-right') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'appleStory';
           }
         | {
             container?:
@@ -2204,6 +2263,24 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     useContainer?: T;
                     containerSize?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        appleStory?:
+          | T
+          | {
+              trackId?: T;
+              scenes?:
+                | T
+                | {
+                    heading?: T;
+                    subheading?: T;
+                    body?: T;
+                    media?: T;
+                    mediaType?: T;
+                    textPosition?: T;
+                    id?: T;
                   };
               id?: T;
               blockName?: T;
