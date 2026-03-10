@@ -1,4 +1,3 @@
-// src/app/api/experiment-lookup/route.ts
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { NextResponse } from 'next/server'
@@ -14,7 +13,7 @@ export async function GET(request: Request) {
       slug: { equals: slug },
       enabled: { equals: true },
     },
-    depth: 1, // Get the page object too
+    depth: 1,
   })
 
   return NextResponse.json(result.docs[0] || null)

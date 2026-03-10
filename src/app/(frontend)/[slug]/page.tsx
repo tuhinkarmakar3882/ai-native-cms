@@ -83,7 +83,7 @@ export default async function Page({
   return (
     <StyledArticle className={`pb-24 ${isRTL(locale) ? 'rtl-mode' : ''}`}>
       {draft ? (
-        <PageClient initialData={page} locale={locale} />
+        <PageClient initialData={page} locale={locale} isDraft={draft} />
       ) : (
         <>
           <RenderBlocks blocks={page.layout} />

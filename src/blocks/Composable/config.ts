@@ -1,5 +1,3 @@
-// blocks/Composable/Section/config.ts
-
 import { Block } from 'payload'
 import { ContainerBlock } from '@/blocks/Composable/intermediate'
 

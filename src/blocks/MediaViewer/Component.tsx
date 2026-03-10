@@ -1,4 +1,3 @@
-// src/blocks/MediaViewer/Component.tsx
 import React from 'react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'

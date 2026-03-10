@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 type PageAnalyticsOptions = {
+  isEnabled?: boolean
   /**
    * Scroll depth milestones to track (in %)
    * Default: [25, 50, 75, 100]
@@ -35,11 +36,13 @@ export function usePageAnalytics({
   trackScrollDepth = true,
   trackSections = true,
   trackDropoff = true,
+  isEnabled = true,
 }: PageAnalyticsOptions = {}) {
   useEffect(() => {
     // if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
     //   return
     // }
+    if (!isEnabled) return
 
     /* -------------------------------------------
      * Internal State
@@ -191,5 +194,6 @@ export function usePageAnalytics({
     trackScrollDepth,
     trackSections,
     trackDropoff,
+    isEnabled,
   ])
 }

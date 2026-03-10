@@ -13,6 +13,9 @@ import { FeatureGridComponent } from '@/components/Designs/FeatureGrid/Component
 import { PricingComponent } from '@/components/Designs/Pricing/Component'
 import { TimelineComponent } from '@/components/Designs/Timeline/Component'
 import { BannerBlockComponent } from '@/blocks/Banner/Component'
+import { RevealOnScrollComponent } from '@/components/Designs/Animations/RevealOnScroll/Component'
+import { StickyScrollSectionComponent } from '@/components/Designs/Animations/StickyScrollSection/Component'
+import { ParallaxMediaComponent } from '@/components/Designs/Animations/ParallaxMedia/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -30,9 +33,16 @@ const PremadeRendererMap = {
   timeline: TimelineComponent,
 }
 
+const AnimatedRendererMap = {
+  revealOnScroll: RevealOnScrollComponent,
+  stickyScrollSection: StickyScrollSectionComponent,
+  parallaxMedia: ParallaxMediaComponent,
+}
+
 export const AvailableRenderBlocks = {
   ...AtomicRendererMap,
   ...PremadeRendererMap,
+  ...AnimatedRendererMap,
 
   buildYourOwnSection: BuildYourOwnSectionComponent,
 }

@@ -123,7 +123,6 @@ export const HeroBannerBlock: Block = {
         },
       ],
     },
-    // Optional section ID for tracking
     {
       name: 'sectionId',
       type: 'text',
@@ -132,7 +131,6 @@ export const HeroBannerBlock: Block = {
         description: 'Optional unique identifier for this hero section',
       },
     },
-    // Container settings
     {
       name: 'containerSettings',
       type: 'group',

@@ -49,7 +49,7 @@ export const PricingComponent: React.FC<PricingProps> = ({
   const { useContainer, containerSize } = containerSettings
 
   const pricingContent = (
-    <section className="py-20" data-track-section={trackId}>
+    <section className="my-16" data-track-section={trackId}>
       {heading && <h2 className="text-4xl font-bold text-center mb-12">{heading}</h2>}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {plans.map((plan, i) => {

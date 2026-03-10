@@ -14,9 +14,10 @@ const StyledArticle = styled.article`
   }
 `
 
-export const PageClient: React.FC<{ initialData: any; locale?: string }> = ({
+export const PageClient: React.FC<{ initialData: any; locale?: string; isDraft?: boolean }> = ({
   initialData,
   locale,
+  isDraft,
 }) => {
   const { setHeaderTheme } = useHeaderTheme()
 
@@ -33,6 +34,7 @@ export const PageClient: React.FC<{ initialData: any; locale?: string }> = ({
   usePageAnalytics({
     scrollDepths: [20, 40, 60, 80, 100],
     sectionSelector: '[data-track-section]',
+    isEnabled: !isDraft,
   })
 
   // Check RTL based on the live data or current locale

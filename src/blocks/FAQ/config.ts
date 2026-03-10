@@ -32,7 +32,7 @@ export const FAQBlock: Block = {
         { name: 'question', type: 'text', required: true },
         {
           name: 'answer',
-          type: 'richText', // Switched to richText
+          type: 'richText',
           required: true,
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {

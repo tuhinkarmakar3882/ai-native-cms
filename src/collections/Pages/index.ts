@@ -29,6 +29,9 @@ import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
 import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
 import { PricingBlock } from '@/blocks/Pricing/config'
 import { TimelineBlock } from '@/blocks/Timeline/config'
+import { RevealOnScrollBlock } from '@/blocks/Animations/RevealOnScroll'
+import { StickyScrollSectionBlock } from '@/blocks/Animations/StickyScrollSection'
+import { ParallaxMediaBlock } from '@/blocks/Animations/ParallaxMedia'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -103,24 +106,28 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [
+                // Premade Blocks
                 BannerBlock,
                 BentoGridBlock,
-                BuildYourOwnSectionBlock,
                 FAQBlock,
                 FeatureGridBlock,
                 FeatureTabsBlock,
-
-                // TRACK 1: Premade
                 FormBlock,
                 HeroBannerBlock,
                 MediaViewerBlock,
                 PricingBlock,
                 RichTextContentBlock,
-
                 TableBlock,
                 TestimonialBlock,
-
                 TimelineBlock,
+
+                // Animated Blocks
+                RevealOnScrollBlock,
+                StickyScrollSectionBlock,
+                ParallaxMediaBlock,
+
+                // Composable Blocks
+                BuildYourOwnSectionBlock,
               ],
             },
           ],

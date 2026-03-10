@@ -1,4 +1,3 @@
-// src/cms/blocks/MediaViewer.ts
 import { Block } from 'payload'
 
 export const MediaViewerBlock: Block = {
