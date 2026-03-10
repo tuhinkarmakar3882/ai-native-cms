@@ -17,7 +17,8 @@ import { RevealOnScrollComponent } from '@/components/Designs/Animations/RevealO
 import { StickyScrollSectionComponent } from '@/components/Designs/Animations/StickyScrollSection/Component'
 import { ParallaxMediaComponent } from '@/components/Designs/Animations/ParallaxMedia/Component'
 import { StaggerListComponent } from '@/components/Designs/Animations/StaggerList/Component'
-import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleStoryBlock/Component'
+import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleStory/Component'
+import { CinematicTextComponent } from '@/components/Designs/Animations/CinematicText/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -41,6 +42,7 @@ const AnimatedRendererMap = {
   parallaxMedia: ParallaxMediaComponent,
   staggerList: StaggerListComponent,
   appleStory: AppleStoryBlockComponent,
+  cinematicText: CinematicTextComponent,
 }
 
 export const AvailableRenderBlocks = {

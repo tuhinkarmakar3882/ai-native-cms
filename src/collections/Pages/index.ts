@@ -34,6 +34,7 @@ import { StickyScrollSectionBlock } from '@/blocks/Animations/StickyScrollSectio
 import { ParallaxMediaBlock } from '@/blocks/Animations/ParallaxMedia'
 import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
 import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
+import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -129,6 +130,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ParallaxMediaBlock,
                 StaggerListBlock,
                 AppleStoryBlock,
+                CinematicTextBlock,
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,

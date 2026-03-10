@@ -677,6 +677,35 @@ export interface Page {
             blockType: 'appleStory';
           }
         | {
+            trackId?: string | null;
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            splitType?: ('words' | 'chars' | 'lines') | null;
+            animation?: ('fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'blur' | 'scale') | null;
+            stagger?: number | null;
+            duration?: number | null;
+            scrollTriggerStart?: string | null;
+            scrollScrub?: boolean | null;
+            backgroundColor?: string | null;
+            textColor?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cinematicText';
+          }
+        | {
             container?:
               | {
                   width?: ('container' | 'wide' | 'full') | null;
@@ -2282,6 +2311,22 @@ export interface PagesSelect<T extends boolean = true> {
                     textPosition?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        cinematicText?:
+          | T
+          | {
+              trackId?: T;
+              content?: T;
+              splitType?: T;
+              animation?: T;
+              stagger?: T;
+              duration?: T;
+              scrollTriggerStart?: T;
+              scrollScrub?: T;
+              backgroundColor?: T;
+              textColor?: T;
               id?: T;
               blockName?: T;
             };
