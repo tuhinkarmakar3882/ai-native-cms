@@ -35,7 +35,16 @@ export const FeatureGridBlock: Block = {
         { name: 'title', type: 'text', required: true },
         { name: 'description', type: 'textarea' },
         { name: 'badge', type: 'text' },
-        { name: 'icon', type: 'text', admin: { description: 'Lucide icon name' } },
+        {
+          name: 'icon',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name',
+            components: {
+              Field: '@/components/IconPicker#IconPickerComponent',
+            },
+          },
+        },
         {
           name: 'link',
           type: 'group',

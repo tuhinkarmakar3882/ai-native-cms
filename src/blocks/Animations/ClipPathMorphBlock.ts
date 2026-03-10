@@ -120,7 +120,12 @@ export const ClipPathMorphBlock: Block = {
           name: 'color',
           type: 'text',
           label: 'Color (e.g., rgba(0,0,0,0.7))',
-          admin: { condition: (_, siblingData) => siblingData?.type === 'color' },
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'color',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
         },
         {
           name: 'richText',
@@ -189,7 +194,12 @@ export const ClipPathMorphBlock: Block = {
           name: 'color',
           type: 'text',
           label: 'Color (e.g., rgba(255,255,255,0.7))',
-          admin: { condition: (_, siblingData) => siblingData?.type === 'color' },
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'color',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
         },
         {
           name: 'richText',

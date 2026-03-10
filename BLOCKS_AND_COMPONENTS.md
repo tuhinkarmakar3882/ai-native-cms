@@ -243,7 +243,7 @@ export const RenderBlocks = ({ blocks }) => {
 
 ### Configuration
 
-Each block has a corresponding `config.ts` file that defines:
+Each block has a corresponding `config.tsx` file that defines:
 - Block slug (unique identifier)
 - Fields (configurable properties in Payload CMS)
 - Field validation and constraints
@@ -251,7 +251,7 @@ Each block has a corresponding `config.ts` file that defines:
 
 Example:
 ```typescript
-// src/blocks/Hero/config.ts
+// src/blocks/Hero/config.tsx
 export const HeroBlock: Block = {
   slug: 'hero',
   fields: [
@@ -334,11 +334,11 @@ To add a new UI component:
 To add a new block:
 
 1. Create directory `/src/blocks/[BlockName]/`
-2. Create `config.ts` with block schema
+2. Create `config.tsx` with block schema
 3. Create `Component.tsx` with React component
 4. Export from `Component.tsx`
 5. Add to `blockMap` in `RenderBlocks.tsx`
-6. Add config to Payload blocks in `payload.config.ts`
+6. Add config to Payload blocks in `payload.config.tsx`
 
 ### Styling
 
@@ -375,7 +375,7 @@ All UI components support dark mode via Tailwind's dark mode utilities:
 
 ### When Creating New Blocks
 
-1. **Define schema in config.ts** - Clear field types and validation
+1. **Define schema in config.tsx** - Clear field types and validation
 2. **Create responsive design** - Mobile-first approach
 3. **Use existing components** - Compose rather than recreate
 4. **Support draft preview** - Ensure blocks work in preview mode
@@ -420,7 +420,7 @@ When contributing new blocks or components:
 
 ### Block not rendering
 - Check `blockMap` in `RenderBlocks.tsx`
-- Verify config is registered in `payload.config.ts`
+- Verify config is registered in `payload.config.tsx`
 - Check browser console for errors
 - Ensure block data matches schema
 

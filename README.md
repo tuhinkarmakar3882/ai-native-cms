@@ -60,7 +60,7 @@ Atoms are the lowest-level UI primitives. They **cannot** contain other blocks. 
 Payload CMS's import/export plugins and field traversal mechanisms crash (`Maximum call stack size exceeded`) when encountering infinite circular references (e.g., a `Grid` block containing a `content` field that accepts another `Grid` block).
 
 ### The Solution: Depth-Based Generation
-Instead of recursive self-referencing, structural blocks are generated using a **Depth-Based Strategy** in `src/blocks/Structural/config.ts`. The recursion is "unrolled" to a strict depth limit (e.g., 3 levels).
+Instead of recursive self-referencing, structural blocks are generated using a **Depth-Based Strategy** in `src/blocks/Structural/config.tsx`. The recursion is "unrolled" to a strict depth limit (e.g., 3 levels).
 
 ```typescript
 // Conceptual representation of the unrolled AST generation

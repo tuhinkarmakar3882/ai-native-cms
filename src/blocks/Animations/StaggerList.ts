@@ -49,7 +49,12 @@ export const StaggerListBlock: Block = {
             {
               name: 'icon',
               type: 'text',
-              admin: { description: 'Lucide icon name (optional)' },
+              admin: {
+                description: 'Lucide icon name (optional)',
+                components: {
+                  Field: '@/components/IconPicker#IconPickerComponent',
+                },
+              },
             },
 
             {
@@ -93,7 +98,12 @@ export const StaggerListBlock: Block = {
                 {
                   name: 'icon',
                   type: 'text',
-                  admin: { description: 'Lucide icon name' },
+                  admin: {
+                    description: 'Lucide icon name',
+                    components: {
+                      Field: '@/components/IconPicker#IconPickerComponent',
+                    },
+                  },
                 },
               ],
             },

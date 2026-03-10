@@ -303,7 +303,16 @@ export const IconAtom: Block = {
   fields: [
     { name: 'iconName', type: 'text', admin: { description: 'Lucide icon name' } },
     { name: 'size', type: 'number', defaultValue: 24 },
-    { name: 'color', type: 'text', admin: { description: 'Tailwind class or Hex' } },
+    {
+      name: 'color',
+      type: 'text',
+      admin: {
+        description: 'Tailwind class or Hex',
+        components: {
+          Field: '@/components/ColorPicker#ColorInputComponent',
+        },
+      },
+    },
   ],
 }
 export const VideoAtom: Block = {

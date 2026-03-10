@@ -25,7 +25,16 @@ export const BentoGridBlock: Block = {
         },
         { name: 'title', type: 'text', required: true },
         { name: 'content', type: 'textarea' },
-        { name: 'icon', type: 'text', admin: { description: 'Lucide icon name' } },
+        {
+          name: 'icon',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name',
+            components: {
+              Field: '@/components/IconPicker#IconPickerComponent',
+            },
+          },
+        },
         {
           name: 'span',
           type: 'select',

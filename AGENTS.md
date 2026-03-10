@@ -28,7 +28,7 @@ src/
 ├── components/              # Custom React components
 ├── hooks/                   # Hook functions
 ├── access/                  # Access control functions
-└── payload.config.ts        # Main config
+└── payload.config.tsx        # Main config
 ```
 
 ## Configuration

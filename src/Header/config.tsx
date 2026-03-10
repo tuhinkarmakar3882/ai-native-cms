@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload'
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
+import ColorInput from '@/components/ColorPicker'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -51,6 +52,9 @@ export const Header: GlobalConfig = {
                   admin: {
                     description: 'Optional Lucide icon name to display next to the link',
                     width: '33%',
+                    components: {
+                      Field: '@/components/IconPicker#IconPickerComponent',
+                    },
                   },
                 },
                 {
@@ -67,6 +71,9 @@ export const Header: GlobalConfig = {
                   defaultValue: '#000',
                   admin: {
                     width: '33%',
+                    components: {
+                      Field: '@/components/ColorPicker#ColorInputComponent',
+                    },
                   },
                 },
               ],

@@ -130,12 +130,22 @@ export const CinematicTextBlock: Block = {
       name: 'backgroundColor',
       type: 'text',
       defaultValue: '#000000',
+      admin: {
+        components: {
+          Field: '@/components/ColorPicker#ColorInputComponent',
+        },
+      },
     },
 
     {
       name: 'textColor',
       type: 'text',
       defaultValue: '#ffffff',
+      admin: {
+        components: {
+          Field: '@/components/ColorPicker#ColorInputComponent',
+        },
+      },
     },
   ],
 }

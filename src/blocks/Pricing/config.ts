@@ -31,7 +31,12 @@ export const PricingBlock: Block = {
             {
               name: 'icon',
               type: 'text',
-              admin: { description: 'Optional Lucide icon name (defaults to Check)' },
+              admin: {
+                description: 'Optional Lucide icon name (defaults to Check)',
+                components: {
+                  Field: '@/components/IconPicker#IconPickerComponent',
+                },
+              },
             },
           ],
         },
