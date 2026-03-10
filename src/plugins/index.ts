@@ -104,7 +104,7 @@ export const plugins: Plugin[] = [
     },
   }),
   vercelBlobStorage({
-    enabled: true,
+    enabled: false,
     collections: {
       media: true,
     },

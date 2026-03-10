@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
-import { cn } from '@/utilities/ui'
+import { DynamicIcon } from 'lucide-react/dynamic'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -49,10 +49,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     <NavigationMenuLink asChild>
                       <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
                         <div className="mb-2 mt-4 text-lg font-medium">{item.link?.label}</div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Explore our range of {item.link?.label?.toLowerCase()} services and
-                          features tailored for your needs.
-                        </p>
+                        {item.description && (
+                          <p className="text-sm leading-tight text-muted-foreground">
+                            {item.description}
+                          </p>
+                        )}
                       </div>
                     </NavigationMenuLink>
                   </li>
@@ -63,14 +64,25 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                           href={child.link?.url || '#'}
                           className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
-                          <div className="text-sm font-medium leading-none">
-                            {child.link?.label}
+                          <div className="flex gap-4 items-center">
+                            {child.icon && (
+                              <DynamicIcon
+                                name={child.icon}
+                                size={child.iconSize}
+                                color={child.iconColor}
+                              />
+                            )}
+                            <section className="flex flex-col gap-2">
+                              <div className="text-sm font-medium leading-none">
+                                {child.link?.label}
+                              </div>
+                              {child.description && (
+                                <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                                  {child.description}
+                                </p>
+                              )}
+                            </section>
                           </div>
-                          {child.description && (
-                            <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
-                              {child.description}
-                            </p>
-                          )}
                         </Link>
                       </NavigationMenuLink>
                     </li>

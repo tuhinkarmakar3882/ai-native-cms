@@ -3614,6 +3614,12 @@ export interface Header {
                 label?: string | null;
               };
               description?: string | null;
+              /**
+               * Optional Lucide icon name to display next to the link
+               */
+              icon?: string | null;
+              iconSize?: number | null;
+              iconColor?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -3757,6 +3763,9 @@ export interface HeaderSelect<T extends boolean = true> {
                     label?: T;
                   };
               description?: T;
+              icon?: T;
+              iconSize?: T;
+              iconColor?: T;
               id?: T;
             };
         id?: T;

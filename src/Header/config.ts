@@ -42,6 +42,35 @@ export const Header: GlobalConfig = {
               name: 'description',
               type: 'text',
             },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'icon',
+                  type: 'text',
+                  admin: {
+                    description: 'Optional Lucide icon name to display next to the link',
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'iconSize',
+                  type: 'number',
+                  defaultValue: 20,
+                  admin: {
+                    width: '33%',
+                  },
+                },
+                {
+                  name: 'iconColor',
+                  type: 'text',
+                  defaultValue: '#000',
+                  admin: {
+                    width: '33%',
+                  },
+                },
+              ],
+            },
           ],
         },
       ],
