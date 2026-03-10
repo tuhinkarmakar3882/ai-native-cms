@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
@@ -31,101 +31,161 @@ const textPositionClasses = {
 
 export const AppleStoryBlockComponent: React.FC<Props> = ({ trackId, scenes = [] }) => {
   const sectionRef = useRef<HTMLElement>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const reducedMotion = false
 
   useEffect(() => {
-    if (reducedMotion || !sectionRef.current || scenes.length === 0) return
+    if (!sectionRef.current || scenes.length === 0) return
 
     const ctx = gsap.context(() => {
-      // Pin the whole section
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: `+=${scenes.length * 100}vh`,
-        pin: true,
-        pinSpacing: true,
-      })
+      const panels = gsap.utils.toArray<HTMLElement>('.story-panel')
+      const medias = gsap.utils.toArray<HTMLElement>('.story-media')
+      const texts = gsap.utils.toArray<HTMLElement>('.story-text')
 
-      // Create a timeline that updates active index based on scroll progress
-      const tl = gsap.timeline({
+      /**
+       * Give each scene a generous scroll band.
+       */
+      const SCENE_SCROLL = 1000
+      const totalScroll = SCENE_SCROLL * scenes.length
+
+      const master = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: `+=${scenes.length * 100}vh`,
-          scrub: 1,
-          onUpdate: (self) => {
-            const progress = self.progress
-            const index = Math.floor(progress * scenes.length)
-            setActiveIndex(Math.min(index, scenes.length - 1))
-          },
+          end: `+=${totalScroll}vh`,
+          pin: true,
+          scrub: 1.4,
+          anticipatePin: 1,
         },
       })
 
-      // Add dummy animation to drive the timeline
-      tl.to({}, { duration: scenes.length })
+      panels.forEach((panel, i) => {
+        const media = medias[i]
+        const text = texts[i]
+
+        const label = `scene-${i}`
+        master.addLabel(label)
+
+        /** Initial states */
+        gsap.set(panel, { opacity: 0 })
+        gsap.set(media, { scale: 2, yPercent: 10 })
+        gsap.set(text, { y: 80, opacity: 0 })
+
+        /**
+         * Scene animation segment
+         * fade in -> hold -> fade out
+         */
+
+        master
+          // fade in scene
+          .to(panel, { opacity: 1, duration: 0.35, ease: 'power2.out' }, label)
+
+          // parallax media
+          .to(
+            media,
+            {
+              scale: 1.35,
+              yPercent: -8,
+              duration: 1.2,
+              ease: 'power2.out',
+            },
+            label,
+          )
+
+          // text reveal
+          .to(
+            text,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: 'power3.out',
+            },
+            `${label}+=0.1`,
+          )
+
+          // hold visibility
+          .to({}, { duration: 0.8 })
+
+          // fade text out
+          .to(text, {
+            opacity: 0,
+            y: -60,
+            duration: 0.35,
+            ease: 'power2.in',
+          })
+
+          // fade scene out
+          .to(
+            panel,
+            {
+              opacity: 0,
+              duration: 0.35,
+              ease: 'power2.in',
+            },
+            '<',
+          )
+      })
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [scenes, reducedMotion])
+  }, [scenes])
 
   return (
     <section
       ref={sectionRef}
-      className="apple-story relative h-screen overflow-hidden"
+      className="apple-story relative h-screen overflow-hidden bg-black"
       data-track-section={trackId}
     >
       {scenes.map((scene, idx) => {
-        const isActive = idx === activeIndex
         const isVideo = scene.mediaType === 'video'
 
         return (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              isActive ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="story-panel absolute inset-0 opacity-0"
+            style={{ zIndex: idx + 1 }}
           >
-            {/* Media */}
-            {isVideo ? (
-              <video
-                src={scene?.media?.url || ''}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-                style={{
-                  zIndex: -1,
-                }}
-              />
-            ) : (
-              <Image
-                src={scene?.media?.url || ''}
-                alt={scene?.media?.alt || scene?.heading}
-                fill
-                className="object-cover"
-                style={{
-                  zIndex: -1,
-                }}
-              />
-            )}
+            {/* MEDIA */}
+            <div className="story-media absolute inset-0">
+              {isVideo ? (
+                <video
+                  src={scene?.media?.url || ''}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={scene?.media?.url || ''}
+                  alt={scene?.media?.alt || scene?.heading}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority={idx === 0}
+                />
+              )}
+            </div>
 
-            {/* Overlay */}
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-black/70" style={{ pointerEvents: 'none' }} />
+
+            {/* TEXT */}
             <div
-              className={cn('absolute inset-0 z-10', 'bg-black/90')}
-              style={{
-                opacity: 0.85,
-                zIndex: 0,
-              }}
-            />
-            {/* Text */}
-            <div
-              className={`absolute inset-0 flex ${textPositionClasses[scene.textPosition]} text-white p-8`}
+              className={cn(
+                'story-text absolute inset-0 flex text-white p-8',
+                textPositionClasses[scene.textPosition],
+              )}
             >
               <div className="max-w-3xl">
-                <h2 className="text-5xl md:text-7xl font-bold mb-4">{scene.heading}</h2>
-                {scene.subheading && <p className="text-xl md:text-2xl mb-6">{scene.subheading}</p>}
+                <h2 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                  {scene.heading}
+                </h2>
+
+                {scene.subheading && (
+                  <p className="text-xl md:text-2xl mb-6 opacity-90">{scene.subheading}</p>
+                )}
+
                 {scene.body && <RichText data={scene.body} />}
               </div>
             </div>
