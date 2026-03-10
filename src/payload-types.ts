@@ -3590,7 +3590,7 @@ export interface Header {
   id: string;
   navItems?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?: {
@@ -3598,7 +3598,43 @@ export interface Header {
             value: string | Page;
           } | null;
           url?: string | null;
-          label: string;
+          label?: string | null;
+        };
+        description?: string | null;
+        children?:
+          | {
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label?: string | null;
+              };
+              description?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  ctas?:
+    | {
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
         };
         id?: string | null;
       }[]
@@ -3612,9 +3648,37 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  description?: string | null;
+  linkGroups?:
     | {
-        link: {
+        title: string;
+        links?:
+          | {
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label?: string | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  newsletter?: {
+    title?: string | null;
+    description?: string | null;
+    provider?: ('mailchimp' | 'convertkit' | 'custom') | null;
+  };
+  socialLinks?:
+    | {
+        platform?: ('x' | 'github' | 'linkedin' | 'youtube') | null;
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?: {
@@ -3622,11 +3686,43 @@ export interface Footer {
             value: string | Page;
           } | null;
           url?: string | null;
-          label: string;
+          label?: string | null;
         };
         id?: string | null;
       }[]
     | null;
+  appLinks?:
+    | {
+        platform?: ('appstore' | 'playstore') | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  legalLinks?:
+    | {
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3647,6 +3743,37 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        description?: T;
+        children?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              description?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  ctas?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
         id?: T;
       };
   updatedAt?: T;
@@ -3658,7 +3785,65 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  description?: T;
+  linkGroups?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  newsletter?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        provider?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  appLinks?:
+    | T
+    | {
+        platform?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  legalLinks?:
     | T
     | {
         link?:
@@ -3672,6 +3857,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
