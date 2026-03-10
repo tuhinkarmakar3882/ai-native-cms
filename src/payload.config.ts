@@ -55,7 +55,7 @@ export default buildConfig({
       ],
       url: ({ data, locale }) => {
         const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
-        return `${serverURL}/${data.slug}${locale ? `?locale=${locale.code}` : ''}`
+        return `${serverURL}/${data.fullSlug}${locale ? `?locale=${locale.code}` : ''}`
       },
     },
   },

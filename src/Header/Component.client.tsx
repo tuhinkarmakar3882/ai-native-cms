@@ -43,8 +43,8 @@ export const HeaderClient = ({ data }: { data: Header }) => {
 
         {/* Right: Actions & Mobile Toggle (Zone 3) */}
         <div className="flex items-center justify-end gap-2 lg:w-[200px]">
-          {data?.ctas?.map((elem) => (
-            <div className="hidden lg:block">
+          {data?.ctas?.map((elem, idx) => (
+            <div className="hidden lg:block" key={idx}>
               <Button asChild size="sm" variant={elem.link?.appearance}>
                 <Link href={elem.link.url || '#'}>{elem.link.label}</Link>
               </Button>

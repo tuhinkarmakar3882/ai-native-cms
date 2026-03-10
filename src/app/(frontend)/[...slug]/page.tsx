@@ -15,31 +15,27 @@ import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
+
   const pages = await payload.find({
     collection: 'pages',
     draft: false,
     limit: 1000,
-    overrideAccess: false,
     pagination: false,
     select: {
-      slug: true,
+      fullSlug: true,
     },
   })
 
-  const params = pages.docs
-    ?.filter((doc) => {
-      return doc.slug !== 'home'
-    })
-    .map(({ slug }) => {
-      return { slug }
-    })
-
-  return params
+  return pages.docs
+    ?.filter((doc) => doc.fullSlug !== 'home')
+    .map(({ fullSlug }) => ({
+      slug: fullSlug.split('/'),
+    }))
 }
 
 type Args = {
   params: Promise<{
-    slug?: string
+    slug?: string[]
   }>
   searchParams: Promise<{
     locale?: string
@@ -65,10 +61,16 @@ export default async function Page({
   const isExperimentRequest = headerList.get('x-is-experiment') === 'true'
 
   const [params, searchParams] = await Promise.all([paramsPromise, searchParamsPromise])
-  const { slug = 'home' } = params
+  const { slug = ['home'] } = params
   const { locale = 'en' } = searchParams
 
-  const decodedSlug = decodeURIComponent(slug)
+  console.log({
+    slug,
+    params,
+    searchParams,
+  })
+
+  const decodedSlug = decodeURIComponent(slug.join('/'))
   const page = await queryPageBySlug({
     slug: decodedSlug,
     locale,
@@ -118,7 +120,7 @@ const queryPageBySlug = cache(
       overrideAccess: draft,
       locale: locale as any,
       where: {
-        slug: {
+        fullSlug: {
           equals: slug,
         },
       },

@@ -20,7 +20,7 @@ import { TestimonialBlock } from '@/blocks/Testimonials/config'
 import { TableBlock } from '@/blocks/Table/config'
 import { RichTextContentBlock } from '@/blocks/RichTextContent/config'
 import { FormBlock } from '@/blocks/Form/config'
-import { updateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
+import { generateSlugPath } from '@/collections/Pages/hooks/generateSlugPath'
 import { MediaViewerBlock } from '@/blocks/MediaViewer/config'
 import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
 import { BannerBlock } from '@/blocks/Banner/config'
@@ -37,6 +37,8 @@ import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
 import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
 import { ClipPathMorphBlock } from '@/blocks/Animations/ClipPathMorphBlock'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
+import { buildFullSlug } from '@/utilities/buildFullSlug'
+import { updateChildSlugs } from '@/collections/Pages/hooks/updateChildSlugs'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -49,20 +51,21 @@ export const Pages: CollectionConfig<'pages'> = {
   defaultPopulate: {
     title: true,
     slug: true,
+    fullSlug: true,
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
-          slug: data?.slug,
+          slug: data?.fullSlug,
           collection: 'pages',
           req,
         }),
     },
     preview: (data, { req }) =>
       generatePreviewPath({
-        slug: data?.slug as string,
+        slug: data?.fullSlug as string,
         collection: 'pages',
         req,
       }),
@@ -189,8 +192,9 @@ export const Pages: CollectionConfig<'pages'> = {
     },
   ],
   hooks: {
-    beforeChange: [populatePublishedAt, updateSlugPath],
-    afterChange: [revalidatePage],
+    beforeValidate: [generateSlugPath],
+    beforeChange: [populatePublishedAt],
+    afterChange: [updateChildSlugs, revalidatePage],
     afterDelete: [revalidateDelete],
   },
   versions: {

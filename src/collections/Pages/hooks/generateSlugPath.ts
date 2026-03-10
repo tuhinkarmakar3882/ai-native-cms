@@ -1,6 +1,6 @@
 import { buildFullSlug } from '@/utilities/buildFullSlug'
 
-export const updateSlugPath = async ({ data, req }) => {
+export const generateSlugPath = async ({ data, req }) => {
   if (!data) return data
 
   const { slug, fullSlug } = await buildFullSlug({ data, req })
