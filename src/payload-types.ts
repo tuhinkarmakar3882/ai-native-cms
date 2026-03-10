@@ -934,11 +934,11 @@ export interface Page {
                         items?:
                           | {
                               responsiveWidth?: {
-                                base?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
-                                sm?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
-                                md?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
-                                lg?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
-                                xl?: ('auto' | 1 | 2 | 3 | 4 | 6 | 8 | 9 | 12) | null;
+                                base?: ('auto' | '1' | '2' | '3' | '4' | '6' | '8' | '9' | '12') | null;
+                                sm?: ('auto' | '1' | '2' | '3' | '4' | '6' | '8' | '9' | '12') | null;
+                                md?: ('auto' | '1' | '2' | '3' | '4' | '6' | '8' | '9' | '12') | null;
+                                lg?: ('auto' | '1' | '2' | '3' | '4' | '6' | '8' | '9' | '12') | null;
+                                xl?: ('auto' | '1' | '2' | '3' | '4' | '6' | '8' | '9' | '12') | null;
                               };
                               content?:
                                 | (
@@ -1849,24 +1849,6 @@ export interface PayloadMcpApiKey {
    * The purpose of the API key.
    */
   description?: string | null;
-  posts?: {
-    /**
-     * Allow clients to find posts.
-     */
-    find?: boolean | null;
-    /**
-     * Allow clients to create posts.
-     */
-    create?: boolean | null;
-    /**
-     * Allow clients to update posts.
-     */
-    update?: boolean | null;
-    /**
-     * Allow clients to delete posts.
-     */
-    delete?: boolean | null;
-  };
   pages?: {
     /**
      * Allow clients to find pages.
@@ -3465,14 +3447,6 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
   user?: T;
   label?: T;
   description?: T;
-  posts?:
-    | T
-    | {
-        find?: T;
-        create?: T;
-        update?: T;
-        delete?: T;
-      };
   pages?:
     | T
     | {

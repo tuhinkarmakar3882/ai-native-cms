@@ -26,59 +26,58 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const widthTokens = [
+export const widthOptions = [
   { label: 'Auto', value: 'auto' },
-  { label: '1 Column', value: 1 },
-  { label: '2 Columns', value: 2 },
-  { label: '3 Columns', value: 3 },
-  { label: '4 Columns', value: 4 },
-  { label: '6 Columns (Half)', value: 6 },
-  { label: '8 Columns', value: 8 },
-  { label: '9 Columns', value: 9 },
-  { label: '12 Columns (Full)', value: 12 },
+  { label: '1 Col', value: '1' },
+  { label: '2 Col', value: '2' },
+  { label: '3 Col', value: '3' },
+  { label: '4 Col', value: '4' },
+  { label: '6 Col (½)', value: '6' },
+  { label: '8 Col', value: '8' },
+  { label: '9 Col', value: '9' },
+  { label: '12 Col (Full)', value: '12' },
 ]
 export const ResponsiveWidthField: Field = {
   name: 'responsiveWidth',
   label: 'Width',
   type: 'group',
-
   fields: [
     {
       name: 'base',
       label: 'Default',
       type: 'select',
-      defaultValue: 12,
-      options: widthTokens,
+      defaultValue: '12',
+      options: widthOptions,
     },
 
     {
       type: 'collapsible',
-      label: 'Responsive Overrides',
+      label: 'Responsive',
 
       fields: [
         {
           name: 'sm',
-          label: 'Small',
+          label: 'SM',
           type: 'select',
-          options: widthTokens,
+          options: widthOptions,
         },
         {
           name: 'md',
-          label: 'Medium',
+          label: 'MD',
           type: 'select',
-          options: widthTokens,
+          options: widthOptions,
         },
         {
           name: 'lg',
-          label: 'Large',
+          label: 'LG',
           type: 'select',
-          options: widthTokens,
+          options: widthOptions,
         },
         {
           name: 'xl',
           label: 'XL',
           type: 'select',
-          options: widthTokens,
+          options: widthOptions,
         },
       ],
     },
