@@ -10,7 +10,7 @@ import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post } from '@/payload-types'
+import { Page } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { mcpPlugin } from '@payloadcms/plugin-mcp'
@@ -104,7 +104,7 @@ export const plugins: Plugin[] = [
     },
   }),
   vercelBlobStorage({
-    enabled: false,
+    enabled: process.env.ENABLE_VERCEL_BLOB_STORAGE === 'true',
     collections: {
       media: true,
     },
