@@ -32,6 +32,7 @@ import { TimelineBlock } from '@/blocks/Timeline/config'
 import { RevealOnScrollBlock } from '@/blocks/Animations/RevealOnScroll'
 import { StickyScrollSectionBlock } from '@/blocks/Animations/StickyScrollSection'
 import { ParallaxMediaBlock } from '@/blocks/Animations/ParallaxMedia'
+import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -125,6 +126,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 RevealOnScrollBlock,
                 StickyScrollSectionBlock,
                 ParallaxMediaBlock,
+                StaggerListBlock,
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,

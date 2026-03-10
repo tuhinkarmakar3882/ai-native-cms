@@ -16,6 +16,7 @@ import { BannerBlockComponent } from '@/blocks/Banner/Component'
 import { RevealOnScrollComponent } from '@/components/Designs/Animations/RevealOnScroll/Component'
 import { StickyScrollSectionComponent } from '@/components/Designs/Animations/StickyScrollSection/Component'
 import { ParallaxMediaComponent } from '@/components/Designs/Animations/ParallaxMedia/Component'
+import { StaggerListComponent } from '@/components/Designs/Animations/StaggerList/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -37,6 +38,7 @@ const AnimatedRendererMap = {
   revealOnScroll: RevealOnScrollComponent,
   stickyScrollSection: StickyScrollSectionComponent,
   parallaxMedia: ParallaxMediaComponent,
+  staggerList: StaggerListComponent,
 }
 
 export const AvailableRenderBlocks = {

@@ -562,6 +562,62 @@ export interface Page {
             blockType: 'parallaxMedia';
           }
         | {
+            trackId?: string | null;
+            heading?: string | null;
+            columns?: ('1' | '2' | '3') | null;
+            items?:
+              | (
+                  | {
+                      title: string;
+                      description?: string | null;
+                      /**
+                       * Lucide icon name (optional)
+                       */
+                      icon?: string | null;
+                      link?: {
+                        url?: string | null;
+                        newTab?: boolean | null;
+                        trackId?: string | null;
+                      };
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'featureItem';
+                    }
+                  | {
+                      name: string;
+                      price?: string | null;
+                      description?: string | null;
+                      isPopular?: boolean | null;
+                      features?:
+                        | {
+                            feature?: string | null;
+                            /**
+                             * Lucide icon name
+                             */
+                            icon?: string | null;
+                            id?: string | null;
+                          }[]
+                        | null;
+                      button?: {
+                        text?: string | null;
+                        url?: string | null;
+                        trackId?: string | null;
+                      };
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'featureCard';
+                    }
+                )[]
+              | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'staggerList';
+          }
+        | {
             container?:
               | {
                   width?: ('container' | 'wide' | 'full') | null;
@@ -2084,6 +2140,65 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                   };
               caption?: T;
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        staggerList?:
+          | T
+          | {
+              trackId?: T;
+              heading?: T;
+              columns?: T;
+              items?:
+                | T
+                | {
+                    featureItem?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          icon?: T;
+                          link?:
+                            | T
+                            | {
+                                url?: T;
+                                newTab?: T;
+                                trackId?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    featureCard?:
+                      | T
+                      | {
+                          name?: T;
+                          price?: T;
+                          description?: T;
+                          isPopular?: T;
+                          features?:
+                            | T
+                            | {
+                                feature?: T;
+                                icon?: T;
+                                id?: T;
+                              };
+                          button?:
+                            | T
+                            | {
+                                text?: T;
+                                url?: T;
+                                trackId?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
               containerSettings?:
                 | T
                 | {
