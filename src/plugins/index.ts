@@ -104,7 +104,7 @@ export const plugins: Plugin[] = [
     },
   }),
   vercelBlobStorage({
-    enabled: false,
+    enabled: true,
     collections: {
       media: true,
     },
@@ -112,9 +112,6 @@ export const plugins: Plugin[] = [
   }),
   mcpPlugin({
     collections: {
-      posts: {
-        enabled: true,
-      },
       pages: {
         enabled: true,
       },
