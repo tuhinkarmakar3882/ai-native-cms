@@ -34,6 +34,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import { cn } from '@/utilities/ui'
 import { DynamicIcon } from 'lucide-react/dynamic'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { EmbedAnythingBlockComponent } from '@/components/Designs/EmbedAnything/Component'
 
 export const TextAtomComponent = ({ content }) => (
   <div className="prose max-w-none">
@@ -251,4 +252,5 @@ export const AtomicRendererMap = {
   videoAtom: VideoAtomComponent,
   spacerAtom: SpacerAtomComponent,
   alignerAtom: AlignerAtomComponent,
+  embedAnything: EmbedAnythingBlockComponent,
 }

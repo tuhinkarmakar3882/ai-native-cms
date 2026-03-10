@@ -19,6 +19,7 @@ import {
   VideoAtom,
 } from '@/blocks/Composable/Atoms/config'
 import { FormBlock } from '@/blocks/Form/config'
+import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 
 export const AtomBlocks: Block[] = [
   AccordionAtom,
@@ -39,4 +40,5 @@ export const AtomBlocks: Block[] = [
   TextAtom,
   VideoAtom,
   FormBlock,
+  EmbedAnythingBlock,
 ]

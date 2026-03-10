@@ -36,6 +36,7 @@ import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
 import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
 import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
 import { ClipPathMorphBlock } from '@/blocks/Animations/ClipPathMorphBlock'
+import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -126,16 +127,17 @@ export const Pages: CollectionConfig<'pages'> = {
                 TimelineBlock,
 
                 // Animated Blocks
-                RevealOnScrollBlock,
-                StickyScrollSectionBlock,
-                ParallaxMediaBlock,
-                StaggerListBlock,
                 AppleStoryBlock,
                 CinematicTextBlock,
                 ClipPathMorphBlock,
+                ParallaxMediaBlock,
+                RevealOnScrollBlock,
+                StaggerListBlock,
+                StickyScrollSectionBlock,
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,
+                EmbedAnythingBlock,
               ],
             },
           ],

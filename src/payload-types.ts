@@ -476,177 +476,6 @@ export interface Page {
           }
         | {
             trackId?: string | null;
-            /**
-             * Each paragraph and heading will fade in as it enters the viewport.
-             */
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            containerSettings?: {
-              useContainer?: boolean | null;
-              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'revealOnScroll';
-          }
-        | {
-            trackId?: string | null;
-            title?: string | null;
-            stickySide?: ('left' | 'right') | null;
-            mediaWidth?: ('1/3' | '1/2' | '2/3') | null;
-            textAlignment?: ('left' | 'center' | 'right') | null;
-            showProgress?: boolean | null;
-            steps?:
-              | {
-                  heading: string;
-                  description?: {
-                    root: {
-                      type: string;
-                      children: {
-                        type: any;
-                        version: number;
-                        [k: string]: unknown;
-                      }[];
-                      direction: ('ltr' | 'rtl') | null;
-                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                      indent: number;
-                      version: number;
-                    };
-                    [k: string]: unknown;
-                  } | null;
-                  mediaType?: ('image' | 'video') | null;
-                  image?: (string | null) | Media;
-                  video?: (string | null) | Media;
-                  id?: string | null;
-                }[]
-              | null;
-            containerSettings?: {
-              useContainer?: boolean | null;
-              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'stickyScrollSection';
-          }
-        | {
-            trackId?: string | null;
-            mediaType: 'image' | 'video';
-            image?: (string | null) | Media;
-            video?: (string | null) | Media;
-            height?: ('small' | 'medium' | 'large' | 'full') | null;
-            /**
-             * How much the media moves relative to scroll.
-             */
-            parallaxIntensity?: ('subtle' | 'medium' | 'strong') | null;
-            parallaxDirection?: ('up' | 'down') | null;
-            overlay?: {
-              enabled?: boolean | null;
-              color?: ('dark' | 'darker' | 'light' | 'primary') | null;
-              opacity?: ('10' | '25' | '50' | '75' | '90') | null;
-            };
-            text?: {
-              heading?: string | null;
-              description?: {
-                root: {
-                  type: string;
-                  children: {
-                    type: any;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
-                [k: string]: unknown;
-              } | null;
-              button?: {
-                label?: string | null;
-                link?: string | null;
-                trackId?: string | null;
-              };
-            };
-            caption?: string | null;
-            containerSettings?: {
-              useContainer?: boolean | null;
-              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'parallaxMedia';
-          }
-        | {
-            trackId?: string | null;
-            heading?: string | null;
-            columns?: ('1' | '2' | '3') | null;
-            items?:
-              | (
-                  | {
-                      title: string;
-                      description?: string | null;
-                      /**
-                       * Lucide icon name (optional)
-                       */
-                      icon?: string | null;
-                      link?: {
-                        url?: string | null;
-                        newTab?: boolean | null;
-                        trackId?: string | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'featureItem';
-                    }
-                  | {
-                      name: string;
-                      price?: string | null;
-                      description?: string | null;
-                      isPopular?: boolean | null;
-                      features?:
-                        | {
-                            feature?: string | null;
-                            /**
-                             * Lucide icon name
-                             */
-                            icon?: string | null;
-                            id?: string | null;
-                          }[]
-                        | null;
-                      button?: {
-                        text?: string | null;
-                        url?: string | null;
-                        trackId?: string | null;
-                      };
-                      id?: string | null;
-                      blockName?: string | null;
-                      blockType: 'featureCard';
-                    }
-                )[]
-              | null;
-            containerSettings?: {
-              useContainer?: boolean | null;
-              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'staggerList';
-          }
-        | {
-            trackId?: string | null;
             scenes?:
               | {
                   heading: string;
@@ -917,6 +746,177 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'clipPathMorph';
+          }
+        | {
+            trackId?: string | null;
+            mediaType: 'image' | 'video';
+            image?: (string | null) | Media;
+            video?: (string | null) | Media;
+            height?: ('small' | 'medium' | 'large' | 'full') | null;
+            /**
+             * How much the media moves relative to scroll.
+             */
+            parallaxIntensity?: ('subtle' | 'medium' | 'strong') | null;
+            parallaxDirection?: ('up' | 'down') | null;
+            overlay?: {
+              enabled?: boolean | null;
+              color?: ('dark' | 'darker' | 'light' | 'primary') | null;
+              opacity?: ('10' | '25' | '50' | '75' | '90') | null;
+            };
+            text?: {
+              heading?: string | null;
+              description?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              button?: {
+                label?: string | null;
+                link?: string | null;
+                trackId?: string | null;
+              };
+            };
+            caption?: string | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'parallaxMedia';
+          }
+        | {
+            trackId?: string | null;
+            /**
+             * Each paragraph and heading will fade in as it enters the viewport.
+             */
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'revealOnScroll';
+          }
+        | {
+            trackId?: string | null;
+            heading?: string | null;
+            columns?: ('1' | '2' | '3') | null;
+            items?:
+              | (
+                  | {
+                      title: string;
+                      description?: string | null;
+                      /**
+                       * Lucide icon name (optional)
+                       */
+                      icon?: string | null;
+                      link?: {
+                        url?: string | null;
+                        newTab?: boolean | null;
+                        trackId?: string | null;
+                      };
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'featureItem';
+                    }
+                  | {
+                      name: string;
+                      price?: string | null;
+                      description?: string | null;
+                      isPopular?: boolean | null;
+                      features?:
+                        | {
+                            feature?: string | null;
+                            /**
+                             * Lucide icon name
+                             */
+                            icon?: string | null;
+                            id?: string | null;
+                          }[]
+                        | null;
+                      button?: {
+                        text?: string | null;
+                        url?: string | null;
+                        trackId?: string | null;
+                      };
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'featureCard';
+                    }
+                )[]
+              | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'staggerList';
+          }
+        | {
+            trackId?: string | null;
+            title?: string | null;
+            stickySide?: ('left' | 'right') | null;
+            mediaWidth?: ('1/3' | '1/2' | '2/3') | null;
+            textAlignment?: ('left' | 'center' | 'right') | null;
+            showProgress?: boolean | null;
+            steps?:
+              | {
+                  heading: string;
+                  description?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  mediaType?: ('image' | 'video') | null;
+                  image?: (string | null) | Media;
+                  video?: (string | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stickyScrollSection';
           }
         | {
             container?:
@@ -1193,6 +1193,15 @@ export interface Page {
                                         blockType: 'videoAtom';
                                       }
                                     | FormBlock
+                                    | {
+                                        url: string;
+                                        caption?: string | null;
+                                        aspectRatio?: ('auto' | '16/9' | '4/3' | '1/1' | '21/9') | null;
+                                        lazy?: boolean | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'embedAnything';
+                                      }
                                   )[]
                                 | null;
                               id?: string | null;
@@ -1213,6 +1222,15 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'buildYourOwnSection';
+          }
+        | {
+            url: string;
+            caption?: string | null;
+            aspectRatio?: ('auto' | '16/9' | '4/3' | '1/1' | '21/9') | null;
+            lazy?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'embedAnything';
           }
       )[]
     | null;
@@ -2350,147 +2368,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        revealOnScroll?:
-          | T
-          | {
-              trackId?: T;
-              content?: T;
-              containerSettings?:
-                | T
-                | {
-                    useContainer?: T;
-                    containerSize?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        stickyScrollSection?:
-          | T
-          | {
-              trackId?: T;
-              title?: T;
-              stickySide?: T;
-              mediaWidth?: T;
-              textAlignment?: T;
-              showProgress?: T;
-              steps?:
-                | T
-                | {
-                    heading?: T;
-                    description?: T;
-                    mediaType?: T;
-                    image?: T;
-                    video?: T;
-                    id?: T;
-                  };
-              containerSettings?:
-                | T
-                | {
-                    useContainer?: T;
-                    containerSize?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        parallaxMedia?:
-          | T
-          | {
-              trackId?: T;
-              mediaType?: T;
-              image?: T;
-              video?: T;
-              height?: T;
-              parallaxIntensity?: T;
-              parallaxDirection?: T;
-              overlay?:
-                | T
-                | {
-                    enabled?: T;
-                    color?: T;
-                    opacity?: T;
-                  };
-              text?:
-                | T
-                | {
-                    heading?: T;
-                    description?: T;
-                    button?:
-                      | T
-                      | {
-                          label?: T;
-                          link?: T;
-                          trackId?: T;
-                        };
-                  };
-              caption?: T;
-              containerSettings?:
-                | T
-                | {
-                    useContainer?: T;
-                    containerSize?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        staggerList?:
-          | T
-          | {
-              trackId?: T;
-              heading?: T;
-              columns?: T;
-              items?:
-                | T
-                | {
-                    featureItem?:
-                      | T
-                      | {
-                          title?: T;
-                          description?: T;
-                          icon?: T;
-                          link?:
-                            | T
-                            | {
-                                url?: T;
-                                newTab?: T;
-                                trackId?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
-                        };
-                    featureCard?:
-                      | T
-                      | {
-                          name?: T;
-                          price?: T;
-                          description?: T;
-                          isPopular?: T;
-                          features?:
-                            | T
-                            | {
-                                feature?: T;
-                                icon?: T;
-                                id?: T;
-                              };
-                          button?:
-                            | T
-                            | {
-                                text?: T;
-                                url?: T;
-                                trackId?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              containerSettings?:
-                | T
-                | {
-                    useContainer?: T;
-                    containerSize?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
         appleStory?:
           | T
           | {
@@ -2698,6 +2575,147 @@ export interface PagesSelect<T extends boolean = true> {
                                 blockName?: T;
                               };
                         };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        parallaxMedia?:
+          | T
+          | {
+              trackId?: T;
+              mediaType?: T;
+              image?: T;
+              video?: T;
+              height?: T;
+              parallaxIntensity?: T;
+              parallaxDirection?: T;
+              overlay?:
+                | T
+                | {
+                    enabled?: T;
+                    color?: T;
+                    opacity?: T;
+                  };
+              text?:
+                | T
+                | {
+                    heading?: T;
+                    description?: T;
+                    button?:
+                      | T
+                      | {
+                          label?: T;
+                          link?: T;
+                          trackId?: T;
+                        };
+                  };
+              caption?: T;
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        revealOnScroll?:
+          | T
+          | {
+              trackId?: T;
+              content?: T;
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        staggerList?:
+          | T
+          | {
+              trackId?: T;
+              heading?: T;
+              columns?: T;
+              items?:
+                | T
+                | {
+                    featureItem?:
+                      | T
+                      | {
+                          title?: T;
+                          description?: T;
+                          icon?: T;
+                          link?:
+                            | T
+                            | {
+                                url?: T;
+                                newTab?: T;
+                                trackId?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    featureCard?:
+                      | T
+                      | {
+                          name?: T;
+                          price?: T;
+                          description?: T;
+                          isPopular?: T;
+                          features?:
+                            | T
+                            | {
+                                feature?: T;
+                                icon?: T;
+                                id?: T;
+                              };
+                          button?:
+                            | T
+                            | {
+                                text?: T;
+                                url?: T;
+                                trackId?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stickyScrollSection?:
+          | T
+          | {
+              trackId?: T;
+              title?: T;
+              stickySide?: T;
+              mediaWidth?: T;
+              textAlignment?: T;
+              showProgress?: T;
+              steps?:
+                | T
+                | {
+                    heading?: T;
+                    description?: T;
+                    mediaType?: T;
+                    image?: T;
+                    video?: T;
+                    id?: T;
+                  };
+              containerSettings?:
+                | T
+                | {
+                    useContainer?: T;
+                    containerSize?: T;
                   };
               id?: T;
               blockName?: T;
@@ -2952,6 +2970,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               blockName?: T;
                                                             };
                                                         formBlock?: T | FormBlockSelect<T>;
+                                                        embedAnything?:
+                                                          | T
+                                                          | {
+                                                              url?: T;
+                                                              caption?: T;
+                                                              aspectRatio?: T;
+                                                              lazy?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                       };
                                                   id?: T;
                                                   blockName?: T;
@@ -2965,6 +2993,16 @@ export interface PagesSelect<T extends boolean = true> {
                           blockName?: T;
                         };
                   };
+              id?: T;
+              blockName?: T;
+            };
+        embedAnything?:
+          | T
+          | {
+              url?: T;
+              caption?: T;
+              aspectRatio?: T;
+              lazy?: T;
               id?: T;
               blockName?: T;
             };
