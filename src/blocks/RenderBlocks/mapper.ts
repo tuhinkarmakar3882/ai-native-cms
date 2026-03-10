@@ -19,6 +19,7 @@ import { ParallaxMediaComponent } from '@/components/Designs/Animations/Parallax
 import { StaggerListComponent } from '@/components/Designs/Animations/StaggerList/Component'
 import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleStory/Component'
 import { CinematicTextComponent } from '@/components/Designs/Animations/CinematicText/Component'
+import { ClipPathMorphBlockComponent } from '@/components/Designs/Animations/ClipPathMorph/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -43,6 +44,7 @@ const AnimatedRendererMap = {
   staggerList: StaggerListComponent,
   appleStory: AppleStoryBlockComponent,
   cinematicText: CinematicTextComponent,
+  clipPathMorph: ClipPathMorphBlockComponent,
 }
 
 export const AvailableRenderBlocks = {

@@ -35,6 +35,7 @@ import { ParallaxMediaBlock } from '@/blocks/Animations/ParallaxMedia'
 import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
 import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
 import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
+import { ClipPathMorphBlock } from '@/blocks/Animations/ClipPathMorphBlock'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -131,6 +132,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 StaggerListBlock,
                 AppleStoryBlock,
                 CinematicTextBlock,
+                ClipPathMorphBlock,
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,

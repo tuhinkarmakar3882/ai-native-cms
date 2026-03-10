@@ -36,7 +36,6 @@ export const HeroBannerBlock: Block = {
       type: 'upload',
       relationTo: 'media',
       label: 'Background / Side Image',
-      required: true,
     },
     {
       name: 'actions',

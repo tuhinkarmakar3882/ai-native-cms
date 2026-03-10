@@ -84,14 +84,14 @@ export const HeroBannerComponent: React.FC<HeroBannerProps> = ({
   if (variant === 'full') {
     const sectionContent = (
       <StyledSection
-        className="relative overflow-hidden bg-background mb-8"
+        className={`relative overflow-hidden mb-8 ${backdrop && 'bg-background'}`}
         data-track-section={sectionId}
       >
         {image && (
           <Image className="bg-image" src={image.url} width={1200} height={800} alt="Dashboard" />
         )}
 
-        {image && <div className="layer" />}
+        {image && backdrop && <div className="layer" />}
 
         <div className="container flex flex-col items-center text-center gap-8 py-16">
           {pillText && (

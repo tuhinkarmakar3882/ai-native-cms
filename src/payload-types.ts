@@ -319,7 +319,7 @@ export interface Page {
             variant: 'full' | 'split';
             heading: string;
             subheading?: string | null;
-            image: string | Media;
+            image?: (string | null) | Media;
             actions?:
               | {
                   label: string;
@@ -704,6 +704,219 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'cinematicText';
+          }
+        | {
+            trackId?: string | null;
+            media: string | Media;
+            mediaType?: ('image' | 'video') | null;
+            startClipPath?:
+              | (
+                  | 'circle(0% at 50% 50%)'
+                  | 'inset(0% 0% 0% 0%)'
+                  | 'inset(0% 0% 100% 0%)'
+                  | 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)'
+                )
+              | null;
+            endClipPath?:
+              | ('circle(150% at 50% 50%)' | 'inset(0% 0% 0% 0%)' | 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)')
+              | null;
+            animationDuration?: number | null;
+            easing?: ('power2.inOut' | 'power3.inOut' | 'expo.scaleOut') | null;
+            overlayStart?: {
+              type?: ('none' | 'color' | 'richText' | 'block') | null;
+              color?: string | null;
+              richText?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              block?:
+                | (
+                    | {
+                        trackId?: string | null;
+                        heading?: string | null;
+                        plans?:
+                          | {
+                              name: string;
+                              price: string;
+                              description?: string | null;
+                              isPopular?: boolean | null;
+                              features?:
+                                | {
+                                    feature?: string | null;
+                                    /**
+                                     * Optional Lucide icon name (defaults to Check)
+                                     */
+                                    icon?: string | null;
+                                    id?: string | null;
+                                  }[]
+                                | null;
+                              button?: {
+                                text?: string | null;
+                                link?: string | null;
+                                trackId?: string | null;
+                              };
+                              id?: string | null;
+                            }[]
+                          | null;
+                        containerSettings?: {
+                          useContainer?: boolean | null;
+                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'pricingTable';
+                      }
+                    | {
+                        variant: 'full' | 'split';
+                        heading: string;
+                        subheading?: string | null;
+                        image?: (string | null) | Media;
+                        actions?:
+                          | {
+                              label: string;
+                              link: string;
+                              style?: ('default' | 'outline' | 'ghost') | null;
+                              /**
+                               * Optional unique identifier for click tracking
+                               */
+                              trackId?: string | null;
+                              id?: string | null;
+                            }[]
+                          | null;
+                        pillText?: string | null;
+                        /**
+                         * Adds a dark translucent overlay and blur effect over the background image
+                         */
+                        backdrop?: boolean | null;
+                        splitSettings?: {
+                          theme?: ('light' | 'dark') | null;
+                          imagePosition?: ('left' | 'right') | null;
+                        };
+                        /**
+                         * Optional unique identifier for this hero section
+                         */
+                        sectionId?: string | null;
+                        containerSettings?: {
+                          useContainer?: boolean | null;
+                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'heroBanner';
+                      }
+                  )[]
+                | null;
+            };
+            overlayEnd?: {
+              type?: ('none' | 'color' | 'richText' | 'block') | null;
+              color?: string | null;
+              richText?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              block?:
+                | (
+                    | {
+                        trackId?: string | null;
+                        heading?: string | null;
+                        plans?:
+                          | {
+                              name: string;
+                              price: string;
+                              description?: string | null;
+                              isPopular?: boolean | null;
+                              features?:
+                                | {
+                                    feature?: string | null;
+                                    /**
+                                     * Optional Lucide icon name (defaults to Check)
+                                     */
+                                    icon?: string | null;
+                                    id?: string | null;
+                                  }[]
+                                | null;
+                              button?: {
+                                text?: string | null;
+                                link?: string | null;
+                                trackId?: string | null;
+                              };
+                              id?: string | null;
+                            }[]
+                          | null;
+                        containerSettings?: {
+                          useContainer?: boolean | null;
+                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'pricingTable';
+                      }
+                    | {
+                        variant: 'full' | 'split';
+                        heading: string;
+                        subheading?: string | null;
+                        image?: (string | null) | Media;
+                        actions?:
+                          | {
+                              label: string;
+                              link: string;
+                              style?: ('default' | 'outline' | 'ghost') | null;
+                              /**
+                               * Optional unique identifier for click tracking
+                               */
+                              trackId?: string | null;
+                              id?: string | null;
+                            }[]
+                          | null;
+                        pillText?: string | null;
+                        /**
+                         * Adds a dark translucent overlay and blur effect over the background image
+                         */
+                        backdrop?: boolean | null;
+                        splitSettings?: {
+                          theme?: ('light' | 'dark') | null;
+                          imagePosition?: ('left' | 'right') | null;
+                        };
+                        /**
+                         * Optional unique identifier for this hero section
+                         */
+                        sectionId?: string | null;
+                        containerSettings?: {
+                          useContainer?: boolean | null;
+                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'heroBanner';
+                      }
+                  )[]
+                | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'clipPathMorph';
           }
         | {
             container?:
@@ -2327,6 +2540,183 @@ export interface PagesSelect<T extends boolean = true> {
               scrollScrub?: T;
               backgroundColor?: T;
               textColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        clipPathMorph?:
+          | T
+          | {
+              trackId?: T;
+              media?: T;
+              mediaType?: T;
+              startClipPath?: T;
+              endClipPath?: T;
+              animationDuration?: T;
+              easing?: T;
+              overlayStart?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    richText?: T;
+                    block?:
+                      | T
+                      | {
+                          pricingTable?:
+                            | T
+                            | {
+                                trackId?: T;
+                                heading?: T;
+                                plans?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      price?: T;
+                                      description?: T;
+                                      isPopular?: T;
+                                      features?:
+                                        | T
+                                        | {
+                                            feature?: T;
+                                            icon?: T;
+                                            id?: T;
+                                          };
+                                      button?:
+                                        | T
+                                        | {
+                                            text?: T;
+                                            link?: T;
+                                            trackId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                containerSettings?:
+                                  | T
+                                  | {
+                                      useContainer?: T;
+                                      containerSize?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                          heroBanner?:
+                            | T
+                            | {
+                                variant?: T;
+                                heading?: T;
+                                subheading?: T;
+                                image?: T;
+                                actions?:
+                                  | T
+                                  | {
+                                      label?: T;
+                                      link?: T;
+                                      style?: T;
+                                      trackId?: T;
+                                      id?: T;
+                                    };
+                                pillText?: T;
+                                backdrop?: T;
+                                splitSettings?:
+                                  | T
+                                  | {
+                                      theme?: T;
+                                      imagePosition?: T;
+                                    };
+                                sectionId?: T;
+                                containerSettings?:
+                                  | T
+                                  | {
+                                      useContainer?: T;
+                                      containerSize?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                  };
+              overlayEnd?:
+                | T
+                | {
+                    type?: T;
+                    color?: T;
+                    richText?: T;
+                    block?:
+                      | T
+                      | {
+                          pricingTable?:
+                            | T
+                            | {
+                                trackId?: T;
+                                heading?: T;
+                                plans?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      price?: T;
+                                      description?: T;
+                                      isPopular?: T;
+                                      features?:
+                                        | T
+                                        | {
+                                            feature?: T;
+                                            icon?: T;
+                                            id?: T;
+                                          };
+                                      button?:
+                                        | T
+                                        | {
+                                            text?: T;
+                                            link?: T;
+                                            trackId?: T;
+                                          };
+                                      id?: T;
+                                    };
+                                containerSettings?:
+                                  | T
+                                  | {
+                                      useContainer?: T;
+                                      containerSize?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                          heroBanner?:
+                            | T
+                            | {
+                                variant?: T;
+                                heading?: T;
+                                subheading?: T;
+                                image?: T;
+                                actions?:
+                                  | T
+                                  | {
+                                      label?: T;
+                                      link?: T;
+                                      style?: T;
+                                      trackId?: T;
+                                      id?: T;
+                                    };
+                                pillText?: T;
+                                backdrop?: T;
+                                splitSettings?:
+                                  | T
+                                  | {
+                                      theme?: T;
+                                      imagePosition?: T;
+                                    };
+                                sectionId?: T;
+                                containerSettings?:
+                                  | T
+                                  | {
+                                      useContainer?: T;
+                                      containerSize?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                  };
               id?: T;
               blockName?: T;
             };
