@@ -16,6 +16,7 @@ interface CardItem {
 interface BentoGridProps {
   trackId?: string
   title?: string
+  description?: string
   cards?: CardItem[]
   containerSettings?: { useContainer?: boolean; containerSize?: 'sm' | 'md' | 'lg' | 'full' }
 }
