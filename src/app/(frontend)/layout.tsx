@@ -8,8 +8,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,8 +23,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Footer />
         </Providers>
         <GoogleAnalytics gaId="G-8BYQXW7HQF" />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   )

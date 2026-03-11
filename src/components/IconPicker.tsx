@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo, useRef, useEffect } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { useField } from '@payloadcms/ui'
 import { DynamicIcon } from 'lucide-react/dynamic'
 import { LucideIconsList } from '@/constants/icons'

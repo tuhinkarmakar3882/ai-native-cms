@@ -37,7 +37,6 @@ import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
 import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
 import { ClipPathMorphBlock } from '@/blocks/Animations/ClipPathMorphBlock'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
-import { buildFullSlug } from '@/utilities/buildFullSlug'
 import { updateChildSlugs } from '@/collections/Pages/hooks/updateChildSlugs'
 
 export const Pages: CollectionConfig<'pages'> = {

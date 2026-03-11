@@ -2,6 +2,7 @@ import { Block } from 'payload'
 import {
   AlignFeature,
   BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
   ChecklistFeature,
   EXPERIMENTAL_TableFeature,
@@ -22,7 +23,6 @@ import {
   UnderlineFeature,
   UnorderedListFeature,
   UploadFeature,
-  BlocksFeature,
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 import { PricingBlock } from '@/blocks/Pricing/config' // adjust path

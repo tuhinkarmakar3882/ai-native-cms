@@ -62,7 +62,6 @@ export async function POST(req: Request) {
     editorConfig,
     markdown: markdown,
   })
-  console.log({ lexicalJSON })
 
   return NextResponse.json(lexicalJSON)
 }

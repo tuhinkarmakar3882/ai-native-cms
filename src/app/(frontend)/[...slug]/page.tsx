@@ -61,16 +61,12 @@ export default async function Page({
   const isExperimentRequest = headerList.get('x-is-experiment') === 'true'
 
   const [params, searchParams] = await Promise.all([paramsPromise, searchParamsPromise])
-  const { slug = ['home'] } = params
+  const { slug = 'home' } = params
   const { locale = 'en' } = searchParams
 
-  console.log({
-    slug,
-    params,
-    searchParams,
-  })
+  const slugArray = Array.isArray(slug) ? slug : [slug]
 
-  const decodedSlug = decodeURIComponent(slug.join('/'))
+  const decodedSlug = decodeURIComponent(slugArray.join('/'))
   const page = await queryPageBySlug({
     slug: decodedSlug,
     locale,

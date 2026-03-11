@@ -34,7 +34,6 @@ export const TableComponent = ({ title, sourceType, headers, rows, apiUrl, colum
         .then((data) => {
           // Handle both Array directly or Object with data array
           const arrayData = Array.isArray(data) ? data : data.data || data.results || []
-          console.log(arrayData)
           setApiData(arrayData)
           setLoading(false)
         })

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
 @config '../../../tailwind.config.mjs';
 
 @source inline("col-span-{1..12}");

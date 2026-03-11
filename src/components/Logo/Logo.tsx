@@ -20,7 +20,7 @@ export const Logo = (props: Props) => {
       width={193}
       height={34}
       loading={loading}
-      fetchPriority={priority}
+      fetchPriority={priority.toString()}
       decoding="async"
       className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
       src="https://eq-cdn.equiti-me.com/website/documents/equiti-company-logo.svg"

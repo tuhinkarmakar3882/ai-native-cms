@@ -7,7 +7,6 @@ type Args = {
 }
 
 export default async function HomePage({ searchParams }: Args) {
-  console.log('It came here!')
   return PageTemplate({
     params: Promise.resolve({ slug: 'home' }),
     searchParams,

@@ -50,11 +50,6 @@ export async function translateWithGemini(text: string, targetLocale: string) {
 
 export async function POST(req: Request) {
   const { docId, blocks, targets } = await req.json()
-  console.log({
-    docId,
-    blocks,
-    targets,
-  })
   const payload = await getPayload({ config })
 
   const editorConfig = await sanitizeServerEditorConfig(
@@ -89,7 +84,6 @@ export async function POST(req: Request) {
     // 2. Map through the blocks provided by the frontend
     const translatedBlocks = await Promise.all(
       blocks.map(async (block) => {
-        console.log({ block })
         // Only translate blocks that have richText or text fields
         // You can check block.blockType here to target specific fields
         if (block.blockType === 'richtext-content') {
@@ -98,12 +92,8 @@ export async function POST(req: Request) {
             editorConfig,
           })
 
-          console.log('To be translated', { markdown, locale })
-
           // 3. Send to Gemini (Utility function below)
           const translatedMarkdown = await translateWithGemini(markdown, locale)
-
-          console.log({ translatedMarkdown })
 
           // 4. Convert back to Lexical
           block.content = convertMarkdownToLexical({
