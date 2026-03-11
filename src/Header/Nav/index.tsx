@@ -13,6 +13,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 import { DynamicIcon } from 'lucide-react/dynamic'
+import { Button } from '@/components/ui'
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
@@ -38,8 +39,11 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
           return (
             <NavigationMenuItem key={i}>
-              <NavigationMenuTrigger className="text-sm font-medium">
-                {item.link?.label}
+              <NavigationMenuTrigger
+                className="text-sm font-medium"
+                style={{ background: 'transparent' }}
+              >
+                <Button variant={item.link?.appearance}>{item.link?.label}</Button>
               </NavigationMenuTrigger>
 
               <NavigationMenuContent>

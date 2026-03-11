@@ -24,7 +24,9 @@ export const Header: GlobalConfig = {
       },
 
       fields: [
-        link({ appearances: false }),
+        link({
+          appearances: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+        }),
 
         {
           name: 'description',

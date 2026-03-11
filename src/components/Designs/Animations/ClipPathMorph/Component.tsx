@@ -3,9 +3,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import RichText from '@/components/RichText'
-
-import { HeroBannerComponent } from '@/components/Designs/HeroBanner/Component'
-import { PricingComponent } from '@/components/Designs/Pricing/Component'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 
 interface OverlayContent {
   type: 'none' | 'color' | 'richText'
@@ -21,14 +19,6 @@ interface Props {
   endRadius?: number
   overlayStart?: OverlayContent
   overlayEnd?: OverlayContent
-}
-
-const getBlockComponent = (blockType: string) => {
-  const map: Record<string, React.ComponentType<any>> = {
-    pricingTable: PricingComponent,
-    heroBanner: HeroBannerComponent,
-  }
-  return map[blockType] || null
 }
 
 export const ClipPathMorphBlockComponent: React.FC<Props> = ({
@@ -144,14 +134,13 @@ export const ClipPathMorphBlockComponent: React.FC<Props> = ({
 
     if (overlay.type === 'block' && overlay.block && overlay.block.length > 0) {
       const block = overlay.block[0]
-      const BlockComponent = getBlockComponent(block.blockType) // you'll need a mapping
       return (
         <div
           ref={ref}
           className="absolute inset-0 flex items-center justify-center p-8 text-white"
           style={{ opacity: initialOpacity }}
         >
-          <BlockComponent {...block} />
+          <RenderBlocks blocks={[block]} />
         </div>
       )
     }

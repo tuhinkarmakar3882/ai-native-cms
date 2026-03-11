@@ -26,7 +26,11 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 import { PricingBlock } from '@/blocks/Pricing/config' // adjust path
-import { HeroBannerBlock } from '@/blocks/HeroBanner/config' // adjust path
+import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
+import { BuildYourOwnSectionBlock } from '@/blocks/Composable/config'
+import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
+
+const NestedBlocks = [PricingBlock, HeroBannerBlock, BuildYourOwnSectionBlock, StaggerListBlock]
 
 export const ClipPathMorphBlock: Block = {
   slug: 'clipPathMorph',
@@ -164,11 +168,7 @@ export const ClipPathMorphBlock: Block = {
           type: 'blocks',
           label: 'Block Content',
           maxRows: 1,
-          blocks: [
-            PricingBlock,
-            HeroBannerBlock,
-            // Add any other blocks you want to allow as overlays
-          ],
+          blocks: NestedBlocks,
           admin: { condition: (_, siblingData) => siblingData?.type === 'block' },
         },
       ],
@@ -238,11 +238,7 @@ export const ClipPathMorphBlock: Block = {
           type: 'blocks',
           label: 'Block Content',
           maxRows: 1,
-          blocks: [
-            PricingBlock,
-            HeroBannerBlock,
-            // Add any other blocks you want to allow as overlays
-          ],
+          blocks: NestedBlocks,
           admin: { condition: (_, siblingData) => siblingData?.type === 'block' },
         },
       ],
