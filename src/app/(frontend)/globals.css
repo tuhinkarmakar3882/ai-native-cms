@@ -10,6 +10,7 @@
 @source inline("md:col-span-{1..12}");
 @source inline("lg:col-span-{1..12}");
 @source inline("xl:col-span-{1..12}");
+@source inline("opacity-{1..100}");
 
 
 @custom-variant dark (&:is([data-theme='dark'] *));
