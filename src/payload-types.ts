@@ -324,7 +324,7 @@ export interface Page {
               | {
                   label: string;
                   link: string;
-                  style?: ('default' | 'outline' | 'ghost') | null;
+                  style?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
                   /**
                    * Optional unique identifier for click tracking
                    */
@@ -615,7 +615,7 @@ export interface Page {
                           | {
                               label: string;
                               link: string;
-                              style?: ('default' | 'outline' | 'ghost') | null;
+                              style?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
                               /**
                                * Optional unique identifier for click tracking
                                */
@@ -711,7 +711,7 @@ export interface Page {
                           | {
                               label: string;
                               link: string;
-                              style?: ('default' | 'outline' | 'ghost') | null;
+                              style?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
                               /**
                                * Optional unique identifier for click tracking
                                */
@@ -3679,7 +3679,7 @@ export interface Header {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
         };
         id?: string | null;
       }[]
@@ -3708,6 +3708,10 @@ export interface Footer {
                 } | null;
                 url?: string | null;
                 label?: string | null;
+                /**
+                 * Choose how the link should be rendered.
+                 */
+                appearance?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
               };
               id?: string | null;
             }[]
@@ -3849,6 +3853,7 @@ export interface FooterSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
+                    appearance?: T;
                   };
               id?: T;
             };

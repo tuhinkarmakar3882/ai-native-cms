@@ -57,8 +57,11 @@ export const HeroBannerBlock: Block = {
           type: 'select',
           options: [
             { label: 'Default', value: 'default' },
+            { label: 'Destructive', value: 'destructive' },
             { label: 'Outline', value: 'outline' },
+            { label: 'Secondary', value: 'secondary' },
             { label: 'Ghost', value: 'ghost' },
+            { label: 'Link', value: 'link' },
           ],
           defaultValue: 'default',
         },

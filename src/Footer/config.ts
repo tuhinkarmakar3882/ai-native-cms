@@ -40,7 +40,7 @@ export const Footer: GlobalConfig = {
           type: 'array',
           fields: [
             link({
-              appearances: false,
+              appearances: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
             }),
           ],
         },

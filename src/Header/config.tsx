@@ -89,7 +89,11 @@ export const Header: GlobalConfig = {
       admin: {
         initCollapsed: true,
       },
-      fields: [link({ appearances: ['default', 'outline'] })],
+      fields: [
+        link({
+          appearances: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+        }),
+      ],
     },
   ],
 

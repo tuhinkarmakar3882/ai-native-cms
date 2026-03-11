@@ -120,14 +120,7 @@ export const HeroBannerComponent: React.FC<HeroBannerProps> = ({
           <div className="flex gap-4">
             {actions?.map((btn, i) => (
               <Button key={i} variant={btn.style} size="lg" asChild data-track-id={btn?.trackId}>
-                <a
-                  href={btn.link}
-                  style={{
-                    color: btn.style === 'outline' ? 'black' : null,
-                  }}
-                >
-                  {btn.label}
-                </a>
+                <a href={btn.link}>{btn.label}</a>
               </Button>
             ))}
           </div>
