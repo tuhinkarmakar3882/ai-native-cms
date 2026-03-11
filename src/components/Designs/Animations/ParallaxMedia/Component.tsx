@@ -23,7 +23,7 @@ interface Props {
   text?: {
     heading?: string
     description?: string
-    button?: { label?: string; link?: string; trackId?: string }
+    button?: { label?: string; link?: string; trackId?: string; variant?: string }
   }
   caption?: string
   containerSettings?: {
@@ -150,7 +150,12 @@ export const ParallaxMediaComponent: React.FC<Props> = ({
               <RichText enableGutter={false} enableProse={true} data={text.description} />
             )}
             {text.button?.label && text.button?.link && (
-              <Button variant="default" size="lg" asChild data-track-id={text.button.trackId}>
+              <Button
+                variant={text.button?.variant}
+                size="lg"
+                asChild
+                data-track-id={text.button.trackId}
+              >
                 <a href={text.button.link}>{text.button.label}</a>
               </Button>
             )}

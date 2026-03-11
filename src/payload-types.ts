@@ -1602,6 +1602,7 @@ export interface Page {
               button?: {
                 label?: string | null;
                 link?: string | null;
+                variant?: ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive') | null;
                 trackId?: string | null;
               };
             };
@@ -4116,6 +4117,7 @@ export interface PagesSelect<T extends boolean = true> {
                       | {
                           label?: T;
                           link?: T;
+                          variant?: T;
                           trackId?: T;
                         };
                   };

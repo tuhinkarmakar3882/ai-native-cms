@@ -191,6 +191,12 @@ export const ParallaxMediaBlock: Block = {
           fields: [
             { name: 'label', type: 'text' },
             { name: 'link', type: 'text' },
+            {
+              name: 'variant',
+              type: 'select',
+              options: ['default', 'secondary', 'outline', 'ghost', 'destructive'],
+              defaultValue: 'default',
+            },
             { name: 'trackId', type: 'text', label: 'Button Tracking ID' },
           ],
         },
