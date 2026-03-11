@@ -301,7 +301,16 @@ export const IconAtom: Block = {
   slug: 'iconAtom',
   dbName: 'at_icn',
   fields: [
-    { name: 'iconName', type: 'text', admin: { description: 'Lucide icon name' } },
+    {
+      name: 'iconName',
+      type: 'text',
+      admin: {
+        description: 'Lucide icon name',
+        components: {
+          Field: '@/components/IconPicker#IconPickerComponent',
+        },
+      },
+    },
     { name: 'size', type: 'number', defaultValue: 24 },
     {
       name: 'color',
