@@ -178,7 +178,7 @@ export const ClipPathMorphBlockComponent: React.FC<Props> = ({
           )}
         </div>
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/90" />
+        <div className="absolute inset-0 bg-black/80" />
 
         {renderOverlay(overlayStart, overlayStartRef, 1)}
         {renderOverlay(overlayEnd, overlayEndRef, 0)}
