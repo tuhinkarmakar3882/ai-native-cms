@@ -13,7 +13,6 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
     label: 'Outline',
     value: 'outline',
   },
-
   destructive: { label: 'Destructive', value: 'destructive' },
   secondary: { label: 'Secondary', value: 'secondary' },
   ghost: { label: 'Ghost', value: 'ghost' },
@@ -122,7 +121,14 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline]
+    let appearanceOptionsToUse = [
+      appearanceOptions.default,
+      appearanceOptions.outline,
+      appearanceOptions.destructive,
+      appearanceOptions.secondary,
+      appearanceOptions.ghost,
+      appearanceOptions.link,
+    ]
 
     if (appearances) {
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
@@ -134,7 +140,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       admin: {
         description: 'Choose how the link should be rendered.',
       },
-      defaultValue: 'default',
+      defaultValue: 'link',
       options: appearanceOptionsToUse,
     })
   }
