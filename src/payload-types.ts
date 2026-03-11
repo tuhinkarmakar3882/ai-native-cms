@@ -192,6 +192,7 @@ export interface Page {
         | {
             trackId?: string | null;
             title?: string | null;
+            description?: string | null;
             cards?:
               | {
                   /**
@@ -2959,6 +2960,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               trackId?: T;
               title?: T;
+              description?: T;
               cards?:
                 | T
                 | {

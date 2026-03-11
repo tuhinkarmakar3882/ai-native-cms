@@ -13,6 +13,7 @@ export const BentoGridBlock: Block = {
       required: false,
     },
     { name: 'title', type: 'text' },
+    { name: 'description', type: 'text' },
     {
       name: 'cards',
       type: 'array',

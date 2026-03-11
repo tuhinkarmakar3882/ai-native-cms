@@ -29,6 +29,7 @@ const spanClasses = {
 export const BentoGridComponent: React.FC<BentoGridProps> = ({
   trackId,
   title,
+  description,
   cards = [],
   containerSettings = { useContainer: true, containerSize: 'lg' },
 }) => {
@@ -36,7 +37,10 @@ export const BentoGridComponent: React.FC<BentoGridProps> = ({
 
   const gridContent = (
     <section className="py-20" data-track-section={trackId}>
-      {title && <h2 className="text-3xl font-bold mb-10">{title}</h2>}
+      <div className="mb-10 flex flex-col gap-4">
+        {title && <h2 className="text-3xl font-bold">{title}</h2>}
+        {description && <p className="text-sm text-muted-foreground">{description}</p>}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[200px] gap-4">
         {cards.map((card, i) => {
           const Icon = card.icon ? (
