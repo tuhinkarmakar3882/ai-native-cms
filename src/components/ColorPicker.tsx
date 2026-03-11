@@ -4,10 +4,10 @@ import React from 'react'
 import { useField } from '@payloadcms/ui'
 import { Input } from '@/components/ui/input'
 
-export const ColorInputComponent: React.FC<any> = ({ path, field, ...rest }) => {
+export const ColorInputComponent: React.FC<any> = ({ path, field }) => {
   const { value, setValue } = useField<string>({ path })
 
-  const color = value || '#000000'
+  const color = value
 
   return (
     <div style={{ marginBottom: '1.5rem', width: field?.admin?.width || '100%' }}>

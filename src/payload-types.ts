@@ -1262,11 +1262,19 @@ export interface Page {
  */
 export interface BannerBlock {
   /**
-   * Unique identifier for this section (for analytics)
+   * Unique identifier for analytics tracking
    */
   trackId?: string | null;
-  style: 'info' | 'warning' | 'error' | 'success';
-  content: {
+  variant?: ('info' | 'success' | 'warning' | 'error') | null;
+  layout?: ('inline' | 'stacked') | null;
+  /**
+   * Optional Lucide icon name to display next to the link
+   */
+  icon?: string | null;
+  iconSize?: number | null;
+  iconColor?: string | null;
+  title?: string | null;
+  description?: {
     root: {
       type: string;
       children: {
@@ -1280,6 +1288,18 @@ export interface BannerBlock {
       version: number;
     };
     [k: string]: unknown;
+  } | null;
+  cta?:
+    | {
+        label: string;
+        href: string;
+        variant?: ('primary' | 'secondary' | 'ghost') | null;
+        id?: string | null;
+      }[]
+    | null;
+  customColors?: {
+    background?: string | null;
+    border?: string | null;
   };
   containerSettings?: {
     useContainer?: boolean | null;
@@ -3028,8 +3048,27 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface BannerBlockSelect<T extends boolean = true> {
   trackId?: T;
-  style?: T;
-  content?: T;
+  variant?: T;
+  layout?: T;
+  icon?: T;
+  iconSize?: T;
+  iconColor?: T;
+  title?: T;
+  description?: T;
+  cta?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        variant?: T;
+        id?: T;
+      };
+  customColors?:
+    | T
+    | {
+        background?: T;
+        border?: T;
+      };
   containerSettings?:
     | T
     | {

@@ -62,13 +62,12 @@ export const Header: GlobalConfig = {
                   type: 'number',
                   defaultValue: 20,
                   admin: {
-                    width: '33%',
+                    width: '30%',
                   },
                 },
                 {
                   name: 'iconColor',
                   type: 'text',
-                  defaultValue: '#000',
                   admin: {
                     width: '33%',
                     components: {
