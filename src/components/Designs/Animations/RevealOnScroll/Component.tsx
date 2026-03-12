@@ -63,7 +63,7 @@ export const RevealOnScrollComponent: React.FC<Props> = ({
 
   const contentElement = (
     <section ref={sectionRef} className="reveal-on-scroll my-8" data-track-section={trackId}>
-      <RichText data={content} />
+      <RichText data={content} enableGutter={false} />
     </section>
   )
 
