@@ -122,7 +122,7 @@ export const CinematicTextComponent = ({
         const delta = reveal - i
         const opacity = Math.max(0, Math.min(delta, 1))
 
-        const blur = (1 - opacity) * 12
+        const blur = 0 //(1 - opacity) * 12
         const y = (1 - opacity) * 40
 
         const el = word as HTMLElement

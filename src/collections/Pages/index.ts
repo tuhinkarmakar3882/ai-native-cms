@@ -113,21 +113,6 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [
-                // Premade Blocks
-                BannerBlock,
-                BentoGridBlock,
-                FAQBlock,
-                FeatureGridBlock,
-                FeatureTabsBlock,
-                FormBlock,
-                HeroBannerBlock,
-                MediaViewerBlock,
-                PricingBlock,
-                RichTextContentBlock,
-                TableBlock,
-                TestimonialBlock,
-                TimelineBlock,
-
                 // Animated Blocks
                 AnimatedStoryBlock,
                 AnimatedCinematicTextBlock,
@@ -139,7 +124,22 @@ export const Pages: CollectionConfig<'pages'> = {
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,
+
+                // Premade Blocks
+                BannerBlock,
+                BentoGridBlock,
                 EmbedAnythingBlock,
+                FAQBlock,
+                FeatureGridBlock,
+                FeatureTabsBlock,
+                FormBlock,
+                HeroBannerBlock,
+                MediaViewerBlock,
+                PricingBlock,
+                RichTextContentBlock,
+                TableBlock,
+                TestimonialBlock,
+                TimelineBlock,
               ],
             },
           ],

@@ -47,10 +47,10 @@ export const GridItemBlock: Block = {
       name: 'content',
       type: 'blocks',
       blocks: [
-        ...AtomBlocks,
-
         AnimatedParallaxMediaBlock,
         AnimatedRevealOnScrollBlock,
+
+        ...AtomBlocks,
 
         BannerBlock,
         BentoGridBlock,

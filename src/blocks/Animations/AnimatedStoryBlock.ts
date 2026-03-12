@@ -29,7 +29,7 @@ import { Code } from '@/blocks/Code/config'
 export const AnimatedStoryBlock: Block = {
   slug: 'appleStory',
   labels: {
-    singular: 'Story Block',
+    singular: '[Animated] Story Block',
     plural: '[Animated] Story Block',
   },
   fields: [

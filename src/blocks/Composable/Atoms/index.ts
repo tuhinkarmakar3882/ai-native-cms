@@ -31,6 +31,8 @@ export const AtomBlocks: Block[] = [
   ButtonAtom,
   CardAtom,
   CarouselAtom,
+  EmbedAnythingBlock,
+  FormBlock,
   IconAtom,
   ImageAtom,
   ProgressAtom,
@@ -40,7 +42,5 @@ export const AtomBlocks: Block[] = [
   TabsAtom,
   TextAtom,
   VideoAtom,
-  FormBlock,
-  EmbedAnythingBlock,
   WrapperAtom,
 ]
