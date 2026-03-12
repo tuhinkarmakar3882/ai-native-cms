@@ -188,7 +188,55 @@ export interface Page {
   title: string;
   layout?:
     | (
-        | BannerBlock
+        | {
+            /**
+             * Unique identifier for analytics tracking
+             */
+            trackId?: string | null;
+            variant?: ('info' | 'success' | 'warning' | 'error') | null;
+            layout?: ('inline' | 'stacked') | null;
+            /**
+             * Optional Lucide icon name to display next to the link
+             */
+            icon?: string | null;
+            iconSize?: number | null;
+            iconColor?: string | null;
+            title?: string | null;
+            description?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            cta?:
+              | {
+                  label: string;
+                  href: string;
+                  variant?: ('primary' | 'secondary' | 'ghost') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            customColors?: {
+              background?: string | null;
+              border?: string | null;
+            };
+            containerSettings?: {
+              useContainer?: boolean | null;
+              containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'banner';
+          }
         | {
             trackId?: string | null;
             title?: string | null;
@@ -977,6 +1025,439 @@ export interface Page {
                                                     blockName?: string | null;
                                                     blockType: 'embedAnything';
                                                   }
+                                                | {
+                                                    trackId?: string | null;
+                                                    mediaType: 'image' | 'video';
+                                                    image?: (string | null) | Media;
+                                                    video?: (string | null) | Media;
+                                                    height?: ('small' | 'medium' | 'large' | 'full') | null;
+                                                    /**
+                                                     * How much the media moves relative to scroll.
+                                                     */
+                                                    parallaxIntensity?: ('subtle' | 'medium' | 'strong') | null;
+                                                    parallaxDirection?: ('up' | 'down') | null;
+                                                    overlay?: {
+                                                      enabled?: boolean | null;
+                                                      color?: ('dark' | 'darker' | 'light' | 'primary') | null;
+                                                      opacity?: ('10' | '25' | '50' | '75' | '90') | null;
+                                                    };
+                                                    text?: {
+                                                      heading?: string | null;
+                                                      description?: {
+                                                        root: {
+                                                          type: string;
+                                                          children: {
+                                                            type: any;
+                                                            version: number;
+                                                            [k: string]: unknown;
+                                                          }[];
+                                                          direction: ('ltr' | 'rtl') | null;
+                                                          format:
+                                                            | 'left'
+                                                            | 'start'
+                                                            | 'center'
+                                                            | 'right'
+                                                            | 'end'
+                                                            | 'justify'
+                                                            | '';
+                                                          indent: number;
+                                                          version: number;
+                                                        };
+                                                        [k: string]: unknown;
+                                                      } | null;
+                                                      button?: {
+                                                        label?: string | null;
+                                                        link?: string | null;
+                                                        variant?:
+                                                          | (
+                                                              | 'default'
+                                                              | 'secondary'
+                                                              | 'outline'
+                                                              | 'ghost'
+                                                              | 'destructive'
+                                                            )
+                                                          | null;
+                                                        trackId?: string | null;
+                                                      };
+                                                    };
+                                                    caption?: string | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'parallaxMedia';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    /**
+                                                     * Each paragraph and heading will fade in as it enters the viewport.
+                                                     */
+                                                    content: {
+                                                      root: {
+                                                        type: string;
+                                                        children: {
+                                                          type: any;
+                                                          version: number;
+                                                          [k: string]: unknown;
+                                                        }[];
+                                                        direction: ('ltr' | 'rtl') | null;
+                                                        format:
+                                                          | 'left'
+                                                          | 'start'
+                                                          | 'center'
+                                                          | 'right'
+                                                          | 'end'
+                                                          | 'justify'
+                                                          | '';
+                                                        indent: number;
+                                                        version: number;
+                                                      };
+                                                      [k: string]: unknown;
+                                                    };
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'revealOnScroll';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * Unique identifier for analytics tracking
+                                                     */
+                                                    trackId?: string | null;
+                                                    variant?: ('info' | 'success' | 'warning' | 'error') | null;
+                                                    layout?: ('inline' | 'stacked') | null;
+                                                    /**
+                                                     * Optional Lucide icon name to display next to the link
+                                                     */
+                                                    icon?: string | null;
+                                                    iconSize?: number | null;
+                                                    iconColor?: string | null;
+                                                    title?: string | null;
+                                                    description?: {
+                                                      root: {
+                                                        type: string;
+                                                        children: {
+                                                          type: any;
+                                                          version: number;
+                                                          [k: string]: unknown;
+                                                        }[];
+                                                        direction: ('ltr' | 'rtl') | null;
+                                                        format:
+                                                          | 'left'
+                                                          | 'start'
+                                                          | 'center'
+                                                          | 'right'
+                                                          | 'end'
+                                                          | 'justify'
+                                                          | '';
+                                                        indent: number;
+                                                        version: number;
+                                                      };
+                                                      [k: string]: unknown;
+                                                    } | null;
+                                                    cta?:
+                                                      | {
+                                                          label: string;
+                                                          href: string;
+                                                          variant?: ('primary' | 'secondary' | 'ghost') | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    customColors?: {
+                                                      background?: string | null;
+                                                      border?: string | null;
+                                                    };
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'banner';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    title?: string | null;
+                                                    description?: string | null;
+                                                    cards?:
+                                                      | {
+                                                          /**
+                                                           * Unique ID for click tracking on this card (if link provided)
+                                                           */
+                                                          trackId?: string | null;
+                                                          title: string;
+                                                          content?: string | null;
+                                                          /**
+                                                           * Lucide icon name
+                                                           */
+                                                          icon?: string | null;
+                                                          span?: ('1' | '2' | 'row-2') | null;
+                                                          link?: {
+                                                            url?: string | null;
+                                                            newTab?: boolean | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'bentoGrid';
+                                                  }
+                                                | {
+                                                    sectionTitle?: string | null;
+                                                    title?: string | null;
+                                                    description?: string | null;
+                                                    items: {
+                                                      trackId?: string | null;
+                                                      question: string;
+                                                      answer: {
+                                                        root: {
+                                                          type: string;
+                                                          children: {
+                                                            type: any;
+                                                            version: number;
+                                                            [k: string]: unknown;
+                                                          }[];
+                                                          direction: ('ltr' | 'rtl') | null;
+                                                          format:
+                                                            | 'left'
+                                                            | 'start'
+                                                            | 'center'
+                                                            | 'right'
+                                                            | 'end'
+                                                            | 'justify'
+                                                            | '';
+                                                          indent: number;
+                                                          version: number;
+                                                        };
+                                                        [k: string]: unknown;
+                                                      };
+                                                      id?: string | null;
+                                                    }[];
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'faq';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    title?: string | null;
+                                                    columns?: ('2' | '3' | '4') | null;
+                                                    features?:
+                                                      | {
+                                                          trackId?: string | null;
+                                                          title: string;
+                                                          description?: string | null;
+                                                          badge?: string | null;
+                                                          /**
+                                                           * Lucide icon name
+                                                           */
+                                                          icon?: string | null;
+                                                          link?: {
+                                                            url?: string | null;
+                                                            newTab?: boolean | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'featureGrid';
+                                                  }
+                                                | {
+                                                    heading?: string | null;
+                                                    tabs?:
+                                                      | {
+                                                          label: string;
+                                                          title?: string | null;
+                                                          description?: string | null;
+                                                          image?: (string | null) | Media;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'featureTabs';
+                                                  }
+                                                | {
+                                                    variant: 'full' | 'split';
+                                                    heading: string;
+                                                    subheading?: string | null;
+                                                    image?: (string | null) | Media;
+                                                    actions?:
+                                                      | {
+                                                          label: string;
+                                                          link: string;
+                                                          style?:
+                                                            | (
+                                                                | 'default'
+                                                                | 'destructive'
+                                                                | 'outline'
+                                                                | 'secondary'
+                                                                | 'ghost'
+                                                                | 'link'
+                                                              )
+                                                            | null;
+                                                          /**
+                                                           * Optional unique identifier for click tracking
+                                                           */
+                                                          trackId?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    pillText?: string | null;
+                                                    /**
+                                                     * Adds a dark translucent overlay and blur effect over the background image
+                                                     */
+                                                    backdrop?: boolean | null;
+                                                    splitSettings?: {
+                                                      theme?: ('light' | 'dark') | null;
+                                                      imagePosition?: ('left' | 'right') | null;
+                                                    };
+                                                    /**
+                                                     * Optional unique identifier for this hero section
+                                                     */
+                                                    sectionId?: string | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'heroBanner';
+                                                  }
+                                                | {
+                                                    mediaType: 'image' | 'pdf' | 'video';
+                                                    image?: (string | null) | Media;
+                                                    pdf?: (string | null) | Media;
+                                                    video?: (string | null) | Media;
+                                                    caption?: string | null;
+                                                    showCard?: boolean | null;
+                                                    /**
+                                                     * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                                     */
+                                                    ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+                                                    width?: number | null;
+                                                    height?: number | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'mediaViewer';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    heading?: string | null;
+                                                    plans?:
+                                                      | {
+                                                          name: string;
+                                                          price: string;
+                                                          description?: string | null;
+                                                          isPopular?: boolean | null;
+                                                          features?:
+                                                            | {
+                                                                feature?: string | null;
+                                                                /**
+                                                                 * Optional Lucide icon name (defaults to Check)
+                                                                 */
+                                                                icon?: string | null;
+                                                                id?: string | null;
+                                                              }[]
+                                                            | null;
+                                                          button?: {
+                                                            text?: string | null;
+                                                            link?: string | null;
+                                                            trackId?: string | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'pricingTable';
+                                                  }
+                                                | {
+                                                    title?: string | null;
+                                                    sourceType?: ('static' | 'api') | null;
+                                                    headers?:
+                                                      | {
+                                                          label?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    rows?:
+                                                      | {
+                                                          cells?:
+                                                            | {
+                                                                value?: string | null;
+                                                                id?: string | null;
+                                                              }[]
+                                                            | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    apiUrl?: string | null;
+                                                    /**
+                                                     * Map JSON keys to Table Headers
+                                                     */
+                                                    columnMapping?:
+                                                      | {
+                                                          header: string;
+                                                          dataKey: string;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'smartTable';
+                                                  }
+                                                | {
+                                                    title?: string | null;
+                                                    reviews?:
+                                                      | {
+                                                          quote: string;
+                                                          author: string;
+                                                          role?: string | null;
+                                                          avatar?: (string | null) | Media;
+                                                          rating?: number | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'testimonialCarousel';
+                                                  }
+                                                | {
+                                                    heading?: string | null;
+                                                    events?:
+                                                      | {
+                                                          year: string;
+                                                          title?: string | null;
+                                                          description?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'timeline';
+                                                  }
                                               )[]
                                             | null;
                                           id?: string | null;
@@ -1481,6 +1962,439 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'embedAnything';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    mediaType: 'image' | 'video';
+                                                    image?: (string | null) | Media;
+                                                    video?: (string | null) | Media;
+                                                    height?: ('small' | 'medium' | 'large' | 'full') | null;
+                                                    /**
+                                                     * How much the media moves relative to scroll.
+                                                     */
+                                                    parallaxIntensity?: ('subtle' | 'medium' | 'strong') | null;
+                                                    parallaxDirection?: ('up' | 'down') | null;
+                                                    overlay?: {
+                                                      enabled?: boolean | null;
+                                                      color?: ('dark' | 'darker' | 'light' | 'primary') | null;
+                                                      opacity?: ('10' | '25' | '50' | '75' | '90') | null;
+                                                    };
+                                                    text?: {
+                                                      heading?: string | null;
+                                                      description?: {
+                                                        root: {
+                                                          type: string;
+                                                          children: {
+                                                            type: any;
+                                                            version: number;
+                                                            [k: string]: unknown;
+                                                          }[];
+                                                          direction: ('ltr' | 'rtl') | null;
+                                                          format:
+                                                            | 'left'
+                                                            | 'start'
+                                                            | 'center'
+                                                            | 'right'
+                                                            | 'end'
+                                                            | 'justify'
+                                                            | '';
+                                                          indent: number;
+                                                          version: number;
+                                                        };
+                                                        [k: string]: unknown;
+                                                      } | null;
+                                                      button?: {
+                                                        label?: string | null;
+                                                        link?: string | null;
+                                                        variant?:
+                                                          | (
+                                                              | 'default'
+                                                              | 'secondary'
+                                                              | 'outline'
+                                                              | 'ghost'
+                                                              | 'destructive'
+                                                            )
+                                                          | null;
+                                                        trackId?: string | null;
+                                                      };
+                                                    };
+                                                    caption?: string | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'parallaxMedia';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    /**
+                                                     * Each paragraph and heading will fade in as it enters the viewport.
+                                                     */
+                                                    content: {
+                                                      root: {
+                                                        type: string;
+                                                        children: {
+                                                          type: any;
+                                                          version: number;
+                                                          [k: string]: unknown;
+                                                        }[];
+                                                        direction: ('ltr' | 'rtl') | null;
+                                                        format:
+                                                          | 'left'
+                                                          | 'start'
+                                                          | 'center'
+                                                          | 'right'
+                                                          | 'end'
+                                                          | 'justify'
+                                                          | '';
+                                                        indent: number;
+                                                        version: number;
+                                                      };
+                                                      [k: string]: unknown;
+                                                    };
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'revealOnScroll';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * Unique identifier for analytics tracking
+                                                     */
+                                                    trackId?: string | null;
+                                                    variant?: ('info' | 'success' | 'warning' | 'error') | null;
+                                                    layout?: ('inline' | 'stacked') | null;
+                                                    /**
+                                                     * Optional Lucide icon name to display next to the link
+                                                     */
+                                                    icon?: string | null;
+                                                    iconSize?: number | null;
+                                                    iconColor?: string | null;
+                                                    title?: string | null;
+                                                    description?: {
+                                                      root: {
+                                                        type: string;
+                                                        children: {
+                                                          type: any;
+                                                          version: number;
+                                                          [k: string]: unknown;
+                                                        }[];
+                                                        direction: ('ltr' | 'rtl') | null;
+                                                        format:
+                                                          | 'left'
+                                                          | 'start'
+                                                          | 'center'
+                                                          | 'right'
+                                                          | 'end'
+                                                          | 'justify'
+                                                          | '';
+                                                        indent: number;
+                                                        version: number;
+                                                      };
+                                                      [k: string]: unknown;
+                                                    } | null;
+                                                    cta?:
+                                                      | {
+                                                          label: string;
+                                                          href: string;
+                                                          variant?: ('primary' | 'secondary' | 'ghost') | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    customColors?: {
+                                                      background?: string | null;
+                                                      border?: string | null;
+                                                    };
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'banner';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    title?: string | null;
+                                                    description?: string | null;
+                                                    cards?:
+                                                      | {
+                                                          /**
+                                                           * Unique ID for click tracking on this card (if link provided)
+                                                           */
+                                                          trackId?: string | null;
+                                                          title: string;
+                                                          content?: string | null;
+                                                          /**
+                                                           * Lucide icon name
+                                                           */
+                                                          icon?: string | null;
+                                                          span?: ('1' | '2' | 'row-2') | null;
+                                                          link?: {
+                                                            url?: string | null;
+                                                            newTab?: boolean | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'bentoGrid';
+                                                  }
+                                                | {
+                                                    sectionTitle?: string | null;
+                                                    title?: string | null;
+                                                    description?: string | null;
+                                                    items: {
+                                                      trackId?: string | null;
+                                                      question: string;
+                                                      answer: {
+                                                        root: {
+                                                          type: string;
+                                                          children: {
+                                                            type: any;
+                                                            version: number;
+                                                            [k: string]: unknown;
+                                                          }[];
+                                                          direction: ('ltr' | 'rtl') | null;
+                                                          format:
+                                                            | 'left'
+                                                            | 'start'
+                                                            | 'center'
+                                                            | 'right'
+                                                            | 'end'
+                                                            | 'justify'
+                                                            | '';
+                                                          indent: number;
+                                                          version: number;
+                                                        };
+                                                        [k: string]: unknown;
+                                                      };
+                                                      id?: string | null;
+                                                    }[];
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'faq';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    title?: string | null;
+                                                    columns?: ('2' | '3' | '4') | null;
+                                                    features?:
+                                                      | {
+                                                          trackId?: string | null;
+                                                          title: string;
+                                                          description?: string | null;
+                                                          badge?: string | null;
+                                                          /**
+                                                           * Lucide icon name
+                                                           */
+                                                          icon?: string | null;
+                                                          link?: {
+                                                            url?: string | null;
+                                                            newTab?: boolean | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'featureGrid';
+                                                  }
+                                                | {
+                                                    heading?: string | null;
+                                                    tabs?:
+                                                      | {
+                                                          label: string;
+                                                          title?: string | null;
+                                                          description?: string | null;
+                                                          image?: (string | null) | Media;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'featureTabs';
+                                                  }
+                                                | {
+                                                    variant: 'full' | 'split';
+                                                    heading: string;
+                                                    subheading?: string | null;
+                                                    image?: (string | null) | Media;
+                                                    actions?:
+                                                      | {
+                                                          label: string;
+                                                          link: string;
+                                                          style?:
+                                                            | (
+                                                                | 'default'
+                                                                | 'destructive'
+                                                                | 'outline'
+                                                                | 'secondary'
+                                                                | 'ghost'
+                                                                | 'link'
+                                                              )
+                                                            | null;
+                                                          /**
+                                                           * Optional unique identifier for click tracking
+                                                           */
+                                                          trackId?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    pillText?: string | null;
+                                                    /**
+                                                     * Adds a dark translucent overlay and blur effect over the background image
+                                                     */
+                                                    backdrop?: boolean | null;
+                                                    splitSettings?: {
+                                                      theme?: ('light' | 'dark') | null;
+                                                      imagePosition?: ('left' | 'right') | null;
+                                                    };
+                                                    /**
+                                                     * Optional unique identifier for this hero section
+                                                     */
+                                                    sectionId?: string | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'heroBanner';
+                                                  }
+                                                | {
+                                                    mediaType: 'image' | 'pdf' | 'video';
+                                                    image?: (string | null) | Media;
+                                                    pdf?: (string | null) | Media;
+                                                    video?: (string | null) | Media;
+                                                    caption?: string | null;
+                                                    showCard?: boolean | null;
+                                                    /**
+                                                     * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                                     */
+                                                    ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+                                                    width?: number | null;
+                                                    height?: number | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'mediaViewer';
+                                                  }
+                                                | {
+                                                    trackId?: string | null;
+                                                    heading?: string | null;
+                                                    plans?:
+                                                      | {
+                                                          name: string;
+                                                          price: string;
+                                                          description?: string | null;
+                                                          isPopular?: boolean | null;
+                                                          features?:
+                                                            | {
+                                                                feature?: string | null;
+                                                                /**
+                                                                 * Optional Lucide icon name (defaults to Check)
+                                                                 */
+                                                                icon?: string | null;
+                                                                id?: string | null;
+                                                              }[]
+                                                            | null;
+                                                          button?: {
+                                                            text?: string | null;
+                                                            link?: string | null;
+                                                            trackId?: string | null;
+                                                          };
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                      containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'pricingTable';
+                                                  }
+                                                | {
+                                                    title?: string | null;
+                                                    sourceType?: ('static' | 'api') | null;
+                                                    headers?:
+                                                      | {
+                                                          label?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    rows?:
+                                                      | {
+                                                          cells?:
+                                                            | {
+                                                                value?: string | null;
+                                                                id?: string | null;
+                                                              }[]
+                                                            | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    apiUrl?: string | null;
+                                                    /**
+                                                     * Map JSON keys to Table Headers
+                                                     */
+                                                    columnMapping?:
+                                                      | {
+                                                          header: string;
+                                                          dataKey: string;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'smartTable';
+                                                  }
+                                                | {
+                                                    title?: string | null;
+                                                    reviews?:
+                                                      | {
+                                                          quote: string;
+                                                          author: string;
+                                                          role?: string | null;
+                                                          avatar?: (string | null) | Media;
+                                                          rating?: number | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'testimonialCarousel';
+                                                  }
+                                                | {
+                                                    heading?: string | null;
+                                                    events?:
+                                                      | {
+                                                          year: string;
+                                                          title?: string | null;
+                                                          description?: string | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'timeline';
                                                   }
                                               )[]
                                             | null;
@@ -2022,6 +2936,357 @@ export interface Page {
                                         blockName?: string | null;
                                         blockType: 'embedAnything';
                                       }
+                                    | {
+                                        trackId?: string | null;
+                                        mediaType: 'image' | 'video';
+                                        image?: (string | null) | Media;
+                                        video?: (string | null) | Media;
+                                        height?: ('small' | 'medium' | 'large' | 'full') | null;
+                                        /**
+                                         * How much the media moves relative to scroll.
+                                         */
+                                        parallaxIntensity?: ('subtle' | 'medium' | 'strong') | null;
+                                        parallaxDirection?: ('up' | 'down') | null;
+                                        overlay?: {
+                                          enabled?: boolean | null;
+                                          color?: ('dark' | 'darker' | 'light' | 'primary') | null;
+                                          opacity?: ('10' | '25' | '50' | '75' | '90') | null;
+                                        };
+                                        text?: {
+                                          heading?: string | null;
+                                          description?: {
+                                            root: {
+                                              type: string;
+                                              children: {
+                                                type: any;
+                                                version: number;
+                                                [k: string]: unknown;
+                                              }[];
+                                              direction: ('ltr' | 'rtl') | null;
+                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                              indent: number;
+                                              version: number;
+                                            };
+                                            [k: string]: unknown;
+                                          } | null;
+                                          button?: {
+                                            label?: string | null;
+                                            link?: string | null;
+                                            variant?:
+                                              | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
+                                              | null;
+                                            trackId?: string | null;
+                                          };
+                                        };
+                                        caption?: string | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'parallaxMedia';
+                                      }
+                                    | {
+                                        trackId?: string | null;
+                                        /**
+                                         * Each paragraph and heading will fade in as it enters the viewport.
+                                         */
+                                        content: {
+                                          root: {
+                                            type: string;
+                                            children: {
+                                              type: any;
+                                              version: number;
+                                              [k: string]: unknown;
+                                            }[];
+                                            direction: ('ltr' | 'rtl') | null;
+                                            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                            indent: number;
+                                            version: number;
+                                          };
+                                          [k: string]: unknown;
+                                        };
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'revealOnScroll';
+                                      }
+                                    | BannerBlock
+                                    | {
+                                        trackId?: string | null;
+                                        title?: string | null;
+                                        description?: string | null;
+                                        cards?:
+                                          | {
+                                              /**
+                                               * Unique ID for click tracking on this card (if link provided)
+                                               */
+                                              trackId?: string | null;
+                                              title: string;
+                                              content?: string | null;
+                                              /**
+                                               * Lucide icon name
+                                               */
+                                              icon?: string | null;
+                                              span?: ('1' | '2' | 'row-2') | null;
+                                              link?: {
+                                                url?: string | null;
+                                                newTab?: boolean | null;
+                                              };
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'bentoGrid';
+                                      }
+                                    | {
+                                        sectionTitle?: string | null;
+                                        title?: string | null;
+                                        description?: string | null;
+                                        items: {
+                                          trackId?: string | null;
+                                          question: string;
+                                          answer: {
+                                            root: {
+                                              type: string;
+                                              children: {
+                                                type: any;
+                                                version: number;
+                                                [k: string]: unknown;
+                                              }[];
+                                              direction: ('ltr' | 'rtl') | null;
+                                              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                                              indent: number;
+                                              version: number;
+                                            };
+                                            [k: string]: unknown;
+                                          };
+                                          id?: string | null;
+                                        }[];
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'faq';
+                                      }
+                                    | {
+                                        trackId?: string | null;
+                                        title?: string | null;
+                                        columns?: ('2' | '3' | '4') | null;
+                                        features?:
+                                          | {
+                                              trackId?: string | null;
+                                              title: string;
+                                              description?: string | null;
+                                              badge?: string | null;
+                                              /**
+                                               * Lucide icon name
+                                               */
+                                              icon?: string | null;
+                                              link?: {
+                                                url?: string | null;
+                                                newTab?: boolean | null;
+                                              };
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'featureGrid';
+                                      }
+                                    | {
+                                        heading?: string | null;
+                                        tabs?:
+                                          | {
+                                              label: string;
+                                              title?: string | null;
+                                              description?: string | null;
+                                              image?: (string | null) | Media;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'featureTabs';
+                                      }
+                                    | {
+                                        variant: 'full' | 'split';
+                                        heading: string;
+                                        subheading?: string | null;
+                                        image?: (string | null) | Media;
+                                        actions?:
+                                          | {
+                                              label: string;
+                                              link: string;
+                                              style?:
+                                                | (
+                                                    | 'default'
+                                                    | 'destructive'
+                                                    | 'outline'
+                                                    | 'secondary'
+                                                    | 'ghost'
+                                                    | 'link'
+                                                  )
+                                                | null;
+                                              /**
+                                               * Optional unique identifier for click tracking
+                                               */
+                                              trackId?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        pillText?: string | null;
+                                        /**
+                                         * Adds a dark translucent overlay and blur effect over the background image
+                                         */
+                                        backdrop?: boolean | null;
+                                        splitSettings?: {
+                                          theme?: ('light' | 'dark') | null;
+                                          imagePosition?: ('left' | 'right') | null;
+                                        };
+                                        /**
+                                         * Optional unique identifier for this hero section
+                                         */
+                                        sectionId?: string | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'heroBanner';
+                                      }
+                                    | {
+                                        mediaType: 'image' | 'pdf' | 'video';
+                                        image?: (string | null) | Media;
+                                        pdf?: (string | null) | Media;
+                                        video?: (string | null) | Media;
+                                        caption?: string | null;
+                                        showCard?: boolean | null;
+                                        /**
+                                         * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                         */
+                                        ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+                                        width?: number | null;
+                                        height?: number | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'mediaViewer';
+                                      }
+                                    | {
+                                        trackId?: string | null;
+                                        heading?: string | null;
+                                        plans?:
+                                          | {
+                                              name: string;
+                                              price: string;
+                                              description?: string | null;
+                                              isPopular?: boolean | null;
+                                              features?:
+                                                | {
+                                                    feature?: string | null;
+                                                    /**
+                                                     * Optional Lucide icon name (defaults to Check)
+                                                     */
+                                                    icon?: string | null;
+                                                    id?: string | null;
+                                                  }[]
+                                                | null;
+                                              button?: {
+                                                text?: string | null;
+                                                link?: string | null;
+                                                trackId?: string | null;
+                                              };
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        containerSettings?: {
+                                          useContainer?: boolean | null;
+                                          containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+                                        };
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'pricingTable';
+                                      }
+                                    | {
+                                        title?: string | null;
+                                        sourceType?: ('static' | 'api') | null;
+                                        headers?:
+                                          | {
+                                              label?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        rows?:
+                                          | {
+                                              cells?:
+                                                | {
+                                                    value?: string | null;
+                                                    id?: string | null;
+                                                  }[]
+                                                | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        apiUrl?: string | null;
+                                        /**
+                                         * Map JSON keys to Table Headers
+                                         */
+                                        columnMapping?:
+                                          | {
+                                              header: string;
+                                              dataKey: string;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'smartTable';
+                                      }
+                                    | {
+                                        title?: string | null;
+                                        reviews?:
+                                          | {
+                                              quote: string;
+                                              author: string;
+                                              role?: string | null;
+                                              avatar?: (string | null) | Media;
+                                              rating?: number | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'testimonialCarousel';
+                                      }
+                                    | {
+                                        heading?: string | null;
+                                        events?:
+                                          | {
+                                              year: string;
+                                              title?: string | null;
+                                              description?: string | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'timeline';
+                                      }
                                   )[]
                                 | null;
                               id?: string | null;
@@ -2075,59 +3340,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BannerBlock".
- */
-export interface BannerBlock {
-  /**
-   * Unique identifier for analytics tracking
-   */
-  trackId?: string | null;
-  variant?: ('info' | 'success' | 'warning' | 'error') | null;
-  layout?: ('inline' | 'stacked') | null;
-  /**
-   * Optional Lucide icon name to display next to the link
-   */
-  icon?: string | null;
-  iconSize?: number | null;
-  iconColor?: string | null;
-  title?: string | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  cta?:
-    | {
-        label: string;
-        href: string;
-        variant?: ('primary' | 'secondary' | 'ghost') | null;
-        id?: string | null;
-      }[]
-    | null;
-  customColors?: {
-    background?: string | null;
-    border?: string | null;
-  };
-  containerSettings?: {
-    useContainer?: boolean | null;
-    containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'banner';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2525,6 +3737,59 @@ export interface FormBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'formBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerBlock".
+ */
+export interface BannerBlock {
+  /**
+   * Unique identifier for analytics tracking
+   */
+  trackId?: string | null;
+  variant?: ('info' | 'success' | 'warning' | 'error') | null;
+  layout?: ('inline' | 'stacked') | null;
+  /**
+   * Optional Lucide icon name to display next to the link
+   */
+  icon?: string | null;
+  iconSize?: number | null;
+  iconColor?: string | null;
+  title?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  cta?:
+    | {
+        label: string;
+        href: string;
+        variant?: ('primary' | 'secondary' | 'ghost') | null;
+        id?: string | null;
+      }[]
+    | null;
+  customColors?: {
+    background?: string | null;
+    border?: string | null;
+  };
+  containerSettings?: {
+    useContainer?: boolean | null;
+    containerSize?: ('sm' | 'md' | 'lg' | 'full') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'banner';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3593,6 +4858,313 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
+                                                                          parallaxMedia?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                mediaType?: T;
+                                                                                image?: T;
+                                                                                video?: T;
+                                                                                height?: T;
+                                                                                parallaxIntensity?: T;
+                                                                                parallaxDirection?: T;
+                                                                                overlay?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      enabled?: T;
+                                                                                      color?: T;
+                                                                                      opacity?: T;
+                                                                                    };
+                                                                                text?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      heading?: T;
+                                                                                      description?: T;
+                                                                                      button?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            link?: T;
+                                                                                            variant?: T;
+                                                                                            trackId?: T;
+                                                                                          };
+                                                                                    };
+                                                                                caption?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          revealOnScroll?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                content?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          banner?: T | BannerBlockSelect<T>;
+                                                                          bentoGrid?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                title?: T;
+                                                                                description?: T;
+                                                                                cards?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      title?: T;
+                                                                                      content?: T;
+                                                                                      icon?: T;
+                                                                                      span?: T;
+                                                                                      link?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            newTab?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          faq?:
+                                                                            | T
+                                                                            | {
+                                                                                sectionTitle?: T;
+                                                                                title?: T;
+                                                                                description?: T;
+                                                                                items?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      question?: T;
+                                                                                      answer?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          featureGrid?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                title?: T;
+                                                                                columns?: T;
+                                                                                features?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      badge?: T;
+                                                                                      icon?: T;
+                                                                                      link?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            newTab?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          featureTabs?:
+                                                                            | T
+                                                                            | {
+                                                                                heading?: T;
+                                                                                tabs?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      image?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          heroBanner?:
+                                                                            | T
+                                                                            | {
+                                                                                variant?: T;
+                                                                                heading?: T;
+                                                                                subheading?: T;
+                                                                                image?: T;
+                                                                                actions?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      link?: T;
+                                                                                      style?: T;
+                                                                                      trackId?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                pillText?: T;
+                                                                                backdrop?: T;
+                                                                                splitSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      theme?: T;
+                                                                                      imagePosition?: T;
+                                                                                    };
+                                                                                sectionId?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          mediaViewer?:
+                                                                            | T
+                                                                            | {
+                                                                                mediaType?: T;
+                                                                                image?: T;
+                                                                                pdf?: T;
+                                                                                video?: T;
+                                                                                caption?: T;
+                                                                                showCard?: T;
+                                                                                ratio?: T;
+                                                                                width?: T;
+                                                                                height?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          pricingTable?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                heading?: T;
+                                                                                plans?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      name?: T;
+                                                                                      price?: T;
+                                                                                      description?: T;
+                                                                                      isPopular?: T;
+                                                                                      features?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            feature?: T;
+                                                                                            icon?: T;
+                                                                                            id?: T;
+                                                                                          };
+                                                                                      button?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            text?: T;
+                                                                                            link?: T;
+                                                                                            trackId?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          smartTable?:
+                                                                            | T
+                                                                            | {
+                                                                                title?: T;
+                                                                                sourceType?: T;
+                                                                                headers?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                rows?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      cells?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            value?: T;
+                                                                                            id?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                apiUrl?: T;
+                                                                                columnMapping?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      header?: T;
+                                                                                      dataKey?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          testimonialCarousel?:
+                                                                            | T
+                                                                            | {
+                                                                                title?: T;
+                                                                                reviews?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      quote?: T;
+                                                                                      author?: T;
+                                                                                      role?: T;
+                                                                                      avatar?: T;
+                                                                                      rating?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          timeline?:
+                                                                            | T
+                                                                            | {
+                                                                                heading?: T;
+                                                                                events?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      year?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
                                                                         };
                                                                     id?: T;
                                                                     blockName?: T;
@@ -4007,6 +5579,313 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 caption?: T;
                                                                                 aspectRatio?: T;
                                                                                 lazy?: T;
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          parallaxMedia?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                mediaType?: T;
+                                                                                image?: T;
+                                                                                video?: T;
+                                                                                height?: T;
+                                                                                parallaxIntensity?: T;
+                                                                                parallaxDirection?: T;
+                                                                                overlay?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      enabled?: T;
+                                                                                      color?: T;
+                                                                                      opacity?: T;
+                                                                                    };
+                                                                                text?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      heading?: T;
+                                                                                      description?: T;
+                                                                                      button?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            link?: T;
+                                                                                            variant?: T;
+                                                                                            trackId?: T;
+                                                                                          };
+                                                                                    };
+                                                                                caption?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          revealOnScroll?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                content?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          banner?: T | BannerBlockSelect<T>;
+                                                                          bentoGrid?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                title?: T;
+                                                                                description?: T;
+                                                                                cards?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      title?: T;
+                                                                                      content?: T;
+                                                                                      icon?: T;
+                                                                                      span?: T;
+                                                                                      link?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            newTab?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          faq?:
+                                                                            | T
+                                                                            | {
+                                                                                sectionTitle?: T;
+                                                                                title?: T;
+                                                                                description?: T;
+                                                                                items?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      question?: T;
+                                                                                      answer?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          featureGrid?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                title?: T;
+                                                                                columns?: T;
+                                                                                features?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      trackId?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      badge?: T;
+                                                                                      icon?: T;
+                                                                                      link?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            newTab?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          featureTabs?:
+                                                                            | T
+                                                                            | {
+                                                                                heading?: T;
+                                                                                tabs?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      image?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          heroBanner?:
+                                                                            | T
+                                                                            | {
+                                                                                variant?: T;
+                                                                                heading?: T;
+                                                                                subheading?: T;
+                                                                                image?: T;
+                                                                                actions?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      link?: T;
+                                                                                      style?: T;
+                                                                                      trackId?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                pillText?: T;
+                                                                                backdrop?: T;
+                                                                                splitSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      theme?: T;
+                                                                                      imagePosition?: T;
+                                                                                    };
+                                                                                sectionId?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          mediaViewer?:
+                                                                            | T
+                                                                            | {
+                                                                                mediaType?: T;
+                                                                                image?: T;
+                                                                                pdf?: T;
+                                                                                video?: T;
+                                                                                caption?: T;
+                                                                                showCard?: T;
+                                                                                ratio?: T;
+                                                                                width?: T;
+                                                                                height?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          pricingTable?:
+                                                                            | T
+                                                                            | {
+                                                                                trackId?: T;
+                                                                                heading?: T;
+                                                                                plans?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      name?: T;
+                                                                                      price?: T;
+                                                                                      description?: T;
+                                                                                      isPopular?: T;
+                                                                                      features?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            feature?: T;
+                                                                                            icon?: T;
+                                                                                            id?: T;
+                                                                                          };
+                                                                                      button?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            text?: T;
+                                                                                            link?: T;
+                                                                                            trackId?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                      containerSize?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          smartTable?:
+                                                                            | T
+                                                                            | {
+                                                                                title?: T;
+                                                                                sourceType?: T;
+                                                                                headers?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                rows?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      cells?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            value?: T;
+                                                                                            id?: T;
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                apiUrl?: T;
+                                                                                columnMapping?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      header?: T;
+                                                                                      dataKey?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          testimonialCarousel?:
+                                                                            | T
+                                                                            | {
+                                                                                title?: T;
+                                                                                reviews?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      quote?: T;
+                                                                                      author?: T;
+                                                                                      role?: T;
+                                                                                      avatar?: T;
+                                                                                      rating?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          timeline?:
+                                                                            | T
+                                                                            | {
+                                                                                heading?: T;
+                                                                                events?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      year?: T;
+                                                                                      title?: T;
+                                                                                      description?: T;
+                                                                                      id?: T;
+                                                                                    };
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -4489,6 +6368,313 @@ export interface PagesSelect<T extends boolean = true> {
                                                               caption?: T;
                                                               aspectRatio?: T;
                                                               lazy?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        parallaxMedia?:
+                                                          | T
+                                                          | {
+                                                              trackId?: T;
+                                                              mediaType?: T;
+                                                              image?: T;
+                                                              video?: T;
+                                                              height?: T;
+                                                              parallaxIntensity?: T;
+                                                              parallaxDirection?: T;
+                                                              overlay?:
+                                                                | T
+                                                                | {
+                                                                    enabled?: T;
+                                                                    color?: T;
+                                                                    opacity?: T;
+                                                                  };
+                                                              text?:
+                                                                | T
+                                                                | {
+                                                                    heading?: T;
+                                                                    description?: T;
+                                                                    button?:
+                                                                      | T
+                                                                      | {
+                                                                          label?: T;
+                                                                          link?: T;
+                                                                          variant?: T;
+                                                                          trackId?: T;
+                                                                        };
+                                                                  };
+                                                              caption?: T;
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        revealOnScroll?:
+                                                          | T
+                                                          | {
+                                                              trackId?: T;
+                                                              content?: T;
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        banner?: T | BannerBlockSelect<T>;
+                                                        bentoGrid?:
+                                                          | T
+                                                          | {
+                                                              trackId?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              cards?:
+                                                                | T
+                                                                | {
+                                                                    trackId?: T;
+                                                                    title?: T;
+                                                                    content?: T;
+                                                                    icon?: T;
+                                                                    span?: T;
+                                                                    link?:
+                                                                      | T
+                                                                      | {
+                                                                          url?: T;
+                                                                          newTab?: T;
+                                                                        };
+                                                                    id?: T;
+                                                                  };
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        faq?:
+                                                          | T
+                                                          | {
+                                                              sectionTitle?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              items?:
+                                                                | T
+                                                                | {
+                                                                    trackId?: T;
+                                                                    question?: T;
+                                                                    answer?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        featureGrid?:
+                                                          | T
+                                                          | {
+                                                              trackId?: T;
+                                                              title?: T;
+                                                              columns?: T;
+                                                              features?:
+                                                                | T
+                                                                | {
+                                                                    trackId?: T;
+                                                                    title?: T;
+                                                                    description?: T;
+                                                                    badge?: T;
+                                                                    icon?: T;
+                                                                    link?:
+                                                                      | T
+                                                                      | {
+                                                                          url?: T;
+                                                                          newTab?: T;
+                                                                        };
+                                                                    id?: T;
+                                                                  };
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        featureTabs?:
+                                                          | T
+                                                          | {
+                                                              heading?: T;
+                                                              tabs?:
+                                                                | T
+                                                                | {
+                                                                    label?: T;
+                                                                    title?: T;
+                                                                    description?: T;
+                                                                    image?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        heroBanner?:
+                                                          | T
+                                                          | {
+                                                              variant?: T;
+                                                              heading?: T;
+                                                              subheading?: T;
+                                                              image?: T;
+                                                              actions?:
+                                                                | T
+                                                                | {
+                                                                    label?: T;
+                                                                    link?: T;
+                                                                    style?: T;
+                                                                    trackId?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              pillText?: T;
+                                                              backdrop?: T;
+                                                              splitSettings?:
+                                                                | T
+                                                                | {
+                                                                    theme?: T;
+                                                                    imagePosition?: T;
+                                                                  };
+                                                              sectionId?: T;
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        mediaViewer?:
+                                                          | T
+                                                          | {
+                                                              mediaType?: T;
+                                                              image?: T;
+                                                              pdf?: T;
+                                                              video?: T;
+                                                              caption?: T;
+                                                              showCard?: T;
+                                                              ratio?: T;
+                                                              width?: T;
+                                                              height?: T;
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        pricingTable?:
+                                                          | T
+                                                          | {
+                                                              trackId?: T;
+                                                              heading?: T;
+                                                              plans?:
+                                                                | T
+                                                                | {
+                                                                    name?: T;
+                                                                    price?: T;
+                                                                    description?: T;
+                                                                    isPopular?: T;
+                                                                    features?:
+                                                                      | T
+                                                                      | {
+                                                                          feature?: T;
+                                                                          icon?: T;
+                                                                          id?: T;
+                                                                        };
+                                                                    button?:
+                                                                      | T
+                                                                      | {
+                                                                          text?: T;
+                                                                          link?: T;
+                                                                          trackId?: T;
+                                                                        };
+                                                                    id?: T;
+                                                                  };
+                                                              containerSettings?:
+                                                                | T
+                                                                | {
+                                                                    useContainer?: T;
+                                                                    containerSize?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        smartTable?:
+                                                          | T
+                                                          | {
+                                                              title?: T;
+                                                              sourceType?: T;
+                                                              headers?:
+                                                                | T
+                                                                | {
+                                                                    label?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              rows?:
+                                                                | T
+                                                                | {
+                                                                    cells?:
+                                                                      | T
+                                                                      | {
+                                                                          value?: T;
+                                                                          id?: T;
+                                                                        };
+                                                                    id?: T;
+                                                                  };
+                                                              apiUrl?: T;
+                                                              columnMapping?:
+                                                                | T
+                                                                | {
+                                                                    header?: T;
+                                                                    dataKey?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        testimonialCarousel?:
+                                                          | T
+                                                          | {
+                                                              title?: T;
+                                                              reviews?:
+                                                                | T
+                                                                | {
+                                                                    quote?: T;
+                                                                    author?: T;
+                                                                    role?: T;
+                                                                    avatar?: T;
+                                                                    rating?: T;
+                                                                    id?: T;
+                                                                  };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        timeline?:
+                                                          | T
+                                                          | {
+                                                              heading?: T;
+                                                              events?:
+                                                                | T
+                                                                | {
+                                                                    year?: T;
+                                                                    title?: T;
+                                                                    description?: T;
+                                                                    id?: T;
+                                                                  };
                                                               id?: T;
                                                               blockName?: T;
                                                             };

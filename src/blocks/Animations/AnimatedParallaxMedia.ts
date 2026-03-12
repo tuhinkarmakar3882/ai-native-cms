@@ -26,11 +26,11 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const ParallaxMediaBlock: Block = {
+export const AnimatedParallaxMediaBlock: Block = {
   slug: 'parallaxMedia',
   labels: {
-    singular: 'Parallax Media',
-    plural: 'Parallax Media',
+    singular: '[Animated] Parallax Block',
+    plural: '[Animated] Parallax Block',
   },
   fields: [
     {

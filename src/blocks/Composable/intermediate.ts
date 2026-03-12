@@ -1,6 +1,41 @@
 import { Block } from 'payload'
 import { AtomBlocks } from './Atoms'
-import { ResponsiveWidthField } from '@/blocks/Composable/Atoms/config'
+import {
+  AccordionAtom,
+  AlertAtom,
+  AlignerAtom,
+  AvatarAtom,
+  BadgeAtom,
+  ButtonAtom,
+  CardAtom,
+  CarouselAtom,
+  IconAtom,
+  ImageAtom,
+  ProgressAtom,
+  ResponsiveWidthField,
+  SeparatorAtom,
+  SpacerAtom,
+  TableAtom,
+  TabsAtom,
+  TextAtom,
+  VideoAtom,
+} from '@/blocks/Composable/Atoms/config'
+import { AnimatedClipPathMorphBlock } from '@/blocks/Animations/AnimatedClipPathMorphBlock'
+import { AnimatedParallaxMediaBlock } from '@/blocks/Animations/AnimatedParallaxMedia'
+import { AnimatedRevealOnScrollBlock } from '@/blocks/Animations/AnimatedRevealOnScroll'
+import { PricingBlock } from '@/blocks/Pricing/config'
+import { BannerBlock } from '@/blocks/Banner/config'
+import { BentoGridBlock } from '@/blocks/BentoGrid/config'
+import { FAQBlock } from '@/blocks/FAQ/config'
+import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
+import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
+import { FormBlock } from '@/blocks/Form/config'
+import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
+import { MediaViewerBlock } from '@/blocks/MediaViewer/config'
+import { TableBlock } from '@/blocks/Table/config'
+import { TestimonialBlock } from '@/blocks/Testimonials/config'
+import { TimelineBlock } from '@/blocks/Timeline/config'
+import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 
 export const GridItemBlock: Block = {
   slug: 'gridItem',
@@ -11,7 +46,27 @@ export const GridItemBlock: Block = {
     {
       name: 'content',
       type: 'blocks',
-      blocks: AtomBlocks,
+      blocks: [
+        ...AtomBlocks,
+
+        AnimatedParallaxMediaBlock,
+        AnimatedRevealOnScrollBlock,
+
+        BannerBlock,
+        BentoGridBlock,
+
+        FAQBlock,
+        FeatureGridBlock,
+        FeatureTabsBlock,
+
+        HeroBannerBlock,
+        MediaViewerBlock,
+
+        PricingBlock,
+        TableBlock,
+        TestimonialBlock,
+        TimelineBlock,
+      ],
     },
   ],
 }

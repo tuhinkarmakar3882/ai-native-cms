@@ -26,11 +26,11 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const AppleStoryBlock: Block = {
+export const AnimatedStoryBlock: Block = {
   slug: 'appleStory',
   labels: {
-    singular: 'Apple‑Style Story',
-    plural: 'Apple‑Style Stories',
+    singular: 'Story Block',
+    plural: '[Animated] Story Block',
   },
   fields: [
     {

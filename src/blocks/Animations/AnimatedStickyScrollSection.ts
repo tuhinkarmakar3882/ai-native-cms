@@ -26,11 +26,11 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const StickyScrollSectionBlock: Block = {
+export const AnimatedStickyScrollSectionBlock: Block = {
   slug: 'stickyScrollSection',
   labels: {
-    singular: 'Sticky Scroll Section',
-    plural: 'Sticky Scroll Sections',
+    singular: '[Animated] Sticky Scroll Section',
+    plural: '[Animated] Sticky Scroll Sections',
   },
   fields: [
     {

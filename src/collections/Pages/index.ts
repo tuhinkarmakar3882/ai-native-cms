@@ -29,13 +29,13 @@ import { FeatureTabsBlock } from '@/blocks/FeatureTabs/config'
 import { FeatureGridBlock } from '@/blocks/FeatureGrid/config'
 import { PricingBlock } from '@/blocks/Pricing/config'
 import { TimelineBlock } from '@/blocks/Timeline/config'
-import { RevealOnScrollBlock } from '@/blocks/Animations/RevealOnScroll'
-import { StickyScrollSectionBlock } from '@/blocks/Animations/StickyScrollSection'
-import { ParallaxMediaBlock } from '@/blocks/Animations/ParallaxMedia'
-import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
-import { AppleStoryBlock } from '@/blocks/Animations/AppleStoryBlock'
-import { CinematicTextBlock } from '@/blocks/Animations/CinematicText'
-import { ClipPathMorphBlock } from '@/blocks/Animations/ClipPathMorphBlock'
+import { AnimatedRevealOnScrollBlock } from '@/blocks/Animations/AnimatedRevealOnScroll'
+import { AnimatedStickyScrollSectionBlock } from '@/blocks/Animations/AnimatedStickyScrollSection'
+import { AnimatedParallaxMediaBlock } from '@/blocks/Animations/AnimatedParallaxMedia'
+import { AnimatedStaggerListBlock } from '@/blocks/Animations/AnimatedStaggerList'
+import { AnimatedStoryBlock } from '@/blocks/Animations/AnimatedStoryBlock'
+import { AnimatedCinematicTextBlock } from '@/blocks/Animations/AnimatedCinematicTextBlock'
+import { AnimatedClipPathMorphBlock } from '@/blocks/Animations/AnimatedClipPathMorphBlock'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 import { updateChildSlugs } from '@/collections/Pages/hooks/updateChildSlugs'
 
@@ -129,13 +129,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 TimelineBlock,
 
                 // Animated Blocks
-                AppleStoryBlock,
-                CinematicTextBlock,
-                ClipPathMorphBlock,
-                ParallaxMediaBlock,
-                RevealOnScrollBlock,
-                StaggerListBlock,
-                StickyScrollSectionBlock,
+                AnimatedStoryBlock,
+                AnimatedCinematicTextBlock,
+                AnimatedClipPathMorphBlock,
+                AnimatedParallaxMediaBlock,
+                AnimatedRevealOnScrollBlock,
+                AnimatedStaggerListBlock,
+                AnimatedStickyScrollSectionBlock,
 
                 // Composable Blocks
                 BuildYourOwnSectionBlock,

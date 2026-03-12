@@ -26,11 +26,11 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const RevealOnScrollBlock: Block = {
+export const AnimatedRevealOnScrollBlock: Block = {
   slug: 'revealOnScroll',
   labels: {
-    singular: 'Reveal on Scroll',
-    plural: 'Reveal on Scroll',
+    singular: '[Animated] Reveal on Scroll',
+    plural: '[Animated] Reveal on Scroll',
   },
   fields: [
     {

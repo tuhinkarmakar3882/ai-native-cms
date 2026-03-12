@@ -28,15 +28,20 @@ import { Code } from '@/blocks/Code/config'
 import { PricingBlock } from '@/blocks/Pricing/config' // adjust path
 import { HeroBannerBlock } from '@/blocks/HeroBanner/config'
 import { BuildYourOwnSectionBlock } from '@/blocks/Composable/config'
-import { StaggerListBlock } from '@/blocks/Animations/StaggerList'
+import { AnimatedStaggerListBlock } from '@/blocks/Animations/AnimatedStaggerList'
 
-const NestedBlocks = [PricingBlock, HeroBannerBlock, BuildYourOwnSectionBlock, StaggerListBlock]
+const NestedBlocks = [
+  PricingBlock,
+  HeroBannerBlock,
+  BuildYourOwnSectionBlock,
+  AnimatedStaggerListBlock,
+]
 
-export const ClipPathMorphBlock: Block = {
+export const AnimatedClipPathMorphBlock: Block = {
   slug: 'clipPathMorph',
   labels: {
-    singular: 'Clip Path Morph with Overlay',
-    plural: 'Clip Path Morph with Overlays',
+    singular: '[Animated] Clip Path Morph with Overlay',
+    plural: '[Animated] Clip Path Morph with Overlays',
   },
   fields: [
     {

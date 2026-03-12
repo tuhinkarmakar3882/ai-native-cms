@@ -1,10 +1,10 @@
 import { Block } from 'payload'
 
-export const StaggerListBlock: Block = {
+export const AnimatedStaggerListBlock: Block = {
   slug: 'staggerList',
   labels: {
-    singular: 'Stagger List',
-    plural: 'Stagger Lists',
+    singular: '[Animated] Stagger List',
+    plural: '[Animated] Stagger Lists',
   },
 
   fields: [

@@ -26,12 +26,12 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
 
-export const CinematicTextBlock: Block = {
+export const AnimatedCinematicTextBlock: Block = {
   slug: 'cinematicText',
 
   labels: {
-    singular: 'Cinematic Text',
-    plural: 'Cinematic Text Blocks',
+    singular: '[Animated] Cinematic Text',
+    plural: '[Animated] Cinematic Text Blocks',
   },
 
   fields: [
