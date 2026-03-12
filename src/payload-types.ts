@@ -763,6 +763,28 @@ export interface Page {
                                                                     | 'destructive'
                                                                   )
                                                                 | null;
+                                                              iconBefore?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              iconAfter?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
                                                               id?: string | null;
                                                               blockName?: string | null;
                                                               blockType: 'buttonAtom';
@@ -851,6 +873,28 @@ export interface Page {
                                                     variant?:
                                                       | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
                                                       | null;
+                                                    iconBefore?: {
+                                                      /**
+                                                       * Lucide icon name
+                                                       */
+                                                      iconName?: string | null;
+                                                      size?: number | null;
+                                                      /**
+                                                       * Tailwind class or Hex
+                                                       */
+                                                      color?: string | null;
+                                                    };
+                                                    iconAfter?: {
+                                                      /**
+                                                       * Lucide icon name
+                                                       */
+                                                      iconName?: string | null;
+                                                      size?: number | null;
+                                                      /**
+                                                       * Tailwind class or Hex
+                                                       */
+                                                      color?: string | null;
+                                                    };
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'buttonAtom';
@@ -1024,6 +1068,225 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'embedAnything';
+                                                  }
+                                                | {
+                                                    paddingTop?: number | null;
+                                                    paddingBottom?: number | null;
+                                                    paddingLeft?: number | null;
+                                                    paddingRight?: number | null;
+                                                    marginTop?: number | null;
+                                                    marginBottom?: number | null;
+                                                    marginLeft?: number | null;
+                                                    marginRight?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    backgroundColor?: string | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    borderColor?: string | null;
+                                                    borderWidth?: string | null;
+                                                    items?:
+                                                      | (
+                                                          | {
+                                                              content?: {
+                                                                root: {
+                                                                  type: string;
+                                                                  children: {
+                                                                    type: any;
+                                                                    version: number;
+                                                                    [k: string]: unknown;
+                                                                  }[];
+                                                                  direction: ('ltr' | 'rtl') | null;
+                                                                  format:
+                                                                    | 'left'
+                                                                    | 'start'
+                                                                    | 'center'
+                                                                    | 'right'
+                                                                    | 'end'
+                                                                    | 'justify'
+                                                                    | '';
+                                                                  indent: number;
+                                                                  version: number;
+                                                                };
+                                                                [k: string]: unknown;
+                                                              } | null;
+                                                              align?: ('left' | 'center' | 'right') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'textAtom';
+                                                            }
+                                                          | {
+                                                              label: string;
+                                                              url?: string | null;
+                                                              variant?:
+                                                                | (
+                                                                    | 'default'
+                                                                    | 'secondary'
+                                                                    | 'outline'
+                                                                    | 'ghost'
+                                                                    | 'destructive'
+                                                                  )
+                                                                | null;
+                                                              iconBefore?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              iconAfter?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'buttonAtom';
+                                                            }
+                                                          | {
+                                                              label?: string | null;
+                                                              variant?:
+                                                                | ('default' | 'secondary' | 'outline' | 'destructive')
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'badgeAtom';
+                                                            }
+                                                          | {
+                                                              title?: string | null;
+                                                              description?: string | null;
+                                                              variant?: ('default' | 'destructive') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'alertAtom';
+                                                            }
+                                                          | {
+                                                              image: string | Media;
+                                                              aspect?: ('square' | 'video' | 'wide') | null;
+                                                              caption?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'imageAtom';
+                                                            }
+                                                          | {
+                                                              title?: string | null;
+                                                              description?: string | null;
+                                                              image?: (string | null) | Media;
+                                                              link?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'cardAtom';
+                                                            }
+                                                          | {
+                                                              items?:
+                                                                | {
+                                                                    title?: string | null;
+                                                                    content?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'accordionAtom';
+                                                            }
+                                                          | {
+                                                              tabs?:
+                                                                | {
+                                                                    label?: string | null;
+                                                                    content?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'tabsAtom';
+                                                            }
+                                                          | {
+                                                              slides?:
+                                                                | {
+                                                                    image?: (string | null) | Media;
+                                                                    caption?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'carouselAtom';
+                                                            }
+                                                          | {
+                                                              image?: (string | null) | Media;
+                                                              name?: string | null;
+                                                              role?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'avatarAtom';
+                                                            }
+                                                          | {
+                                                              spacing?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'separatorAtom';
+                                                            }
+                                                          | {
+                                                              value?: number | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'progressAtom';
+                                                            }
+                                                          | {
+                                                              rows?:
+                                                                | {
+                                                                    cells?:
+                                                                      | {
+                                                                          value?: string | null;
+                                                                          id?: string | null;
+                                                                        }[]
+                                                                      | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'tableAtom';
+                                                            }
+                                                          | {
+                                                              /**
+                                                               * Lucide icon name
+                                                               */
+                                                              iconName?: string | null;
+                                                              size?: number | null;
+                                                              /**
+                                                               * Tailwind class or Hex
+                                                               */
+                                                              color?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'iconAtom';
+                                                            }
+                                                          | {
+                                                              url: string;
+                                                              controls?: boolean | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'videoAtom';
+                                                            }
+                                                        )[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'wrapperAtom';
                                                   }
                                                 | {
                                                     trackId?: string | null;
@@ -1701,6 +1964,28 @@ export interface Page {
                                                                     | 'destructive'
                                                                   )
                                                                 | null;
+                                                              iconBefore?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              iconAfter?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
                                                               id?: string | null;
                                                               blockName?: string | null;
                                                               blockType: 'buttonAtom';
@@ -1789,6 +2074,28 @@ export interface Page {
                                                     variant?:
                                                       | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
                                                       | null;
+                                                    iconBefore?: {
+                                                      /**
+                                                       * Lucide icon name
+                                                       */
+                                                      iconName?: string | null;
+                                                      size?: number | null;
+                                                      /**
+                                                       * Tailwind class or Hex
+                                                       */
+                                                      color?: string | null;
+                                                    };
+                                                    iconAfter?: {
+                                                      /**
+                                                       * Lucide icon name
+                                                       */
+                                                      iconName?: string | null;
+                                                      size?: number | null;
+                                                      /**
+                                                       * Tailwind class or Hex
+                                                       */
+                                                      color?: string | null;
+                                                    };
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'buttonAtom';
@@ -1962,6 +2269,225 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'embedAnything';
+                                                  }
+                                                | {
+                                                    paddingTop?: number | null;
+                                                    paddingBottom?: number | null;
+                                                    paddingLeft?: number | null;
+                                                    paddingRight?: number | null;
+                                                    marginTop?: number | null;
+                                                    marginBottom?: number | null;
+                                                    marginLeft?: number | null;
+                                                    marginRight?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    backgroundColor?: string | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    borderColor?: string | null;
+                                                    borderWidth?: string | null;
+                                                    items?:
+                                                      | (
+                                                          | {
+                                                              content?: {
+                                                                root: {
+                                                                  type: string;
+                                                                  children: {
+                                                                    type: any;
+                                                                    version: number;
+                                                                    [k: string]: unknown;
+                                                                  }[];
+                                                                  direction: ('ltr' | 'rtl') | null;
+                                                                  format:
+                                                                    | 'left'
+                                                                    | 'start'
+                                                                    | 'center'
+                                                                    | 'right'
+                                                                    | 'end'
+                                                                    | 'justify'
+                                                                    | '';
+                                                                  indent: number;
+                                                                  version: number;
+                                                                };
+                                                                [k: string]: unknown;
+                                                              } | null;
+                                                              align?: ('left' | 'center' | 'right') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'textAtom';
+                                                            }
+                                                          | {
+                                                              label: string;
+                                                              url?: string | null;
+                                                              variant?:
+                                                                | (
+                                                                    | 'default'
+                                                                    | 'secondary'
+                                                                    | 'outline'
+                                                                    | 'ghost'
+                                                                    | 'destructive'
+                                                                  )
+                                                                | null;
+                                                              iconBefore?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              iconAfter?: {
+                                                                /**
+                                                                 * Lucide icon name
+                                                                 */
+                                                                iconName?: string | null;
+                                                                size?: number | null;
+                                                                /**
+                                                                 * Tailwind class or Hex
+                                                                 */
+                                                                color?: string | null;
+                                                              };
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'buttonAtom';
+                                                            }
+                                                          | {
+                                                              label?: string | null;
+                                                              variant?:
+                                                                | ('default' | 'secondary' | 'outline' | 'destructive')
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'badgeAtom';
+                                                            }
+                                                          | {
+                                                              title?: string | null;
+                                                              description?: string | null;
+                                                              variant?: ('default' | 'destructive') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'alertAtom';
+                                                            }
+                                                          | {
+                                                              image: string | Media;
+                                                              aspect?: ('square' | 'video' | 'wide') | null;
+                                                              caption?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'imageAtom';
+                                                            }
+                                                          | {
+                                                              title?: string | null;
+                                                              description?: string | null;
+                                                              image?: (string | null) | Media;
+                                                              link?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'cardAtom';
+                                                            }
+                                                          | {
+                                                              items?:
+                                                                | {
+                                                                    title?: string | null;
+                                                                    content?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'accordionAtom';
+                                                            }
+                                                          | {
+                                                              tabs?:
+                                                                | {
+                                                                    label?: string | null;
+                                                                    content?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'tabsAtom';
+                                                            }
+                                                          | {
+                                                              slides?:
+                                                                | {
+                                                                    image?: (string | null) | Media;
+                                                                    caption?: string | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'carouselAtom';
+                                                            }
+                                                          | {
+                                                              image?: (string | null) | Media;
+                                                              name?: string | null;
+                                                              role?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'avatarAtom';
+                                                            }
+                                                          | {
+                                                              spacing?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'separatorAtom';
+                                                            }
+                                                          | {
+                                                              value?: number | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'progressAtom';
+                                                            }
+                                                          | {
+                                                              rows?:
+                                                                | {
+                                                                    cells?:
+                                                                      | {
+                                                                          value?: string | null;
+                                                                          id?: string | null;
+                                                                        }[]
+                                                                      | null;
+                                                                    id?: string | null;
+                                                                  }[]
+                                                                | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'tableAtom';
+                                                            }
+                                                          | {
+                                                              /**
+                                                               * Lucide icon name
+                                                               */
+                                                              iconName?: string | null;
+                                                              size?: number | null;
+                                                              /**
+                                                               * Tailwind class or Hex
+                                                               */
+                                                              color?: string | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'iconAtom';
+                                                            }
+                                                          | {
+                                                              url: string;
+                                                              controls?: boolean | null;
+                                                              id?: string | null;
+                                                              blockName?: string | null;
+                                                              blockType: 'videoAtom';
+                                                            }
+                                                        )[]
+                                                      | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'wrapperAtom';
                                                   }
                                                 | {
                                                     trackId?: string | null;
@@ -2712,6 +3238,28 @@ export interface Page {
                                                   variant?:
                                                     | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
                                                     | null;
+                                                  iconBefore?: {
+                                                    /**
+                                                     * Lucide icon name
+                                                     */
+                                                    iconName?: string | null;
+                                                    size?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    color?: string | null;
+                                                  };
+                                                  iconAfter?: {
+                                                    /**
+                                                     * Lucide icon name
+                                                     */
+                                                    iconName?: string | null;
+                                                    size?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    color?: string | null;
+                                                  };
                                                   id?: string | null;
                                                   blockName?: string | null;
                                                   blockType: 'buttonAtom';
@@ -2798,6 +3346,28 @@ export interface Page {
                                         variant?:
                                           | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
                                           | null;
+                                        iconBefore?: {
+                                          /**
+                                           * Lucide icon name
+                                           */
+                                          iconName?: string | null;
+                                          size?: number | null;
+                                          /**
+                                           * Tailwind class or Hex
+                                           */
+                                          color?: string | null;
+                                        };
+                                        iconAfter?: {
+                                          /**
+                                           * Lucide icon name
+                                           */
+                                          iconName?: string | null;
+                                          size?: number | null;
+                                          /**
+                                           * Tailwind class or Hex
+                                           */
+                                          color?: string | null;
+                                        };
                                         id?: string | null;
                                         blockName?: string | null;
                                         blockType: 'buttonAtom';
@@ -2935,6 +3505,219 @@ export interface Page {
                                         id?: string | null;
                                         blockName?: string | null;
                                         blockType: 'embedAnything';
+                                      }
+                                    | {
+                                        paddingTop?: number | null;
+                                        paddingBottom?: number | null;
+                                        paddingLeft?: number | null;
+                                        paddingRight?: number | null;
+                                        marginTop?: number | null;
+                                        marginBottom?: number | null;
+                                        marginLeft?: number | null;
+                                        marginRight?: number | null;
+                                        /**
+                                         * Tailwind class or Hex
+                                         */
+                                        backgroundColor?: string | null;
+                                        /**
+                                         * Tailwind class or Hex
+                                         */
+                                        borderColor?: string | null;
+                                        borderWidth?: string | null;
+                                        items?:
+                                          | (
+                                              | {
+                                                  content?: {
+                                                    root: {
+                                                      type: string;
+                                                      children: {
+                                                        type: any;
+                                                        version: number;
+                                                        [k: string]: unknown;
+                                                      }[];
+                                                      direction: ('ltr' | 'rtl') | null;
+                                                      format:
+                                                        | 'left'
+                                                        | 'start'
+                                                        | 'center'
+                                                        | 'right'
+                                                        | 'end'
+                                                        | 'justify'
+                                                        | '';
+                                                      indent: number;
+                                                      version: number;
+                                                    };
+                                                    [k: string]: unknown;
+                                                  } | null;
+                                                  align?: ('left' | 'center' | 'right') | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'textAtom';
+                                                }
+                                              | {
+                                                  label: string;
+                                                  url?: string | null;
+                                                  variant?:
+                                                    | ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive')
+                                                    | null;
+                                                  iconBefore?: {
+                                                    /**
+                                                     * Lucide icon name
+                                                     */
+                                                    iconName?: string | null;
+                                                    size?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    color?: string | null;
+                                                  };
+                                                  iconAfter?: {
+                                                    /**
+                                                     * Lucide icon name
+                                                     */
+                                                    iconName?: string | null;
+                                                    size?: number | null;
+                                                    /**
+                                                     * Tailwind class or Hex
+                                                     */
+                                                    color?: string | null;
+                                                  };
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'buttonAtom';
+                                                }
+                                              | {
+                                                  label?: string | null;
+                                                  variant?:
+                                                    | ('default' | 'secondary' | 'outline' | 'destructive')
+                                                    | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'badgeAtom';
+                                                }
+                                              | {
+                                                  title?: string | null;
+                                                  description?: string | null;
+                                                  variant?: ('default' | 'destructive') | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'alertAtom';
+                                                }
+                                              | {
+                                                  image: string | Media;
+                                                  aspect?: ('square' | 'video' | 'wide') | null;
+                                                  caption?: string | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'imageAtom';
+                                                }
+                                              | {
+                                                  title?: string | null;
+                                                  description?: string | null;
+                                                  image?: (string | null) | Media;
+                                                  link?: string | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'cardAtom';
+                                                }
+                                              | {
+                                                  items?:
+                                                    | {
+                                                        title?: string | null;
+                                                        content?: string | null;
+                                                        id?: string | null;
+                                                      }[]
+                                                    | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'accordionAtom';
+                                                }
+                                              | {
+                                                  tabs?:
+                                                    | {
+                                                        label?: string | null;
+                                                        content?: string | null;
+                                                        id?: string | null;
+                                                      }[]
+                                                    | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'tabsAtom';
+                                                }
+                                              | {
+                                                  slides?:
+                                                    | {
+                                                        image?: (string | null) | Media;
+                                                        caption?: string | null;
+                                                        id?: string | null;
+                                                      }[]
+                                                    | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'carouselAtom';
+                                                }
+                                              | {
+                                                  image?: (string | null) | Media;
+                                                  name?: string | null;
+                                                  role?: string | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'avatarAtom';
+                                                }
+                                              | {
+                                                  spacing?: ('sm' | 'md' | 'lg' | 'xl') | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'separatorAtom';
+                                                }
+                                              | {
+                                                  value?: number | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'progressAtom';
+                                                }
+                                              | {
+                                                  rows?:
+                                                    | {
+                                                        cells?:
+                                                          | {
+                                                              value?: string | null;
+                                                              id?: string | null;
+                                                            }[]
+                                                          | null;
+                                                        id?: string | null;
+                                                      }[]
+                                                    | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'tableAtom';
+                                                }
+                                              | {
+                                                  /**
+                                                   * Lucide icon name
+                                                   */
+                                                  iconName?: string | null;
+                                                  size?: number | null;
+                                                  /**
+                                                   * Tailwind class or Hex
+                                                   */
+                                                  color?: string | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'iconAtom';
+                                                }
+                                              | {
+                                                  url: string;
+                                                  controls?: boolean | null;
+                                                  id?: string | null;
+                                                  blockName?: string | null;
+                                                  blockType: 'videoAtom';
+                                                }
+                                            )[]
+                                          | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'wrapperAtom';
                                       }
                                     | {
                                         trackId?: string | null;
@@ -4674,6 +5457,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                             label?: T;
                                                                                             url?: T;
                                                                                             variant?: T;
+                                                                                            iconBefore?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            iconAfter?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
                                                                                             id?: T;
                                                                                             blockName?: T;
                                                                                           };
@@ -4732,6 +5529,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 label?: T;
                                                                                 url?: T;
                                                                                 variant?: T;
+                                                                                iconBefore?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      iconName?: T;
+                                                                                      size?: T;
+                                                                                      color?: T;
+                                                                                    };
+                                                                                iconAfter?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      iconName?: T;
+                                                                                      size?: T;
+                                                                                      color?: T;
+                                                                                    };
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -4855,6 +5666,190 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 caption?: T;
                                                                                 aspectRatio?: T;
                                                                                 lazy?: T;
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          wrapperAtom?:
+                                                                            | T
+                                                                            | {
+                                                                                paddingTop?: T;
+                                                                                paddingBottom?: T;
+                                                                                paddingLeft?: T;
+                                                                                paddingRight?: T;
+                                                                                marginTop?: T;
+                                                                                marginBottom?: T;
+                                                                                marginLeft?: T;
+                                                                                marginRight?: T;
+                                                                                backgroundColor?: T;
+                                                                                borderColor?: T;
+                                                                                borderWidth?: T;
+                                                                                items?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      textAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            content?: T;
+                                                                                            align?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      buttonAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            url?: T;
+                                                                                            variant?: T;
+                                                                                            iconBefore?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            iconAfter?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      badgeAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            variant?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      alertAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            title?: T;
+                                                                                            description?: T;
+                                                                                            variant?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      imageAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            image?: T;
+                                                                                            aspect?: T;
+                                                                                            caption?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      cardAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            title?: T;
+                                                                                            description?: T;
+                                                                                            image?: T;
+                                                                                            link?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      accordionAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            items?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  title?: T;
+                                                                                                  content?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      tabsAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            tabs?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  label?: T;
+                                                                                                  content?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      carouselAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            slides?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  image?: T;
+                                                                                                  caption?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      avatarAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            image?: T;
+                                                                                            name?: T;
+                                                                                            role?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      separatorAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            spacing?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      progressAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            value?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      tableAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            rows?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  cells?:
+                                                                                                    | T
+                                                                                                    | {
+                                                                                                        value?: T;
+                                                                                                        id?: T;
+                                                                                                      };
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      iconAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            iconName?: T;
+                                                                                            size?: T;
+                                                                                            color?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      videoAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            controls?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                    };
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -5398,6 +6393,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                             label?: T;
                                                                                             url?: T;
                                                                                             variant?: T;
+                                                                                            iconBefore?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            iconAfter?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
                                                                                             id?: T;
                                                                                             blockName?: T;
                                                                                           };
@@ -5456,6 +6465,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 label?: T;
                                                                                 url?: T;
                                                                                 variant?: T;
+                                                                                iconBefore?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      iconName?: T;
+                                                                                      size?: T;
+                                                                                      color?: T;
+                                                                                    };
+                                                                                iconAfter?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      iconName?: T;
+                                                                                      size?: T;
+                                                                                      color?: T;
+                                                                                    };
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -5579,6 +6602,190 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 caption?: T;
                                                                                 aspectRatio?: T;
                                                                                 lazy?: T;
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          wrapperAtom?:
+                                                                            | T
+                                                                            | {
+                                                                                paddingTop?: T;
+                                                                                paddingBottom?: T;
+                                                                                paddingLeft?: T;
+                                                                                paddingRight?: T;
+                                                                                marginTop?: T;
+                                                                                marginBottom?: T;
+                                                                                marginLeft?: T;
+                                                                                marginRight?: T;
+                                                                                backgroundColor?: T;
+                                                                                borderColor?: T;
+                                                                                borderWidth?: T;
+                                                                                items?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      textAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            content?: T;
+                                                                                            align?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      buttonAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            url?: T;
+                                                                                            variant?: T;
+                                                                                            iconBefore?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            iconAfter?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  iconName?: T;
+                                                                                                  size?: T;
+                                                                                                  color?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      badgeAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            label?: T;
+                                                                                            variant?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      alertAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            title?: T;
+                                                                                            description?: T;
+                                                                                            variant?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      imageAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            image?: T;
+                                                                                            aspect?: T;
+                                                                                            caption?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      cardAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            title?: T;
+                                                                                            description?: T;
+                                                                                            image?: T;
+                                                                                            link?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      accordionAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            items?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  title?: T;
+                                                                                                  content?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      tabsAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            tabs?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  label?: T;
+                                                                                                  content?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      carouselAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            slides?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  image?: T;
+                                                                                                  caption?: T;
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      avatarAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            image?: T;
+                                                                                            name?: T;
+                                                                                            role?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      separatorAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            spacing?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      progressAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            value?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      tableAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            rows?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  cells?:
+                                                                                                    | T
+                                                                                                    | {
+                                                                                                        value?: T;
+                                                                                                        id?: T;
+                                                                                                      };
+                                                                                                  id?: T;
+                                                                                                };
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      iconAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            iconName?: T;
+                                                                                            size?: T;
+                                                                                            color?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                      videoAtom?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            url?: T;
+                                                                                            controls?: T;
+                                                                                            id?: T;
+                                                                                            blockName?: T;
+                                                                                          };
+                                                                                    };
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -6187,6 +7394,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           label?: T;
                                                                           url?: T;
                                                                           variant?: T;
+                                                                          iconBefore?:
+                                                                            | T
+                                                                            | {
+                                                                                iconName?: T;
+                                                                                size?: T;
+                                                                                color?: T;
+                                                                              };
+                                                                          iconAfter?:
+                                                                            | T
+                                                                            | {
+                                                                                iconName?: T;
+                                                                                size?: T;
+                                                                                color?: T;
+                                                                              };
                                                                           id?: T;
                                                                           blockName?: T;
                                                                         };
@@ -6245,6 +7466,20 @@ export interface PagesSelect<T extends boolean = true> {
                                                               label?: T;
                                                               url?: T;
                                                               variant?: T;
+                                                              iconBefore?:
+                                                                | T
+                                                                | {
+                                                                    iconName?: T;
+                                                                    size?: T;
+                                                                    color?: T;
+                                                                  };
+                                                              iconAfter?:
+                                                                | T
+                                                                | {
+                                                                    iconName?: T;
+                                                                    size?: T;
+                                                                    color?: T;
+                                                                  };
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -6368,6 +7603,190 @@ export interface PagesSelect<T extends boolean = true> {
                                                               caption?: T;
                                                               aspectRatio?: T;
                                                               lazy?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        wrapperAtom?:
+                                                          | T
+                                                          | {
+                                                              paddingTop?: T;
+                                                              paddingBottom?: T;
+                                                              paddingLeft?: T;
+                                                              paddingRight?: T;
+                                                              marginTop?: T;
+                                                              marginBottom?: T;
+                                                              marginLeft?: T;
+                                                              marginRight?: T;
+                                                              backgroundColor?: T;
+                                                              borderColor?: T;
+                                                              borderWidth?: T;
+                                                              items?:
+                                                                | T
+                                                                | {
+                                                                    textAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          content?: T;
+                                                                          align?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    buttonAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          label?: T;
+                                                                          url?: T;
+                                                                          variant?: T;
+                                                                          iconBefore?:
+                                                                            | T
+                                                                            | {
+                                                                                iconName?: T;
+                                                                                size?: T;
+                                                                                color?: T;
+                                                                              };
+                                                                          iconAfter?:
+                                                                            | T
+                                                                            | {
+                                                                                iconName?: T;
+                                                                                size?: T;
+                                                                                color?: T;
+                                                                              };
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    badgeAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          label?: T;
+                                                                          variant?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    alertAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          title?: T;
+                                                                          description?: T;
+                                                                          variant?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    imageAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          image?: T;
+                                                                          aspect?: T;
+                                                                          caption?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    cardAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          title?: T;
+                                                                          description?: T;
+                                                                          image?: T;
+                                                                          link?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    accordionAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          items?:
+                                                                            | T
+                                                                            | {
+                                                                                title?: T;
+                                                                                content?: T;
+                                                                                id?: T;
+                                                                              };
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    tabsAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          tabs?:
+                                                                            | T
+                                                                            | {
+                                                                                label?: T;
+                                                                                content?: T;
+                                                                                id?: T;
+                                                                              };
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    carouselAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          slides?:
+                                                                            | T
+                                                                            | {
+                                                                                image?: T;
+                                                                                caption?: T;
+                                                                                id?: T;
+                                                                              };
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    avatarAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          image?: T;
+                                                                          name?: T;
+                                                                          role?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    separatorAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          spacing?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    progressAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          value?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    tableAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          rows?:
+                                                                            | T
+                                                                            | {
+                                                                                cells?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      value?: T;
+                                                                                      id?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                              };
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    iconAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          iconName?: T;
+                                                                          size?: T;
+                                                                          color?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                    videoAtom?:
+                                                                      | T
+                                                                      | {
+                                                                          url?: T;
+                                                                          controls?: T;
+                                                                          id?: T;
+                                                                          blockName?: T;
+                                                                        };
+                                                                  };
                                                               id?: T;
                                                               blockName?: T;
                                                             };

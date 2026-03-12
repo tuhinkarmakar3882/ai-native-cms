@@ -142,6 +142,64 @@ export const ButtonAtom: Block = {
       options: ['default', 'secondary', 'outline', 'ghost', 'destructive'],
       defaultValue: 'default',
     },
+
+    {
+      name: 'iconBefore',
+      type: 'group',
+      label: 'Icon :: Before',
+      fields: [
+        {
+          name: 'iconName',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name',
+            components: {
+              Field: '@/components/IconPicker#IconPickerComponent',
+            },
+          },
+        },
+        { name: 'size', type: 'number', defaultValue: 24 },
+        {
+          name: 'color',
+          type: 'text',
+          admin: {
+            description: 'Tailwind class or Hex',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
+        },
+      ],
+    },
+
+    {
+      name: 'iconAfter',
+      type: 'group',
+      label: 'Icon :: After',
+      fields: [
+        {
+          name: 'iconName',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name',
+            components: {
+              Field: '@/components/IconPicker#IconPickerComponent',
+            },
+          },
+        },
+        { name: 'size', type: 'number', defaultValue: 24 },
+        {
+          name: 'color',
+          type: 'text',
+          admin: {
+            description: 'Tailwind class or Hex',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
+        },
+      ],
+    },
   ],
 }
 
@@ -432,6 +490,131 @@ export const AlignerAtom: Block = {
       name: 'items',
       type: 'blocks',
       blocks: [ButtonAtom, IconAtom, SpacerAtom, TextAtom],
+    },
+  ],
+}
+
+export const WrapperAtom: Block = {
+  slug: 'wrapperAtom',
+  dbName: 'at_wrapper',
+  fields: [
+    {
+      label: 'Padding',
+      type: 'collapsible',
+      fields: [
+        {
+          name: 'paddingTop',
+          type: 'number',
+          label: 'Top Padding (px)',
+          min: 0,
+        },
+        {
+          name: 'paddingBottom',
+          type: 'number',
+          label: 'Bottom Padding (px)',
+          min: 0,
+        },
+        {
+          name: 'paddingLeft',
+          type: 'number',
+          label: 'Left Padding (px)',
+          min: 0,
+        },
+        {
+          name: 'paddingRight',
+          type: 'number',
+          label: 'Right Padding (px)',
+          min: 0,
+        },
+      ],
+    },
+    {
+      label: 'Margin',
+      type: 'collapsible',
+      fields: [
+        {
+          name: 'marginTop',
+          type: 'number',
+          label: 'Top Margin (px)',
+          min: 0,
+        },
+        {
+          name: 'marginBottom',
+          type: 'number',
+          label: 'Bottom Margin (px)',
+          min: 0,
+        },
+        {
+          name: 'marginLeft',
+          type: 'number',
+          label: 'Left Margin (px)',
+          min: 0,
+        },
+        {
+          name: 'marginRight',
+          type: 'number',
+          label: 'Right Margin (px)',
+          min: 0,
+        },
+      ],
+    },
+    {
+      label: 'Style Properties',
+      type: 'collapsible',
+      fields: [
+        {
+          name: 'backgroundColor',
+          label: 'Background Color',
+          type: 'text',
+          defaultValue: 'transparent',
+          admin: {
+            description: 'Tailwind class or Hex',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
+        },
+        {
+          name: 'borderColor',
+          label: 'Border Color',
+          type: 'text',
+          defaultValue: 'transparent',
+          admin: {
+            description: 'Tailwind class or Hex',
+            components: {
+              Field: '@/components/ColorPicker#ColorInputComponent',
+            },
+          },
+        },
+        {
+          name: 'borderWidth',
+          label: 'Border Width',
+          defaultValue: '0',
+          type: 'text',
+        },
+      ],
+    },
+
+    {
+      name: 'items',
+      type: 'blocks',
+      blocks: [
+        TextAtom,
+        ButtonAtom,
+        BadgeAtom,
+        AlertAtom,
+        ImageAtom,
+        CardAtom,
+        AccordionAtom,
+        TabsAtom,
+        CarouselAtom,
+        AvatarAtom,
+        SeparatorAtom,
+        ProgressAtom,
+        TableAtom,
+        IconAtom,
+        VideoAtom,
+      ],
     },
   ],
 }

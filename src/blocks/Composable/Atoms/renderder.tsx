@@ -42,9 +42,15 @@ export const TextAtomComponent = ({ content }) => (
   </div>
 )
 
-export const ButtonAtomComponent = ({ label, url, variant }) => (
+export const ButtonAtomComponent = ({ label, url, variant, iconBefore, iconAfter }) => (
   <Button variant={variant} asChild>
-    <a href={url}>{label}</a>
+    <a href={url} className="inline-flex items-center gap-2">
+      {iconBefore && <IconAtomComponent {...iconBefore} />}
+
+      <span>{label}</span>
+
+      {iconAfter && <IconAtomComponent {...iconAfter} />}
+    </a>
   </Button>
 )
 
@@ -233,7 +239,36 @@ export const AlignerAtomComponent = ({ direction, gap, items, justify, align }) 
   )
 }
 
+export const WrapperAtomComponent = (props) => {
+  return (
+    <div
+      style={{
+        marginTop: `${props.marginTop}px`,
+        marginBottom: `${props.marginBottom}px`,
+        marginLeft: `${props.marginLeft}px`,
+        marginRight: `${props.marginRight}px`,
+
+        paddingLeft: `${props.paddingLeft}px`,
+        paddingRight: `${props.paddingRight}px`,
+        paddingTop: `${props.paddingTop}px`,
+        paddingBottom: `${props.paddingBottom}px`,
+
+        backgroundColor: `${props.backgroundColor}`,
+        borderRadius: `${props.borderRadius}`,
+        borderWidth: `${props.borderWidth}`,
+        borderColor: `${props.borderColor}`,
+        borderStyle: 'solid',
+      }}
+    >
+      {props?.items?.map((item, i) => (
+        <RenderBlocks key={i} blocks={[item]} />
+      ))}
+    </div>
+  )
+}
+
 export const AtomicRendererMap = {
+  wrapperAtom: WrapperAtomComponent,
   textAtom: TextAtomComponent,
   buttonAtom: ButtonAtomComponent,
   badgeAtom: BadgeAtomComponent,

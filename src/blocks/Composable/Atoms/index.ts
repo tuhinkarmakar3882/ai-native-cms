@@ -17,6 +17,7 @@ import {
   TabsAtom,
   TextAtom,
   VideoAtom,
+  WrapperAtom,
 } from '@/blocks/Composable/Atoms/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
@@ -41,4 +42,5 @@ export const AtomBlocks: Block[] = [
   VideoAtom,
   FormBlock,
   EmbedAnythingBlock,
+  WrapperAtom,
 ]
