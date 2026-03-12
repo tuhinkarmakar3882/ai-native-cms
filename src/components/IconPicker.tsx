@@ -92,6 +92,18 @@ export const IconPickerComponent = ({ path, field }) => {
             onChange={(e) => setSearch(e.target.value)}
             style={{ width: '100%', marginBottom: 10, padding: 6 }}
           />
+          <button
+            style={{
+              width: '100%',
+              marginBottom: 8,
+            }}
+            onClick={() => {
+              setValue('')
+              setOpen(!open)
+            }}
+          >
+            Clear
+          </button>
 
           <div
             ref={containerRef}
