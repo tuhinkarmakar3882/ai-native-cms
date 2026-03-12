@@ -37,8 +37,8 @@ export const BentoGridComponent: React.FC<BentoGridProps> = ({
   const { useContainer, containerSize } = containerSettings
 
   const gridContent = (
-    <section className="py-20" data-track-section={trackId}>
-      <div className="mb-10 flex flex-col gap-4">
+    <section data-track-section={trackId} className="flex flex-col gap-10">
+      <div className=" flex flex-col gap-4">
         {title && <h2 className="text-3xl font-bold">{title}</h2>}
         {description && <p className="text-sm text-muted-foreground">{description}</p>}
       </div>
