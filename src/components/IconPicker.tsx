@@ -87,6 +87,7 @@ export const IconPickerComponent = ({ path, field }) => {
           }}
         >
           <input
+            autoFocus
             placeholder="Search icons..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
