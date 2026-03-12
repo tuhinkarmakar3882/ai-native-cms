@@ -65,7 +65,7 @@ export const MediaViewerComponent: React.FC<MediaViewerProps> = ({
       return (
         <iframe
           src={pdf.url}
-          title={caption || pdf.filename}
+          title={caption || pdf.filename || 'Embedded Media'}
           className="w-full h-full rounded-md"
           frameBorder="0"
         />

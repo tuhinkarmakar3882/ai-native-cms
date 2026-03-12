@@ -40,8 +40,8 @@ const NestedBlocks = [
 export const AnimatedClipPathMorphBlock: Block = {
   slug: 'clipPathMorph',
   labels: {
-    singular: '[Animated] Clip Path Morph with Overlay',
-    plural: '[Animated] Clip Path Morph with Overlays',
+    singular: '[Animated] Morpher',
+    plural: '[Animated] Morphers',
   },
   fields: [
     {

@@ -38,6 +38,7 @@ export function EmbedAnythingBlockComponent({ url, caption, aspectRatio = '16/9'
         style={aspectRatio !== 'auto' ? { aspectRatio } : undefined}
       >
         <iframe
+          title={caption || 'Embedded Content'}
           src={embedUrl}
           className="absolute inset-0 w-full h-full"
           loading="lazy"
