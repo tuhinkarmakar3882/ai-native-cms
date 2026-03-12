@@ -6,6 +6,11 @@ export const RenderBlocks = ({ blocks }) => {
   return (
     <>
       {blocks.map((block, i) => {
+        if (!block?.blockType) {
+          console.warn(`A Block without a type is found: ${block}`)
+          return null
+        }
+
         const Component = AvailableRenderBlocks[block.blockType]
 
         if (!Component) {
