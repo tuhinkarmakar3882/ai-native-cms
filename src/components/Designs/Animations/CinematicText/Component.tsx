@@ -6,6 +6,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
 import RichText from '@/components/RichText'
+import styled from 'styled-components'
+
+const StyledSection = styled.section`
+  .split-word,
+  .split-char,
+  .split-line {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+  }
+`
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -49,6 +59,28 @@ const getAnimationProps = (animation: string) => {
   }
 }
 
+function splitText(element: HTMLElement, type: string) {
+  const text = element.textContent || ''
+
+  if (type === 'chars') {
+    element.innerHTML = text
+      .split('')
+      .map((char) => `<span class="split-char">${char === ' ' ? '&nbsp;' : char}</span>`)
+      .join('')
+  }
+
+  if (type === 'words') {
+    element.innerHTML = text
+      .split(' ')
+      .map((word) => `<span class="split-word">${word}</span>`)
+      .join(' ')
+  }
+
+  if (type === 'lines') {
+    element.innerHTML = `<span class="split-line">${text}</span>`
+  }
+}
+
 export const CinematicTextComponent = ({
   content,
   trackId,
@@ -65,13 +97,17 @@ export const CinematicTextComponent = ({
 
   useGSAP(
     () => {
-      const items = gsap.utils.toArray(
-        containerRef.current.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li'),
-      )
+      const elements = containerRef.current.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li')
 
       const animationProps = getAnimationProps(animation)
 
-      gsap.from(items, {
+      elements.forEach((el) => {
+        splitText(el as HTMLElement, splitType)
+      })
+
+      const targets = containerRef.current.querySelectorAll('.split-word, .split-char, .split-line')
+
+      gsap.from(targets, {
         ...animationProps,
         duration,
         stagger,
@@ -88,7 +124,7 @@ export const CinematicTextComponent = ({
   )
 
   return (
-    <section
+    <StyledSection
       data-track-section={trackId}
       style={{ backgroundColor, color: textColor }}
       className="min-h-screen flex items-center justify-center px-8"
@@ -96,6 +132,6 @@ export const CinematicTextComponent = ({
       <div ref={containerRef} className="max-w-5xl text-5xl leading-tight space-y-6">
         <RichText data={content} />
       </div>
-    </section>
+    </StyledSection>
   )
 }
