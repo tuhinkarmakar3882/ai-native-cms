@@ -32,7 +32,7 @@ export const HeaderClient = ({ data }: { data: Header }) => {
         {/* Left: Logo (Zone 1) */}
         <div className="flex-shrink-0 lg:w-[200px]">
           <Link href="/" className="focus-visible:outline-none">
-            <Logo priority loading="eager" className="h-8 w-auto" />
+            <Logo priority={'auto'} loading="eager" className="h-8 w-auto" />
           </Link>
         </div>
 
