@@ -575,7 +575,8 @@ export interface Page {
             animation?: ('fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'blur' | 'scale') | null;
             stagger?: number | null;
             duration?: number | null;
-            scrollTriggerStart?: string | null;
+            start?: number | null;
+            end?: number | null;
             scrollScrub?: boolean | null;
             backgroundColor?: string | null;
             textColor?: string | null;
@@ -5317,7 +5318,8 @@ export interface PagesSelect<T extends boolean = true> {
               animation?: T;
               stagger?: T;
               duration?: T;
-              scrollTriggerStart?: T;
+              start?: T;
+              end?: T;
               scrollScrub?: T;
               backgroundColor?: T;
               textColor?: T;

@@ -115,9 +115,14 @@ export const AnimatedCinematicTextBlock: Block = {
     },
 
     {
-      name: 'scrollTriggerStart',
-      type: 'text',
-      defaultValue: 'top 80%',
+      name: 'start',
+      type: 'number',
+      defaultValue: 0.3,
+    },
+    {
+      name: 'end',
+      type: 'number',
+      defaultValue: 1,
     },
 
     {

@@ -1,127 +1,145 @@
 'use client'
 
-import { useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
-
+import { useEffect, useRef } from 'react'
 import RichText from '@/components/RichText'
 import styled from 'styled-components'
 
 const StyledSection = styled.section`
-  .split-word,
-  .split-char,
-  .split-line {
+  .cinematic-word {
     display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(12px);
+    transition:
+      transform 0.2s linear,
+      opacity 0.2s linear,
+      filter 0.2s linear;
     will-change: transform, opacity, filter;
   }
 `
 
-gsap.registerPlugin(ScrollTrigger)
+interface Props {
+  content: any
+  trackId?: string
+  splitType?: 'words' | 'chars' | 'lines'
 
-const getAnimationProps = (animation: string) => {
-  switch (animation) {
-    case 'fadeIn':
-      return {
-        opacity: 0,
-      }
+  start?: number
+  end?: number
 
-    case 'slideLeft':
-      return {
-        x: -80,
-        opacity: 0,
-      }
-
-    case 'slideRight':
-      return {
-        x: 80,
-        opacity: 0,
-      }
-
-    case 'blur':
-      return {
-        opacity: 0,
-        filter: 'blur(10px)',
-      }
-
-    case 'scale':
-      return {
-        opacity: 0,
-        scale: 0.8,
-      }
-
-    case 'fadeUp':
-    default:
-      return {
-        y: 60,
-        opacity: 0,
-      }
-  }
-}
-
-function splitText(element: HTMLElement, type: string) {
-  const text = element.textContent || ''
-
-  if (type === 'chars') {
-    element.innerHTML = text
-      .split('')
-      .map((char) => `<span class="split-char">${char === ' ' ? '&nbsp;' : char}</span>`)
-      .join('')
-  }
-
-  if (type === 'words') {
-    element.innerHTML = text
-      .split(' ')
-      .map((word) => `<span class="split-word">${word}</span>`)
-      .join(' ')
-  }
-
-  if (type === 'lines') {
-    element.innerHTML = `<span class="split-line">${text}</span>`
-  }
+  backgroundColor?: string
+  textColor?: string
 }
 
 export const CinematicTextComponent = ({
   content,
   trackId,
-  animation = 'fadeUp',
   splitType = 'words',
-  stagger = 0.03,
-  duration = 0.8,
-  scrollTriggerStart = 'top 80%',
-  scrollScrub = false,
+
+  start = 0.3,
+  end = 1,
+
   backgroundColor = '#000',
   textColor = '#fff',
-}) => {
-  const containerRef = useRef(null)
+}: Props) => {
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  useGSAP(
-    () => {
-      const elements = containerRef.current.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li')
+  /* ----------------------------- */
+  /* Text Splitting */
+  /* ----------------------------- */
 
-      const animationProps = getAnimationProps(animation)
+  useEffect(() => {
+    if (!containerRef.current) return
 
-      elements.forEach((el) => {
-        splitText(el as HTMLElement, splitType)
+    const elements = containerRef.current.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li')
+
+    elements.forEach((el) => {
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+
+      const nodes: Text[] = []
+
+      while (walker.nextNode()) {
+        nodes.push(walker.currentNode as Text)
+      }
+
+      nodes.forEach((textNode) => {
+        const text = textNode.nodeValue || ''
+        if (!text.trim()) return
+
+        const parent = textNode.parentElement
+        if (!parent) return
+
+        let parts: string[] = []
+
+        if (splitType === 'chars') {
+          parts = text.split('')
+        } else if (splitType === 'words') {
+          parts = text.split(/(\s+)/)
+        } else {
+          parts = [text]
+        }
+
+        const fragment = document.createDocumentFragment()
+
+        parts.forEach((part) => {
+          const span = document.createElement('span')
+
+          span.textContent = part
+          span.style.whiteSpace = 'pre'
+          span.className = 'cinematic-word'
+
+          fragment.appendChild(span)
+        })
+
+        parent.replaceChild(fragment, textNode)
       })
+    })
+  }, [splitType])
 
-      const targets = containerRef.current.querySelectorAll('.split-word, .split-char, .split-line')
+  /* ----------------------------- */
+  /* Scroll Progress Animation */
+  /* ----------------------------- */
 
-      gsap.from(targets, {
-        ...animationProps,
-        duration,
-        stagger,
-        ease: 'power3.out',
+  useEffect(() => {
+    if (!containerRef.current) return
 
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: scrollTriggerStart,
-          scrub: scrollScrub,
-        },
+    const words = containerRef.current.querySelectorAll('.cinematic-word')
+
+    const update = () => {
+      const rect = containerRef.current!.getBoundingClientRect()
+      const vh = window.innerHeight
+
+      const startPx = vh * start
+      const endPx = vh * end
+
+      let progress = (startPx - rect.top) / Math.abs(endPx - startPx)
+
+      progress = Math.max(0, Math.min(progress, 1))
+
+      const total = words.length
+      const reveal = progress * total
+
+      words.forEach((word, i) => {
+        const delta = reveal - i
+        const opacity = Math.max(0, Math.min(delta, 1))
+
+        const blur = (1 - opacity) * 12
+        const y = (1 - opacity) * 40
+
+        const el = word as HTMLElement
+
+        el.style.opacity = opacity.toString()
+        el.style.filter = `blur(${blur}px)`
+        el.style.transform = `translateY(${y}px)`
       })
-    },
-    { scope: containerRef },
-  )
+    }
+
+    const loop = () => {
+      update()
+      requestAnimationFrame(loop)
+    }
+
+    loop()
+  }, [start, end])
 
   return (
     <StyledSection
