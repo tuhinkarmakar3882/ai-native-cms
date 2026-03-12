@@ -414,7 +414,6 @@ export const SpacerAtom: Block = {
       name: 'top',
       type: 'number',
       label: 'Top Margin (px)',
-      min: 0,
       admin: {
         condition: (_, siblingData) => siblingData?.spacing === 'none',
       },
@@ -423,7 +422,6 @@ export const SpacerAtom: Block = {
       name: 'bottom',
       type: 'number',
       label: 'Bottom Margin (px)',
-      min: 0,
       admin: {
         condition: (_, siblingData) => siblingData?.spacing === 'none',
       },
@@ -432,7 +430,6 @@ export const SpacerAtom: Block = {
       name: 'left',
       type: 'number',
       label: 'Left Margin (px)',
-      min: 0,
       admin: {
         condition: (_, siblingData) => siblingData?.spacing === 'none',
       },
@@ -441,7 +438,6 @@ export const SpacerAtom: Block = {
       name: 'right',
       type: 'number',
       label: 'Right Margin (px)',
-      min: 0,
       admin: {
         condition: (_, siblingData) => siblingData?.spacing === 'none',
       },
@@ -506,25 +502,21 @@ export const WrapperAtom: Block = {
           name: 'paddingTop',
           type: 'number',
           label: 'Top Padding (px)',
-          min: 0,
         },
         {
           name: 'paddingBottom',
           type: 'number',
           label: 'Bottom Padding (px)',
-          min: 0,
         },
         {
           name: 'paddingLeft',
           type: 'number',
           label: 'Left Padding (px)',
-          min: 0,
         },
         {
           name: 'paddingRight',
           type: 'number',
           label: 'Right Padding (px)',
-          min: 0,
         },
       ],
     },
@@ -536,25 +528,21 @@ export const WrapperAtom: Block = {
           name: 'marginTop',
           type: 'number',
           label: 'Top Margin (px)',
-          min: 0,
         },
         {
           name: 'marginBottom',
           type: 'number',
           label: 'Bottom Margin (px)',
-          min: 0,
         },
         {
           name: 'marginLeft',
           type: 'number',
           label: 'Left Margin (px)',
-          min: 0,
         },
         {
           name: 'marginRight',
           type: 'number',
           label: 'Right Margin (px)',
-          min: 0,
         },
       ],
     },
