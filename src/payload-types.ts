@@ -1359,6 +1359,52 @@ export interface Page {
                                                     blockType: 'smartTable';
                                                   }
                                                 | {
+                                                    useContainer?: boolean | null;
+                                                    title?: string | null;
+                                                    tabs?:
+                                                      | {
+                                                          label: string;
+                                                          /**
+                                                           * Used for deep linking
+                                                           */
+                                                          value?: string | null;
+                                                          media?:
+                                                            | {
+                                                                mediaType: 'image' | 'pdf' | 'video';
+                                                                image?: (string | null) | Media;
+                                                                pdf?: (string | null) | Media;
+                                                                video?: (string | null) | Media;
+                                                                caption?: string | null;
+                                                                showCard?: boolean | null;
+                                                                /**
+                                                                 * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                                                 */
+                                                                ratio?:
+                                                                  | ('none' | '1:1' | '4:3' | '16:9' | '21:9')
+                                                                  | null;
+                                                                width?: number | null;
+                                                                height?: number | null;
+                                                                containerSettings?: {
+                                                                  useContainer?: boolean | null;
+                                                                };
+                                                                id?: string | null;
+                                                                blockName?: string | null;
+                                                                blockType: 'mediaViewer';
+                                                              }[]
+                                                            | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    layout?: ('sidebar' | 'top') | null;
+                                                    /**
+                                                     * Layout used under md breakpoint
+                                                     */
+                                                    mobileLayout?: ('accordion' | 'dropdown' | 'tabs') | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'tabbedMediaViewer';
+                                                  }
+                                                | {
                                                     title?: string | null;
                                                     reviews?:
                                                       | {
@@ -2559,6 +2605,52 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'smartTable';
+                                                  }
+                                                | {
+                                                    useContainer?: boolean | null;
+                                                    title?: string | null;
+                                                    tabs?:
+                                                      | {
+                                                          label: string;
+                                                          /**
+                                                           * Used for deep linking
+                                                           */
+                                                          value?: string | null;
+                                                          media?:
+                                                            | {
+                                                                mediaType: 'image' | 'pdf' | 'video';
+                                                                image?: (string | null) | Media;
+                                                                pdf?: (string | null) | Media;
+                                                                video?: (string | null) | Media;
+                                                                caption?: string | null;
+                                                                showCard?: boolean | null;
+                                                                /**
+                                                                 * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                                                 */
+                                                                ratio?:
+                                                                  | ('none' | '1:1' | '4:3' | '16:9' | '21:9')
+                                                                  | null;
+                                                                width?: number | null;
+                                                                height?: number | null;
+                                                                containerSettings?: {
+                                                                  useContainer?: boolean | null;
+                                                                };
+                                                                id?: string | null;
+                                                                blockName?: string | null;
+                                                                blockType: 'mediaViewer';
+                                                              }[]
+                                                            | null;
+                                                          id?: string | null;
+                                                        }[]
+                                                      | null;
+                                                    layout?: ('sidebar' | 'top') | null;
+                                                    /**
+                                                     * Layout used under md breakpoint
+                                                     */
+                                                    mobileLayout?: ('accordion' | 'dropdown' | 'tabs') | null;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'tabbedMediaViewer';
                                                   }
                                                 | {
                                                     title?: string | null;
@@ -3810,6 +3902,50 @@ export interface Page {
                                         blockType: 'smartTable';
                                       }
                                     | {
+                                        useContainer?: boolean | null;
+                                        title?: string | null;
+                                        tabs?:
+                                          | {
+                                              label: string;
+                                              /**
+                                               * Used for deep linking
+                                               */
+                                              value?: string | null;
+                                              media?:
+                                                | {
+                                                    mediaType: 'image' | 'pdf' | 'video';
+                                                    image?: (string | null) | Media;
+                                                    pdf?: (string | null) | Media;
+                                                    video?: (string | null) | Media;
+                                                    caption?: string | null;
+                                                    showCard?: boolean | null;
+                                                    /**
+                                                     * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                                                     */
+                                                    ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+                                                    width?: number | null;
+                                                    height?: number | null;
+                                                    containerSettings?: {
+                                                      useContainer?: boolean | null;
+                                                    };
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'mediaViewer';
+                                                  }[]
+                                                | null;
+                                              id?: string | null;
+                                            }[]
+                                          | null;
+                                        layout?: ('sidebar' | 'top') | null;
+                                        /**
+                                         * Layout used under md breakpoint
+                                         */
+                                        mobileLayout?: ('accordion' | 'dropdown' | 'tabs') | null;
+                                        id?: string | null;
+                                        blockName?: string | null;
+                                        blockType: 'tabbedMediaViewer';
+                                      }
+                                    | {
                                         title?: string | null;
                                         reviews?:
                                           | {
@@ -4103,6 +4239,50 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'smartTable';
+          }
+        | {
+            useContainer?: boolean | null;
+            title?: string | null;
+            tabs?:
+              | {
+                  label: string;
+                  /**
+                   * Used for deep linking
+                   */
+                  value?: string | null;
+                  media?:
+                    | {
+                        mediaType: 'image' | 'pdf' | 'video';
+                        image?: (string | null) | Media;
+                        pdf?: (string | null) | Media;
+                        video?: (string | null) | Media;
+                        caption?: string | null;
+                        showCard?: boolean | null;
+                        /**
+                         * Select a preset aspect ratio, or choose "None" to set custom width/height.
+                         */
+                        ratio?: ('none' | '1:1' | '4:3' | '16:9' | '21:9') | null;
+                        width?: number | null;
+                        height?: number | null;
+                        containerSettings?: {
+                          useContainer?: boolean | null;
+                        };
+                        id?: string | null;
+                        blockName?: string | null;
+                        blockType: 'mediaViewer';
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            layout?: ('sidebar' | 'top') | null;
+            /**
+             * Layout used under md breakpoint
+             */
+            mobileLayout?: ('accordion' | 'dropdown' | 'tabs') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tabbedMediaViewer';
           }
         | {
             title?: string | null;
@@ -5910,6 +6090,47 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
+                                                                          tabbedMediaViewer?:
+                                                                            | T
+                                                                            | {
+                                                                                useContainer?: T;
+                                                                                title?: T;
+                                                                                tabs?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      value?: T;
+                                                                                      media?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            mediaViewer?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  mediaType?: T;
+                                                                                                  image?: T;
+                                                                                                  pdf?: T;
+                                                                                                  video?: T;
+                                                                                                  caption?: T;
+                                                                                                  showCard?: T;
+                                                                                                  ratio?: T;
+                                                                                                  width?: T;
+                                                                                                  height?: T;
+                                                                                                  containerSettings?:
+                                                                                                    | T
+                                                                                                    | {
+                                                                                                        useContainer?: T;
+                                                                                                      };
+                                                                                                  id?: T;
+                                                                                                  blockName?: T;
+                                                                                                };
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                layout?: T;
+                                                                                mobileLayout?: T;
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
                                                                           testimonialCarousel?:
                                                                             | T
                                                                             | {
@@ -6844,6 +7065,47 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                       dataKey?: T;
                                                                                       id?: T;
                                                                                     };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                          tabbedMediaViewer?:
+                                                                            | T
+                                                                            | {
+                                                                                useContainer?: T;
+                                                                                title?: T;
+                                                                                tabs?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      label?: T;
+                                                                                      value?: T;
+                                                                                      media?:
+                                                                                        | T
+                                                                                        | {
+                                                                                            mediaViewer?:
+                                                                                              | T
+                                                                                              | {
+                                                                                                  mediaType?: T;
+                                                                                                  image?: T;
+                                                                                                  pdf?: T;
+                                                                                                  video?: T;
+                                                                                                  caption?: T;
+                                                                                                  showCard?: T;
+                                                                                                  ratio?: T;
+                                                                                                  width?: T;
+                                                                                                  height?: T;
+                                                                                                  containerSettings?:
+                                                                                                    | T
+                                                                                                    | {
+                                                                                                        useContainer?: T;
+                                                                                                      };
+                                                                                                  id?: T;
+                                                                                                  blockName?: T;
+                                                                                                };
+                                                                                          };
+                                                                                      id?: T;
+                                                                                    };
+                                                                                layout?: T;
+                                                                                mobileLayout?: T;
                                                                                 id?: T;
                                                                                 blockName?: T;
                                                                               };
@@ -7871,6 +8133,47 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        tabbedMediaViewer?:
+                                                          | T
+                                                          | {
+                                                              useContainer?: T;
+                                                              title?: T;
+                                                              tabs?:
+                                                                | T
+                                                                | {
+                                                                    label?: T;
+                                                                    value?: T;
+                                                                    media?:
+                                                                      | T
+                                                                      | {
+                                                                          mediaViewer?:
+                                                                            | T
+                                                                            | {
+                                                                                mediaType?: T;
+                                                                                image?: T;
+                                                                                pdf?: T;
+                                                                                video?: T;
+                                                                                caption?: T;
+                                                                                showCard?: T;
+                                                                                ratio?: T;
+                                                                                width?: T;
+                                                                                height?: T;
+                                                                                containerSettings?:
+                                                                                  | T
+                                                                                  | {
+                                                                                      useContainer?: T;
+                                                                                    };
+                                                                                id?: T;
+                                                                                blockName?: T;
+                                                                              };
+                                                                        };
+                                                                    id?: T;
+                                                                  };
+                                                              layout?: T;
+                                                              mobileLayout?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         testimonialCarousel?:
                                                           | T
                                                           | {
@@ -8148,6 +8451,47 @@ export interface PagesSelect<T extends boolean = true> {
                     dataKey?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        tabbedMediaViewer?:
+          | T
+          | {
+              useContainer?: T;
+              title?: T;
+              tabs?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    media?:
+                      | T
+                      | {
+                          mediaViewer?:
+                            | T
+                            | {
+                                mediaType?: T;
+                                image?: T;
+                                pdf?: T;
+                                video?: T;
+                                caption?: T;
+                                showCard?: T;
+                                ratio?: T;
+                                width?: T;
+                                height?: T;
+                                containerSettings?:
+                                  | T
+                                  | {
+                                      useContainer?: T;
+                                    };
+                                id?: T;
+                                blockName?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              layout?: T;
+              mobileLayout?: T;
               id?: T;
               blockName?: T;
             };

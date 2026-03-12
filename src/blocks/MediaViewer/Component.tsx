@@ -89,12 +89,12 @@ export const MediaViewerComponent: React.FC<MediaViewerProps> = ({
     )
 
   const mediaOutput = !showCard ? (
-    <div className="my-6">
+    <div>
       {mediaContainer}
       {caption && <p className="mt-2 text-sm text-muted-foreground text-center">{caption}</p>}
     </div>
   ) : (
-    <Card className="my-6 overflow-hidden">
+    <Card className="overflow-hidden">
       <CardContent className="p-0">{mediaContainer}</CardContent>
       {caption && (
         <CardFooter>

@@ -36,6 +36,7 @@ import { TableBlock } from '@/blocks/Table/config'
 import { TestimonialBlock } from '@/blocks/Testimonials/config'
 import { TimelineBlock } from '@/blocks/Timeline/config'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
+import { TabbedMediaViewerBlock } from '@/blocks/TabbedMediaViewer/config'
 
 export const GridItemBlock: Block = {
   slug: 'gridItem',
@@ -64,6 +65,7 @@ export const GridItemBlock: Block = {
 
         PricingBlock,
         TableBlock,
+        TabbedMediaViewerBlock,
         TestimonialBlock,
         TimelineBlock,
       ],

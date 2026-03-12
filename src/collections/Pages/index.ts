@@ -38,6 +38,7 @@ import { AnimatedCinematicTextBlock } from '@/blocks/Animations/AnimatedCinemati
 import { AnimatedClipPathMorphBlock } from '@/blocks/Animations/AnimatedClipPathMorphBlock'
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 import { updateChildSlugs } from '@/collections/Pages/hooks/updateChildSlugs'
+import { TabbedMediaViewerBlock } from '@/blocks/TabbedMediaViewer/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -138,6 +139,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 PricingBlock,
                 RichTextContentBlock,
                 TableBlock,
+                TabbedMediaViewerBlock,
                 TestimonialBlock,
                 TimelineBlock,
               ],

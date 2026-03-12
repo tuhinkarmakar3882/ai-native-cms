@@ -20,6 +20,7 @@ import { StaggerListComponent } from '@/components/Designs/Animations/StaggerLis
 import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleStory/Component'
 import { CinematicTextComponent } from '@/components/Designs/Animations/CinematicText/Component'
 import { ClipPathMorphBlockComponent } from '@/components/Designs/Animations/ClipPathMorph/Component'
+import { TabbedMediaViewerComponent } from '@/blocks/TabbedMediaViewer/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -34,6 +35,7 @@ const PremadeRendererMap = {
   'richtext-content': RichTextComponent,
   smartTable: TableComponent,
   testimonialCarousel: TestimonialComponent,
+  tabbedMediaViewer: TabbedMediaViewerComponent,
   timeline: TimelineComponent,
 }
 
