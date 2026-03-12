@@ -589,7 +589,13 @@ export const WrapperAtom: Block = {
         {
           name: 'borderWidth',
           label: 'Border Width',
-          defaultValue: '0',
+          defaultValue: '0px',
+          type: 'text',
+        },
+        {
+          name: 'borderRadius',
+          label: 'Border Radius',
+          defaultValue: '0px',
           type: 'text',
         },
       ],

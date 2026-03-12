@@ -1087,6 +1087,7 @@ export interface Page {
                                                      */
                                                     borderColor?: string | null;
                                                     borderWidth?: string | null;
+                                                    borderRadius?: string | null;
                                                     items?:
                                                       | (
                                                           | {
@@ -2288,6 +2289,7 @@ export interface Page {
                                                      */
                                                     borderColor?: string | null;
                                                     borderWidth?: string | null;
+                                                    borderRadius?: string | null;
                                                     items?:
                                                       | (
                                                           | {
@@ -3524,6 +3526,7 @@ export interface Page {
                                          */
                                         borderColor?: string | null;
                                         borderWidth?: string | null;
+                                        borderRadius?: string | null;
                                         items?:
                                           | (
                                               | {
@@ -5683,6 +5686,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 backgroundColor?: T;
                                                                                 borderColor?: T;
                                                                                 borderWidth?: T;
+                                                                                borderRadius?: T;
                                                                                 items?:
                                                                                   | T
                                                                                   | {
@@ -6619,6 +6623,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                                 backgroundColor?: T;
                                                                                 borderColor?: T;
                                                                                 borderWidth?: T;
+                                                                                borderRadius?: T;
                                                                                 items?:
                                                                                   | T
                                                                                   | {
@@ -7620,6 +7625,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               backgroundColor?: T;
                                                               borderColor?: T;
                                                               borderWidth?: T;
+                                                              borderRadius?: T;
                                                               items?:
                                                                 | T
                                                                 | {
