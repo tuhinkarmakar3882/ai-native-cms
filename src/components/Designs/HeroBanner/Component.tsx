@@ -162,21 +162,7 @@ export const HeroBannerComponent: React.FC<HeroBannerProps> = ({
           {actions.length > 0 && (
             <div className="flex gap-4 pt-4">
               {actions.map((btn, i) => (
-                <Button
-                  key={i}
-                  variant={
-                    btn.style === 'outline' && isDark
-                      ? 'secondary'
-                      : btn.style === 'outline'
-                        ? 'outline'
-                        : btn.style === 'ghost'
-                          ? 'ghost'
-                          : 'default'
-                  }
-                  size="lg"
-                  asChild
-                  data-track-id={btn.trackId}
-                >
+                <Button key={i} variant={btn.style} size="lg" data-track-id={btn.trackId}>
                   <a href={btn.link}>{btn.label}</a>
                 </Button>
               ))}
