@@ -25,6 +25,7 @@ import {
   UploadFeature,
 } from '@payloadcms/richtext-lexical'
 import { Code } from '@/blocks/Code/config'
+import { ButtonAtom } from '@/blocks/Composable/Atoms/config'
 
 export const AnimatedStickyScrollSectionBlock: Block = {
   slug: 'stickyScrollSection',
@@ -148,6 +149,13 @@ export const AnimatedStickyScrollSectionBlock: Block = {
           admin: {
             condition: (_, siblingData) => siblingData?.mediaType === 'video',
           },
+        },
+        {
+          name: 'buttons',
+          label: 'Buttons',
+          type: 'array',
+          maxRows: 2,
+          fields: ButtonAtom.fields,
         },
       ],
     },

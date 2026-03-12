@@ -3169,6 +3169,36 @@ export interface Page {
                   mediaType?: ('image' | 'video') | null;
                   image?: (string | null) | Media;
                   video?: (string | null) | Media;
+                  buttons?:
+                    | {
+                        label: string;
+                        url?: string | null;
+                        variant?: ('default' | 'secondary' | 'outline' | 'ghost' | 'destructive') | null;
+                        iconBefore?: {
+                          /**
+                           * Lucide icon name
+                           */
+                          iconName?: string | null;
+                          size?: number | null;
+                          /**
+                           * Tailwind class or Hex
+                           */
+                          color?: string | null;
+                        };
+                        iconAfter?: {
+                          /**
+                           * Lucide icon name
+                           */
+                          iconName?: string | null;
+                          size?: number | null;
+                          /**
+                           * Tailwind class or Hex
+                           */
+                          color?: string | null;
+                        };
+                        id?: string | null;
+                      }[]
+                    | null;
                   id?: string | null;
                 }[]
               | null;
@@ -7312,6 +7342,28 @@ export interface PagesSelect<T extends boolean = true> {
                     mediaType?: T;
                     image?: T;
                     video?: T;
+                    buttons?:
+                      | T
+                      | {
+                          label?: T;
+                          url?: T;
+                          variant?: T;
+                          iconBefore?:
+                            | T
+                            | {
+                                iconName?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                          iconAfter?:
+                            | T
+                            | {
+                                iconName?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                          id?: T;
+                        };
                     id?: T;
                   };
               containerSettings?:

@@ -5,15 +5,24 @@ import Image from 'next/image'
 import { Container } from '@/components/Designs/Structural/Container'
 import { cn } from '@/utilities/ui'
 import RichText from '@/components/RichText'
+import { ButtonAtomComponent } from '@/blocks/Composable/Atoms/renderder'
+
+interface Button {
+  label: string
+  url?: string
+  variant?: string
+  iconBefore?: any
+  iconAfter?: any
+}
 
 interface Step {
   heading: string
-  description?: string
+  description?: any
+  buttons?: Button[]
   mediaType: 'image' | 'video'
   image?: { url: string; alt?: string }
-  video?: { url: string; alt?: string }
+  video?: { url: string }
 }
-
 interface Props {
   trackId?: string
   title?: string
@@ -147,6 +156,14 @@ export const StickyScrollSectionComponent: React.FC<Props> = ({
 
       {steps[idx].description && (
         <RichText enableProse={true} enableGutter={false} data={steps[idx].description} />
+      )}
+
+      {steps[idx].buttons?.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-3">
+          {steps[idx].buttons.map((btn, i) => (
+            <ButtonAtomComponent key={i} {...btn} />
+          ))}
+        </div>
       )}
     </div>
   )
