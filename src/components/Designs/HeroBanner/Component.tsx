@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 import { Container } from '@/components/Designs/Structural/Container'
 import styled from 'styled-components'
+import { ButtonAtomComponent } from '@/blocks/Composable/Atoms/renderder'
 
 interface Media {
   url: string
@@ -160,7 +161,7 @@ export const HeroBannerComponent: React.FC<HeroBannerProps> = ({
             </p>
           )}
           {actions.length > 0 && (
-            <div className="flex gap-4 pt-4">
+            <div className={cn('flex', 'gap-4', 'pt-4', !isDark && 'force-light')}>
               {actions.map((btn, i) => (
                 <Button key={i} variant={btn.style} size="lg" data-track-id={btn.trackId}>
                   <a href={btn.link}>{btn.label}</a>
