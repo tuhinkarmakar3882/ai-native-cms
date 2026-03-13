@@ -330,3 +330,8 @@ html:has(.rtl-mode) * {
   --warning: lab(87.2575% 11.4394 39.8324);
   --error: lab(69.5411% 46.9033 26.5749);
 }
+
+img {
+  width: 100%;
+  object-fit: cover;
+}

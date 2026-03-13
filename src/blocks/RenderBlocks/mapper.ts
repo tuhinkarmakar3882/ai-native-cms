@@ -21,6 +21,7 @@ import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleS
 import { CinematicTextComponent } from '@/components/Designs/Animations/CinematicText/Component'
 import { ClipPathMorphBlockComponent } from '@/components/Designs/Animations/ClipPathMorph/Component'
 import { TabbedMediaViewerComponent } from '@/blocks/TabbedMediaViewer/Component'
+import { TwoColumnLayoutComponent } from '@/blocks/TwoColumn/Component'
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -34,19 +35,20 @@ const PremadeRendererMap = {
   pricingTable: PricingComponent,
   'richtext-content': RichTextComponent,
   smartTable: TableComponent,
-  testimonialCarousel: TestimonialComponent,
   tabbedMediaViewer: TabbedMediaViewerComponent,
+  testimonialCarousel: TestimonialComponent,
   timeline: TimelineComponent,
+  twoColumnLayout: TwoColumnLayoutComponent,
 }
 
 const AnimatedRendererMap = {
-  revealOnScroll: RevealOnScrollComponent,
-  stickyScrollSection: StickyScrollSectionComponent,
-  parallaxMedia: ParallaxMediaComponent,
-  staggerList: StaggerListComponent,
   appleStory: AppleStoryBlockComponent,
   cinematicText: CinematicTextComponent,
   clipPathMorph: ClipPathMorphBlockComponent,
+  parallaxMedia: ParallaxMediaComponent,
+  revealOnScroll: RevealOnScrollComponent,
+  staggerList: StaggerListComponent,
+  stickyScrollSection: StickyScrollSectionComponent,
 }
 
 export const AvailableRenderBlocks = {

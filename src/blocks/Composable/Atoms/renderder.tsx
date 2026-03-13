@@ -29,21 +29,27 @@ import {
 } from '@/components/ui'
 
 import Image from 'next/image'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 
 import { cn } from '@/utilities/ui'
 import { DynamicIcon } from 'lucide-react/dynamic'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { EmbedAnythingBlockComponent } from '@/components/Designs/EmbedAnything/Component'
+import { RichTextComponent } from '@/blocks/RichTextContent/Component'
 
 export const TextAtomComponent = ({ content }) => (
   <div className="prose max-w-none">
-    <RichText data={content} />
+    <RichTextComponent content={content} />
   </div>
 )
 
-export const ButtonAtomComponent = ({ label, url, variant, iconBefore, iconAfter }) => (
-  <Button variant={variant} asChild>
+export const ButtonAtomComponent = ({ label, url, variant, iconBefore, iconAfter, width }) => (
+  <Button
+    variant={variant}
+    asChild
+    style={{
+      width,
+    }}
+  >
     <a href={url} className="inline-flex items-center gap-2">
       {iconBefore && <IconAtomComponent {...iconBefore} />}
 

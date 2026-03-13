@@ -39,6 +39,8 @@ import { AnimatedClipPathMorphBlock } from '@/blocks/Animations/AnimatedClipPath
 import { EmbedAnythingBlock } from '@/blocks/Composable/Atoms/EmbedAnything/config'
 import { updateChildSlugs } from '@/collections/Pages/hooks/updateChildSlugs'
 import { TabbedMediaViewerBlock } from '@/blocks/TabbedMediaViewer/config'
+import { SeparatorAtom, SpacerAtom, WrapperAtom } from '@/blocks/Composable/Atoms/config'
+import { TwoColumnLayoutBlock } from '@/blocks/TwoColumn/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -138,10 +140,14 @@ export const Pages: CollectionConfig<'pages'> = {
                 MediaViewerBlock,
                 PricingBlock,
                 RichTextContentBlock,
+                SeparatorAtom,
+                SpacerAtom,
                 TableBlock,
                 TabbedMediaViewerBlock,
                 TestimonialBlock,
                 TimelineBlock,
+                TwoColumnLayoutBlock,
+                WrapperAtom,
               ],
             },
           ],

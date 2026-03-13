@@ -1,5 +1,5 @@
 import { Block } from 'payload'
-import { ContainerBlock } from '@/blocks/Composable/intermediate'
+import { ContainerBlock } from '@/blocks/Composable/structural-blocks'
 
 export const BuildYourOwnSectionBlock: Block = {
   slug: 'buildYourOwnSection',

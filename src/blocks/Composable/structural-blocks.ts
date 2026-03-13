@@ -51,8 +51,6 @@ export const GridItemBlock: Block = {
         AnimatedParallaxMediaBlock,
         AnimatedRevealOnScrollBlock,
 
-        ...AtomBlocks,
-
         BannerBlock,
         BentoGridBlock,
 
@@ -68,6 +66,8 @@ export const GridItemBlock: Block = {
         TabbedMediaViewerBlock,
         TestimonialBlock,
         TimelineBlock,
+
+        ...AtomBlocks,
       ],
     },
   ],

@@ -13,6 +13,8 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import styled from 'styled-components'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
 

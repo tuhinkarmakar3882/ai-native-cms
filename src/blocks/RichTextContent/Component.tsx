@@ -10,7 +10,7 @@ type Props = {
 
 export const RichTextComponent: React.FC<Props> = ({ className, content, style }) => {
   return (
-    <div className={cn('container mx-auto px-4', className)}>
+    <div className={cn(className)}>
       <RichText data={content} enableGutter={false} enableProse={true} />
     </div>
   )
