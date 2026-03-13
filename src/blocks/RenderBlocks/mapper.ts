@@ -22,11 +22,11 @@ import { CinematicTextComponent } from '@/components/Designs/Animations/Cinemati
 import { ClipPathMorphBlockComponent } from '@/components/Designs/Animations/ClipPathMorph/Component'
 import { TabbedMediaViewerComponent } from '@/blocks/TabbedMediaViewer/Component'
 
-import dynamic from 'next/dynamic'
-
-const TwoColumnLayoutComponent = dynamic(() =>
-  import('../TwoColumn/Component').then((m) => m.TwoColumnLayoutComponent),
-)
+// import dynamic from 'next/dynamic'
+//
+// const TwoColumnLayoutComponent = dynamic(() =>
+//   import('../TwoColumn/Component').then((m) => m.TwoColumnLayoutComponent),
+// )
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,
@@ -43,7 +43,7 @@ const PremadeRendererMap = {
   tabbedMediaViewer: TabbedMediaViewerComponent,
   testimonialCarousel: TestimonialComponent,
   timeline: TimelineComponent,
-  twoColumnLayout: TwoColumnLayoutComponent,
+  // twoColumnLayout: TwoColumnLayoutComponent,
 }
 
 const AnimatedRendererMap = {
