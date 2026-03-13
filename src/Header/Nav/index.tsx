@@ -40,7 +40,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           return (
             <NavigationMenuItem key={i}>
               <NavigationMenuTrigger className="text-sm font-medium px-2">
-                <Button variant={item.link?.appearance} className="pl-0 pr-1" asChild>
+                <Button variant={item.link?.appearance} className="pl-0 pr-1">
                   {item.link?.label}
                 </Button>
               </NavigationMenuTrigger>
