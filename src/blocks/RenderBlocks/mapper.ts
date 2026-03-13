@@ -21,7 +21,12 @@ import { AppleStoryBlockComponent } from '@/components/Designs/Animations/AppleS
 import { CinematicTextComponent } from '@/components/Designs/Animations/CinematicText/Component'
 import { ClipPathMorphBlockComponent } from '@/components/Designs/Animations/ClipPathMorph/Component'
 import { TabbedMediaViewerComponent } from '@/blocks/TabbedMediaViewer/Component'
-import { TwoColumnLayoutComponent } from '@/blocks/TwoColumn/Component'
+
+import dynamic from 'next/dynamic'
+
+const TwoColumnLayoutComponent = dynamic(() =>
+  import('../TwoColumn/Component').then((m) => m.TwoColumnLayoutComponent),
+)
 
 const PremadeRendererMap = {
   banner: BannerBlockComponent,

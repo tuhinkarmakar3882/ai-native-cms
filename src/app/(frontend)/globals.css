@@ -246,7 +246,11 @@
 }
 
 html {
-  opacity: 0;
+  opacity: 1;
+}
+
+html:not([data-theme]) {
+  opacity: 1;
 }
 
 html[data-theme='dark'],
