@@ -41,7 +41,7 @@ export const PageClient: React.FC<{ initialData: any; locale?: string; isDraft?:
   const isRTL = locale === 'ar' || data?._locale === 'ar'
 
   return (
-    <StyledArticle className={`pb-24 ${isRTL ? 'rtl-mode' : ''}`}>
+    <StyledArticle className={`pb-4 ${isRTL ? 'rtl-mode' : ''}`}>
       <RenderBlocks blocks={data.layout} />
     </StyledArticle>
   )

@@ -81,7 +81,7 @@ export default async function Page({
   }
 
   return (
-    <StyledArticle className={`pb-24 ${isRTL(locale) ? 'rtl-mode' : ''}`}>
+    <StyledArticle className={`pb-4 ${isRTL(locale) ? 'rtl-mode' : ''}`}>
       {draft ? (
         <PageClient initialData={page} locale={locale} isDraft={draft} />
       ) : (
