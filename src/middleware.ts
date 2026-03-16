@@ -3,6 +3,10 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { getBucket, pickVariant } from './utilities/experiment-logic'
 
+export const config = {
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
