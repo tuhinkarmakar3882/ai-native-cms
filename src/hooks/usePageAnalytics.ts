@@ -42,7 +42,8 @@ export function usePageAnalytics({
     // if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
     //   return
     // }
-    if (!isEnabled) return
+    // if (!isEnabled) return
+    console.log('[usePageAnalytics] Status:', isEnabled)
 
     /* -------------------------------------------
      * Internal State
