@@ -4828,6 +4828,7 @@ export interface Page {
         | {
             layout?: ('50-50' | '60-40' | '40-60' | '70-30' | '30-70') | null;
             stickySide?: ('none' | 'left' | 'right') | null;
+            mobileStack?: ('left-first' | 'right-first') | null;
             leftColumn?:
               | (
                   | {
@@ -12850,6 +12851,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               layout?: T;
               stickySide?: T;
+              mobileStack?: T;
               leftColumn?:
                 | T
                 | {

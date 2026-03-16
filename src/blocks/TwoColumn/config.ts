@@ -47,7 +47,16 @@ export const TwoColumnLayoutBlock: Block = {
         { label: 'Right', value: 'right' },
       ],
     },
-
+    {
+      name: 'mobileStack',
+      label: 'Mobile Stack Order',
+      type: 'select',
+      defaultValue: 'left-first',
+      options: [
+        { label: 'Left then Right', value: 'left-first' },
+        { label: 'Right then Left', value: 'right-first' },
+      ],
+    },
     {
       name: 'leftColumn',
       label: 'Left Column Content',
