@@ -198,7 +198,7 @@ export const IconAtomComponent = ({
   size?: number
   color?: string
 }) => {
-  return <DynamicIcon name={iconName} size={size} color={color} />
+  return iconName ? <DynamicIcon name={iconName} size={size} color={color} /> : null
 }
 
 export const VideoAtomComponent = ({ url, controls }) => (
