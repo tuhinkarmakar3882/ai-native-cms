@@ -5,32 +5,42 @@ import { getBucket, pickVariant } from './utilities/experiment-logic'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const slug = pathname.split('/').pop() || 'home'
 
-  // 1. Check if this slug is an active experiment
-  // Note: In production, you'd want to cache this lookup or use a faster Edge-compatible DB
+  // Prevent middleware from running on API routes
+  if (pathname.startsWith('/api') || request.headers.get('x-is-experiment')) {
+    return NextResponse.next()
+  }
+  // Convert pathname to slug array
+  const slugArray = pathname.split('/').filter(Boolean)
+  const slug = slugArray.length ? slugArray.join('/') : 'home'
+
   try {
-    const expRes = await fetch(`${request.nextUrl.origin}/api/experiment-lookup?slug=${slug}`)
+    const expRes = await fetch(`${request.nextUrl.origin}/api/experiment-lookup?slug=${slug}`, {
+      cache: 'no-store',
+    })
+
+    if (!expRes.ok) {
+      return NextResponse.next()
+    }
     const experiment = await expRes.json()
 
     if (experiment && experiment.enabled) {
-      // 2. Handle Visitor ID
       let visitorId = request.cookies.get('visitor_id')?.value
       if (!visitorId) {
         visitorId = crypto.randomUUID()
       }
 
-      // 3. Deterministically pick variant
       const bucket = getBucket(visitorId, experiment.experimentId)
       const variant = pickVariant(experiment.variants, bucket)
-      const variantPage = variant.page // This is the Page object from Payload
+      const variantPage = variant.page
 
-      // 4. Rewrite to the variant slug
-      // We add a header to 'authorize' the variant access
-      const response = NextResponse.rewrite(new URL(`/${variantPage.slug}`, request.url))
+      const response = NextResponse.rewrite(new URL(`/${variantPage.fullSlug}`, request.url))
 
       response.headers.set('x-is-experiment', 'true')
-      response.cookies.set('visitor_id', visitorId, { path: '/', maxAge: 60 * 60 * 24 * 30 })
+      response.cookies.set('visitor_id', visitorId, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 30,
+      })
 
       return response
     }
@@ -39,17 +49,4 @@ export async function middleware(request: NextRequest) {
   }
 
   return NextResponse.next()
-}
-
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
 }
